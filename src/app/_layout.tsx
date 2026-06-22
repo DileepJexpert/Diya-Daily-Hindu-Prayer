@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -16,6 +16,7 @@ import { useScheme } from '@/hooks/use-theme';
 import { useAppStore } from '@/lib/state/store';
 import { PlayerProvider } from '@/lib/audio/PlayerProvider';
 import { initSubscriptions } from '@/lib/subscription/entitlements';
+import { hydrateContent } from '@/lib/content/source';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -42,10 +43,12 @@ export default function RootLayout() {
     NotoSansDevanagari_700Bold,
   });
 
-  const ready = fontsLoaded && hydrated;
+  const [contentReady, setContentReady] = useState(false);
+  const ready = fontsLoaded && hydrated && contentReady;
 
   useEffect(() => {
     initSubscriptions();
+    hydrateContent().finally(() => setContentReady(true));
   }, []);
 
   useEffect(() => {

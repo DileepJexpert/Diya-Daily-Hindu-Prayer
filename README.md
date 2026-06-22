@@ -98,6 +98,10 @@ more code:
 4. **Panchang precision** — the offline engine is good to the day; for Drik-grade
    timings (and high-latitude cities) wire a vetted panchang API and keep this as
    the fallback.
+5. **Remote content** — set `EXPO_PUBLIC_CONTENT_URL` to a CMS/CDN JSON of the
+   catalog (`{ deities, tracks, scriptures, festivals, stories, journeys,
+   quizzes }`); at startup the app loads it (5s timeout) and otherwise uses the
+   bundled content. Lets editors/scholars update prayers without an app update.
 
 ## Content & authenticity
 
