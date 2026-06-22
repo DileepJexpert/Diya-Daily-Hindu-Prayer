@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Spacing } from '@/constants/theme';
 import { Button, Card, Icon, Screen, Text } from '@/components/ui';
+import { StoryQuiz } from '@/components/content/StoryQuiz';
 import { Catalog } from '@/lib/content/catalog';
 
 export default function StoryDetailScreen() {
@@ -17,6 +19,8 @@ export default function StoryDetailScreen() {
   }
 
   const deity = story.deityId ? Catalog.deity(story.deityId) : undefined;
+  const quiz = Catalog.storyQuiz(story.id);
+  const [showQuiz, setShowQuiz] = useState(false);
 
   return (
     <Screen>
@@ -52,6 +56,19 @@ export default function StoryDetailScreen() {
           style={{ marginTop: Spacing.xl }}
           onPress={() => router.push(`/deity/${deity.id}`)}
         />
+      )}
+
+      {quiz.length > 0 && (
+        <View style={{ marginTop: Spacing.xl }}>
+          {!showQuiz ? (
+            <Button label="Test what you learned" icon="help-circle" variant="secondary" full onPress={() => setShowQuiz(true)} />
+          ) : (
+            <>
+              <Text variant="title" style={{ marginBottom: Spacing.md }}>Little quiz</Text>
+              <StoryQuiz questions={quiz} />
+            </>
+          )}
+        </View>
       )}
 
       {story.attribution && (

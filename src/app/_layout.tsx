@@ -79,6 +79,7 @@ export default function RootLayout() {
               <Stack.Screen name="scripture/[id]" />
               <Stack.Screen name="paywall" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
               <Stack.Screen name="japa" options={{ presentation: 'card', animation: 'slide_from_bottom' }} />
+              <Stack.Screen name="learn/[id]" options={{ presentation: 'card', animation: 'slide_from_bottom' }} />
             </Stack>
           </PlayerProvider>
         </ThemeProvider>

@@ -25,14 +25,25 @@ export default function PlayerScreen() {
   const deity = track ? Catalog.deity(track.deityId) : undefined;
   const locked = !!track && !track.isFree && !premium;
 
-  const { trackId, isPlaying, position, duration, rate, load, toggle, seek, cycleRate, next, prev } =
-    usePlayerStore();
+  const {
+    trackId, isPlaying, position, duration, rate, repeat,
+    load, toggle, seek, cycleRate, cycleRepeat, next, prev,
+    sleepTimerEndsAt, setSleepTimer,
+  } = usePlayerStore();
   const isFavorite = useAppStore((s) => (id ? s.favorites.includes(id) : false));
   const toggleFavorite = useAppStore((s) => s.toggleFavorite);
 
   const [showDeva, setShowDeva] = useState(true);
   const [showTrans, setShowTrans] = useState(true);
   const [barWidth, setBarWidth] = useState(1);
+  const [sleepMin, setSleepMin] = useState(0);
+
+  const SLEEPS = [0, 10, 20, 30];
+  const cycleSleep = () => {
+    const nextMin = SLEEPS[(SLEEPS.indexOf(sleepMin) + 1) % SLEEPS.length];
+    setSleepMin(nextMin);
+    setSleepTimer(nextMin);
+  };
 
   useEffect(() => {
     if (track && !locked && trackId !== track.id) load(track.id, [track.id]);
@@ -103,6 +114,16 @@ export default function PlayerScreen() {
               gap: Spacing.md,
             }}
           >
+            <View style={{ flexDirection: 'row', gap: Spacing.sm, justifyContent: 'center' }}>
+              <Pill
+                label={repeat === 'one' ? 'Repeat 1' : repeat === 'all' ? 'Repeat all' : 'Repeat'}
+                icon="repeat"
+                active={repeat !== 'off'}
+                onPress={cycleRepeat}
+              />
+              <Pill label={sleepMin ? `Sleep ${sleepMin}m` : 'Sleep'} icon="moon" active={!!sleepTimerEndsAt} onPress={cycleSleep} />
+              <Pill label="Learn" icon="school" onPress={() => router.push(`/learn/${track.id}`)} />
+            </View>
             <View style={{ flexDirection: 'row', gap: Spacing.sm, justifyContent: 'center' }}>
               <Pill label="अ Devanagari" active={showDeva} onPress={() => setShowDeva((v) => !v)} />
               <Pill label="A Translation" active={showTrans} onPress={() => setShowTrans((v) => !v)} />

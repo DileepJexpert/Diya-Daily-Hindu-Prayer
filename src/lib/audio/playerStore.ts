@@ -5,12 +5,16 @@
  * follow-along synced-lyric experience for seed tracks that ship without audio.
  * Position is advanced by `PlayerProvider`'s clock; when a real `expo-audio`
  * source is wired, swap the clock for the player's reported `currentTime`.
+ *
+ * Supports repeat (off/all/one), a sleep timer, and a `loopRange` used by Learn
+ * mode to repeat a single lyric line.
  */
 import { create } from 'zustand';
 import { Catalog } from '../content/catalog';
 import { useAppStore } from '../state/store';
 
 export const RATE_STEPS = [0.5, 0.75, 1, 1.25] as const;
+export type RepeatMode = 'off' | 'all' | 'one';
 
 interface PlayerState {
   trackId: string | null;
@@ -18,7 +22,10 @@ interface PlayerState {
   position: number; // seconds
   duration: number; // seconds
   rate: number;
+  repeat: RepeatMode;
   queue: string[];
+  loopRange: { start: number; end: number } | null;
+  sleepTimerEndsAt: number | null; // epoch ms
   completedThisSession: boolean;
 
   load: (trackId: string, queue?: string[]) => void;
@@ -27,6 +34,9 @@ interface PlayerState {
   toggle: () => void;
   seek: (seconds: number) => void;
   cycleRate: () => void;
+  cycleRepeat: () => void;
+  setLoopRange: (range: { start: number; end: number } | null) => void;
+  setSleepTimer: (minutes: number) => void;
   tick: (dt: number) => void;
   next: () => void;
   prev: () => void;
@@ -39,7 +49,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   position: 0,
   duration: 0,
   rate: 1,
+  repeat: 'off',
   queue: [],
+  loopRange: null,
+  sleepTimerEndsAt: null,
   completedThisSession: false,
 
   load: (trackId, queue) => {
@@ -51,6 +64,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
       duration: track.duration,
       position: 0,
       isPlaying: true,
+      loopRange: null,
       completedThisSession: false,
       queue: queue && queue.length ? queue : [trackId],
     });
@@ -59,23 +73,46 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   play: () => set({ isPlaying: true }),
   pause: () => set({ isPlaying: false }),
   toggle: () => set((s) => ({ isPlaying: !s.isPlaying })),
-  seek: (seconds) =>
-    set((s) => ({ position: Math.max(0, Math.min(seconds, s.duration)) })),
+  seek: (seconds) => set((s) => ({ position: Math.max(0, Math.min(seconds, s.duration)) })),
   cycleRate: () =>
     set((s) => {
       const i = RATE_STEPS.indexOf(s.rate as (typeof RATE_STEPS)[number]);
       return { rate: RATE_STEPS[(i + 1) % RATE_STEPS.length] };
     }),
+  cycleRepeat: () =>
+    set((s) => ({ repeat: s.repeat === 'off' ? 'all' : s.repeat === 'all' ? 'one' : 'off' })),
+  setLoopRange: (loopRange) => set({ loopRange }),
+  setSleepTimer: (minutes) =>
+    set({ sleepTimerEndsAt: minutes > 0 ? Date.now() + minutes * 60000 : null }),
 
   tick: (dt) => {
     const s = get();
     if (!s.isPlaying || !s.trackId) return;
-    const position = s.position + dt;
+
+    // Sleep timer
+    if (s.sleepTimerEndsAt && Date.now() >= s.sleepTimerEndsAt) {
+      set({ isPlaying: false, sleepTimerEndsAt: null });
+      return;
+    }
+
+    let position = s.position + dt;
+
+    // Learn-mode single-line loop
+    if (s.loopRange) {
+      if (position >= s.loopRange.end) position = s.loopRange.start;
+      set({ position });
+      return;
+    }
+
     if (position >= s.duration) {
-      // Track finished — record practice and advance the queue.
       if (!s.completedThisSession) useAppStore.getState().recordPractice();
+      if (s.repeat === 'one') {
+        set({ position: 0, completedThisSession: true });
+        return;
+      }
       const idx = s.queue.indexOf(s.trackId);
-      const nextId = idx >= 0 && idx < s.queue.length - 1 ? s.queue[idx + 1] : null;
+      let nextId = idx >= 0 && idx < s.queue.length - 1 ? s.queue[idx + 1] : null;
+      if (!nextId && s.repeat === 'all' && s.queue.length) nextId = s.queue[0];
       if (nextId) {
         const track = Catalog.track(nextId);
         set({ trackId: nextId, position: 0, duration: track?.duration ?? 0, completedThisSession: false });
@@ -90,7 +127,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   next: () => {
     const s = get();
     const idx = s.trackId ? s.queue.indexOf(s.trackId) : -1;
-    const nextId = idx >= 0 && idx < s.queue.length - 1 ? s.queue[idx + 1] : null;
+    const nextId = idx >= 0 && idx < s.queue.length - 1 ? s.queue[idx + 1] : s.repeat === 'all' ? s.queue[0] : null;
     if (nextId) get().load(nextId, s.queue);
   },
   prev: () => {
@@ -100,5 +137,5 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const prevId = idx > 0 ? s.queue[idx - 1] : null;
     if (prevId) get().load(prevId, s.queue);
   },
-  stop: () => set({ trackId: null, isPlaying: false, position: 0, duration: 0 }),
+  stop: () => set({ trackId: null, isPlaying: false, position: 0, duration: 0, loopRange: null }),
 }));

@@ -71,5 +71,60 @@ export const BHAGAVAD_GITA: Scripture = {
         },
       ],
     },
+    {
+      number: 12,
+      title: 'Bhakti Yoga — The Yoga of Devotion',
+      devanagari: 'भक्तियोग',
+      summary:
+        'Krishna praises loving devotion as the most accessible path, and describes the qualities of one who is dear to the Divine.',
+      verses: [
+        {
+          ref: '12.8',
+          devanagari:
+            'मय्येव मन आधत्स्व मयि बुद्धिं निवेशय।\nनिवसिष्यसि मय्येव अत ऊर्ध्वं न संशयः॥',
+          transliteration:
+            'mayy eva mana ādhatsva mayi buddhiṁ niveśaya\nnivasiṣyasi mayy eva ata ūrdhvaṁ na saṁśayaḥ',
+          translation:
+            'Fix your mind on Me alone and rest your understanding in Me; thereafter you will dwell in Me — of this there is no doubt.',
+        },
+        {
+          ref: '12.13',
+          devanagari:
+            'अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च।\nनिर्ममो निरहंकारः समदुःखसुखः क्षमी॥',
+          transliteration:
+            'adveṣṭā sarva-bhūtānāṁ maitraḥ karuṇa eva ca\nnirmamo nirahaṅkāraḥ sama-duḥkha-sukhaḥ kṣamī',
+          translation:
+            'One who hates no creature, who is friendly and compassionate, free of possessiveness and ego, even-minded in pain and pleasure, and forgiving —',
+          commentary: 'The opening of Krishna’s portrait of the devotee who is dear to him.',
+        },
+      ],
+    },
+    {
+      number: 15,
+      title: 'Purushottama Yoga — The Supreme Person',
+      devanagari: 'पुरुषोत्तमयोग',
+      summary:
+        'The world is likened to an eternal tree; the living being is a fragment of the Divine, who dwells in every heart.',
+      verses: [
+        {
+          ref: '15.7',
+          devanagari:
+            'ममैवांशो जीवलोके जीवभूतः सनातनः।\nमनःषष्ठानीन्द्रियाणि प्रकृतिस्थानि कर्षति॥',
+          transliteration:
+            'mamaivāṁśo jīva-loke jīva-bhūtaḥ sanātanaḥ\nmanaḥ-ṣaṣṭhānīndriyāṇi prakṛti-sthāni karṣati',
+          translation:
+            'An eternal fragment of My own Self becomes the living being in the world of life, drawing to itself the senses and the mind that rest in nature.',
+        },
+        {
+          ref: '15.15',
+          devanagari:
+            'सर्वस्य चाहं हृदि सन्निविष्टो मत्तः स्मृतिर्ज्ञानमपोहनं च।',
+          transliteration:
+            'sarvasya cāhaṁ hṛdi sanniviṣṭo mattaḥ smṛtir jñānam apohanaṁ ca',
+          translation:
+            'I am seated in the heart of all beings; from Me come memory, knowledge and their absence.',
+        },
+      ],
+    },
   ],
 };

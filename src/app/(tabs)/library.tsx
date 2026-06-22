@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react';
-import { ScrollView, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, TextInput, View } from 'react-native';
+import { router } from 'expo-router';
 import { Radius, Spacing } from '@/constants/theme';
-import { Card, Icon, Pill, Screen, Text } from '@/components/ui';
+import { Card, Icon, Pill, Screen, SectionHeader, Text } from '@/components/ui';
 import { TrackRow } from '@/components/content/TrackRow';
+import { DeityAvatar } from '@/components/content/DeityAvatar';
+import { StoryCard } from '@/components/content/StoryCard';
 import { Catalog, TRACK_KINDS } from '@/lib/content/catalog';
 import { useOpenTrack } from '@/lib/audio/useOpenTrack';
 import { useColors } from '@/hooks/use-theme';
@@ -13,13 +16,23 @@ export default function LibraryScreen() {
   const open = useOpenTrack();
   const [query, setQuery] = useState('');
   const [kind, setKind] = useState<TrackKind | null>(null);
+  const q = query.trim().toLowerCase();
 
   const tracks = useMemo(() => {
-    let list = query.trim() ? Catalog.search(query) : Catalog.tracks();
+    let list = q ? Catalog.search(q) : Catalog.tracks();
     if (kind) list = list.filter((t) => t.kind === kind);
     return list;
-  }, [query, kind]);
+  }, [q, kind]);
   const queue = tracks.map((t) => t.id);
+
+  const deityHits = useMemo(
+    () => (q ? Catalog.deities().filter((d) => `${d.name} ${d.epithet} ${d.devanagari} ${d.tradition}`.toLowerCase().includes(q)) : []),
+    [q],
+  );
+  const storyHits = useMemo(
+    () => (q ? Catalog.stories().filter((s) => `${s.title} ${s.summary}`.toLowerCase().includes(q)) : []),
+    [q],
+  );
 
   return (
     <Screen>
@@ -42,10 +55,15 @@ export default function LibraryScreen() {
         <TextInput
           value={query}
           onChangeText={setQuery}
-          placeholder="Search aarti, mantra, deity…"
+          placeholder="Search practices, deities, stories…"
           placeholderTextColor={colors.textMuted}
           style={{ flex: 1, paddingVertical: Spacing.md, color: colors.text, fontSize: 15 }}
         />
+        {query.length > 0 && (
+          <Pressable onPress={() => setQuery('')} hitSlop={8}>
+            <Icon name="close-circle" size={18} color="textMuted" />
+          </Pressable>
+        )}
       </View>
 
       <ScrollView
@@ -65,10 +83,33 @@ export default function LibraryScreen() {
         ))}
         {tracks.length === 0 && (
           <Text variant="body" color="textMuted" style={{ paddingVertical: Spacing.lg }}>
-            Nothing matches “{query}”.
+            No practices match “{query}”.
           </Text>
         )}
       </Card>
+
+      {deityHits.length > 0 && (
+        <>
+          <SectionHeader title="Deities" />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: Spacing.lg }}>
+            {deityHits.map((d) => (
+              <Pressable key={d.id} onPress={() => router.push(`/deity/${d.id}`)} style={{ alignItems: 'center', width: 76 }}>
+                <DeityAvatar deity={d} size={56} />
+                <Text variant="caption" center numberOfLines={1} style={{ marginTop: 4 }}>{d.name}</Text>
+              </Pressable>
+            ))}
+          </ScrollView>
+        </>
+      )}
+
+      {storyHits.length > 0 && (
+        <>
+          <SectionHeader title="Stories" />
+          {storyHits.map((s) => (
+            <StoryCard key={s.id} story={s} />
+          ))}
+        </>
+      )}
     </Screen>
   );
 }

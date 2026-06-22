@@ -10,6 +10,7 @@ import { BHAGAVAD_GITA } from './seed/gita';
 import { FESTIVALS } from './seed/festivals';
 import { STORIES } from './seed/stories';
 import { JOURNEYS } from './seed/journeys';
+import { STORY_QUIZZES } from './seed/quizzes';
 import type { Deity, Journey, Scripture, Story, Track, TrackKind } from './types';
 
 const TRACKS: Track[] = [...CORE_TRACKS, ...EXTRA_TRACKS];
@@ -35,6 +36,7 @@ export const Catalog = {
   stories: (): Story[] => STORIES,
   story: (id: string): Story | undefined => STORIES.find((s) => s.id === id),
   storiesByDeity: (deityId: string): Story[] => STORIES.filter((s) => s.deityId === deityId),
+  storyQuiz: (storyId: string) => STORY_QUIZZES[storyId] ?? [],
 
   journeys: (): Journey[] => JOURNEYS,
   journey: (id: string): Journey | undefined => JOURNEYS.find((j) => j.id === id),

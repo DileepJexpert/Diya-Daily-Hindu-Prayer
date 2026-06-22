@@ -180,6 +180,13 @@ export interface JourneyDay {
   verse?: { scriptureId: string; chapter: number; ref: string };
 }
 
+/** A single multiple-choice question used in story comprehension quizzes. */
+export interface QuizQuestion {
+  q: string;
+  options: string[];
+  answer: number; // index into options
+}
+
 /** A multi-day guided program — the Hallow-style retention engine. */
 export interface Journey {
   id: string;
