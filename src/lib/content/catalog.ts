@@ -34,8 +34,13 @@ export const Catalog = {
   search: (query: string): Track[] => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return getContent().tracks.filter((t) => {
-      const hay = [t.title, t.devanagari, t.artist, ...(t.tags ?? [])]
+    const content = getContent();
+    const deityName = (id: string) => content.deities.find((d) => d.id === id)?.name ?? '';
+    return content.tracks.filter((t) => {
+      const lyrics = t.lyrics
+        .map((l) => `${l.transliteration} ${l.translation} ${l.devanagari ?? ''}`)
+        .join(' ');
+      const hay = [t.title, t.devanagari, t.artist, t.kind, deityName(t.deityId), lyrics, ...(t.tags ?? [])]
         .filter(Boolean)
         .join(' ')
         .toLowerCase();
