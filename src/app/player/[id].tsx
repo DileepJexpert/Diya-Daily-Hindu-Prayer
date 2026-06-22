@@ -10,6 +10,7 @@ import { LyricsView } from '@/components/player/LyricsView';
 import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
 import { audioSeek, audioSetRate, audioTogglePlay, getAudioPlayer } from '@/lib/audio/audioEngine';
+import { useDownloadsStore } from '@/lib/audio/downloads';
 import { useActiveLyric } from '@/lib/audio/useActiveLyric';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
 import { useAppStore } from '@/lib/state/store';
@@ -32,6 +33,7 @@ export default function PlayerScreen() {
   const audioStatus = useAudioPlayerStatus(getAudioPlayer());
   const hasRealAudio = !!track?.audio;
   const ttsMode = !!track && !track.audio;
+  const isRemote = track?.audio?.type === 'remote';
 
   const {
     rate, repeat, position: storePosition, load, pause, seek, cycleRate, cycleRepeat,
@@ -39,6 +41,10 @@ export default function PlayerScreen() {
   } = usePlayerStore();
   const isFavorite = useAppStore((s) => (id ? s.favorites.includes(id) : false));
   const toggleFavorite = useAppStore((s) => s.toggleFavorite);
+  const downloaded = useDownloadsStore((s) => (id ? !!s.downloads[id] : false));
+  const downloading = useDownloadsStore((s) => (id ? !!s.downloading[id] : false));
+  const download = useDownloadsStore((s) => s.download);
+  const removeDownload = useDownloadsStore((s) => s.remove);
 
   const [showDeva, setShowDeva] = useState(true);
   const [showTrans, setShowTrans] = useState(true);
@@ -145,6 +151,15 @@ export default function PlayerScreen() {
         </Pressable>
         <Text variant="overline" color="textMuted">{track.kind.toUpperCase()}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.lg }}>
+          {isRemote && (
+            <Pressable onPress={() => (downloaded ? removeDownload(track.id) : download(track))} hitSlop={12} disabled={downloading}>
+              <Icon
+                name={downloading ? 'cloud-download' : downloaded ? 'cloud-done' : 'cloud-download-outline'}
+                size={22}
+                color={downloaded ? 'primary' : 'textSecondary'}
+              />
+            </Pressable>
+          )}
           <Pressable onPress={() => shareText(formatTrackShare(track.title, track.lyrics[0]?.transliteration))} hitSlop={12}>
             <Icon name="share-outline" size={22} color="textSecondary" />
           </Pressable>

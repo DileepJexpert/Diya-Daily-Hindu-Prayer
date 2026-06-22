@@ -6,6 +6,7 @@
  */
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 import type { Track } from '../content/types';
+import { useDownloadsStore } from './downloads';
 
 let player: AudioPlayer | null = null;
 let loadedTrackId: string | null = null;
@@ -29,6 +30,8 @@ export function getAudioPlayer(): AudioPlayer {
 }
 
 function sourceFor(track: Track) {
+  const local = useDownloadsStore.getState().downloads[track.id];
+  if (local) return { uri: local }; // play the offline copy when available
   if (!track.audio) return null;
   return track.audio.type === 'remote' ? { uri: track.audio.uri } : track.audio.module;
 }
