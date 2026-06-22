@@ -125,6 +125,27 @@ set `EXPO_PUBLIC_CONTENT_URL` to that (see `.env.example`), reopen the app in Ex
 Go, and edits you push to `public/catalog.json` show up after the raw cache
 refreshes (a few minutes).
 
+## Building for your phone (EAS)
+
+Background audio, lock-screen controls and the custom icon only appear in a real
+build (not Expo Go / web). With a free Expo account:
+
+```bash
+npm install -g eas-cli
+eas login
+eas build --profile development --platform ios   # or android
+```
+
+Install the resulting build, then `npx expo start --dev-client` to load JS into
+it. Profiles in `eas.json`: `development` (dev client), `preview` (internal test
+build), `production` (store build).
+
+## Offline downloads
+
+On the player, remote-audio tracks show a ⤓ button that saves the recitation to
+the device (`expo-file-system`); the engine then plays the local copy, so it
+works with no internet. Tap again to remove the download.
+
 ## Content & authenticity
 
 Sacred texts here are traditional/public-domain; transliterations and
