@@ -1,7 +1,7 @@
 /**
  * App + user store. Persisted to device storage. Holds preferences (theme,
  * location, reminders), the practice streak + history, recently played, journey
- * progress and favorites. Subscription state lives in its own store.
+ * progress, favorites, the chosen ishta-devata and the sankalpa journal.
  */
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
@@ -32,6 +32,8 @@ interface AppState {
   recentlyPlayed: string[];
   practiceLog: string[]; // ISO dates practiced
   journeyProgress: Record<string, number[]>; // journeyId -> completed day indices
+  ishtaDevata: string | null;
+  sankalpas: Record<string, string>; // ISO date -> intention text
   completedCount: number;
 
   setOnboarded: (v: boolean) => void;
@@ -43,6 +45,8 @@ interface AppState {
   addRecentlyPlayed: (trackId: string) => void;
   recordPractice: () => void;
   completeJourneyDay: (journeyId: string, dayIndex: number) => void;
+  setIshtaDevata: (deityId: string | null) => void;
+  setSankalpa: (text: string) => void;
   hydrated: boolean;
   setHydrated: () => void;
 }
@@ -63,6 +67,8 @@ export const useAppStore = create<AppState>()(
       recentlyPlayed: [],
       practiceLog: [],
       journeyProgress: {},
+      ishtaDevata: null,
+      sankalpas: {},
       completedCount: 0,
       hydrated: false,
 
@@ -112,6 +118,9 @@ export const useAppStore = create<AppState>()(
           return { journeyProgress: { ...s.journeyProgress, [journeyId]: [...done, dayIndex] } };
         }),
 
+      setIshtaDevata: (ishtaDevata) => set({ ishtaDevata }),
+      setSankalpa: (text) => set((s) => ({ sankalpas: { ...s.sankalpas, [dayKey()]: text } })),
+
       setHydrated: () => set({ hydrated: true }),
     }),
     {
@@ -124,3 +133,4 @@ export const useAppStore = create<AppState>()(
 );
 
 export const isPracticedToday = (s: AppState) => s.streak.lastPracticeISO === dayKey();
+export const todaySankalpa = (s: AppState) => s.sankalpas[dayKey()] ?? '';

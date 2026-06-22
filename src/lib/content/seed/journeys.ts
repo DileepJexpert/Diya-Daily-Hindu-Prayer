@@ -71,4 +71,21 @@ export const JOURNEYS: Journey[] = [
       { title: 'The witness', intention: 'I am the quiet that watches it all.', trackIds: ['morning-stillness'], verse: { scriptureId: 'bhagavad-gita', chapter: 2, ref: '2.62' } },
     ],
   },
+  {
+    id: 'a-grateful-heart',
+    title: 'A Grateful Heart',
+    subtitle: '5 days · gratitude & abundance',
+    description:
+      'Abundance begins with noticing what is already here. Five days to soften into gratitude and offer it back — a leaf, a flower, a song.',
+    deityId: 'lakshmi',
+    colors: ['#E4C77E', '#C9A24B'],
+    isFree: true,
+    days: [
+      { title: 'What is already here', intention: 'Today I notice one gift I usually overlook.', trackIds: ['om-jai-lakshmi-mata'] },
+      { title: 'The light in small things', intention: 'I find the sacred in an ordinary moment.', trackIds: ['gayatri-mantra'] },
+      { title: 'The offering', intention: 'I give back, simply and with love.', trackIds: ['om-jai-jagdish-hare'], verse: { scriptureId: 'bhagavad-gita', chapter: 9, ref: '9.26' } },
+      { title: 'Joyful praise', intention: 'I let gratitude become a song.', trackIds: ['govind-bolo'] },
+      { title: 'Trust', intention: 'I trust that what I need is carried to me.', trackIds: ['morning-stillness'], verse: { scriptureId: 'bhagavad-gita', chapter: 9, ref: '9.22' } },
+    ],
+  },
 ];

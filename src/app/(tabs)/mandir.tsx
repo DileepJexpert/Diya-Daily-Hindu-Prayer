@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { router } from 'expo-router';
 import { Spacing } from '@/constants/theme';
-import { Card, Screen, Text } from '@/components/ui';
+import { Card, Icon, Screen, Text } from '@/components/ui';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 import { Catalog } from '@/lib/content/catalog';
 
@@ -13,6 +13,15 @@ export default function MandirScreen() {
       <Text variant="body" color="textSecondary" style={{ marginTop: Spacing.xs }}>
         Your home shrine — choose a deity to sit with today.
       </Text>
+
+      <Card onPress={() => router.push('/darshan')} elevated style={{ marginTop: Spacing.lg, flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
+        <Icon name="flower" size={26} color="primary" />
+        <View style={{ flex: 1 }}>
+          <Text variant="title">Daily darshan</Text>
+          <Text variant="caption" color="textMuted">Offer your aarti with a tap</Text>
+        </View>
+        <Icon name="chevron-forward" color="textMuted" />
+      </Card>
 
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: Spacing.lg }}>
         {deities.map((d) => (

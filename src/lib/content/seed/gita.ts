@@ -126,5 +126,33 @@ export const BHAGAVAD_GITA: Scripture = {
         },
       ],
     },
+    {
+      number: 9,
+      title: 'Raja Vidya Yoga — The Royal Knowledge',
+      devanagari: 'राजविद्यायोग',
+      summary:
+        'The most confidential teaching: the Divine pervades all, sustains the devoted, and accepts the simplest offering made with love.',
+      verses: [
+        {
+          ref: '9.22',
+          devanagari:
+            'अनन्याश्चिन्तयन्तो मां ये जनाः पर्युपासते।\nतेषां नित्याभियुक्तानां योगक्षेमं वहाम्यहम्॥',
+          transliteration:
+            'ananyāś cintayanto māṁ ye janāḥ paryupāsate\nteṣāṁ nityābhiyuktānāṁ yoga-kṣemaṁ vahāmy aham',
+          translation:
+            'To those who worship Me alone, thinking of no other, ever steadfast — I bring what they lack and protect what they have.',
+        },
+        {
+          ref: '9.26',
+          devanagari:
+            'पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।\nतदहं भक्त्युपहृतमश्नामि प्रयतात्मनः॥',
+          transliteration:
+            'patraṁ puṣpaṁ phalaṁ toyaṁ yo me bhaktyā prayacchati\ntad ahaṁ bhakty-upahṛtam aśnāmi prayatātmanaḥ',
+          translation:
+            'Whoever offers Me with devotion a leaf, a flower, a fruit or water — that loving offering from a pure heart, I accept.',
+          commentary: 'The verse behind the simplest home puja: it is the love, not the lavishness, that is received.',
+        },
+      ],
+    },
   ],
 };

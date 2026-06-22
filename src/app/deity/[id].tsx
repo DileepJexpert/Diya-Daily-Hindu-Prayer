@@ -1,11 +1,12 @@
 import { Pressable, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Spacing } from '@/constants/theme';
-import { Card, Divider, Icon, Screen, SectionHeader, Text } from '@/components/ui';
+import { Button, Card, Divider, Icon, Screen, SectionHeader, Text } from '@/components/ui';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 import { TrackRow } from '@/components/content/TrackRow';
 import { Catalog } from '@/lib/content/catalog';
 import { useOpenTrack } from '@/lib/audio/useOpenTrack';
+import { useAppStore } from '@/lib/state/store';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -13,6 +14,8 @@ export default function DeityDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const deity = id ? Catalog.deity(id) : undefined;
   const open = useOpenTrack();
+  const ishta = useAppStore((s) => s.ishtaDevata);
+  const setIshta = useAppStore((s) => s.setIshtaDevata);
 
   if (!deity) {
     return (
@@ -24,6 +27,7 @@ export default function DeityDetailScreen() {
 
   const tracks = Catalog.tracksByDeity(deity.id);
   const queue = tracks.map((t) => t.id);
+  const isIshta = ishta === deity.id;
 
   return (
     <Screen>
@@ -54,6 +58,17 @@ export default function DeityDetailScreen() {
           )}
         </View>
       </Card>
+
+      <View style={{ flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.lg }}>
+        <Button label="Daily darshan" icon="flower" style={{ flex: 1 }} onPress={() => router.push('/darshan')} />
+        <Button
+          label={isIshta ? 'Your deity ✓' : 'My deity'}
+          icon={isIshta ? 'heart' : 'heart-outline'}
+          variant="secondary"
+          style={{ flex: 1 }}
+          onPress={() => setIshta(isIshta ? null : deity.id)}
+        />
+      </View>
 
       <SectionHeader title="Practices" />
       <Card>

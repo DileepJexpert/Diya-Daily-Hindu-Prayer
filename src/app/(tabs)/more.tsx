@@ -110,6 +110,8 @@ export default function MoreScreen() {
         <SettingRow icon="map" label="Journeys" onPress={() => router.push('/journeys')} />
         <SettingRow icon="book" label="Stories for the family" onPress={() => router.push('/stories')} />
         <SettingRow icon="repeat" label="Japa counter" onPress={() => router.push('/japa')} />
+        <SettingRow icon="flower" label="Daily darshan" onPress={() => router.push('/darshan')} />
+        <SettingRow icon="sparkles" label="Sankalpa journal" onPress={() => router.push('/sankalpa')} />
       </Card>
 
       {/* Membership */}

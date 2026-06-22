@@ -13,7 +13,7 @@ import { Catalog } from '@/lib/content/catalog';
 import { getDailyPlan } from '@/lib/content/daily';
 import { usePlayerStore } from '@/lib/audio/playerStore';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
-import { useAppStore, isPracticedToday } from '@/lib/state/store';
+import { useAppStore, isPracticedToday, todaySankalpa } from '@/lib/state/store';
 import { nextFestival } from '@/lib/panchang/festivals';
 import type { Track } from '@/lib/content/types';
 
@@ -21,6 +21,7 @@ const WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday
 const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const QUICK: { icon: IconName; label: string; href: string }[] = [
+  { icon: 'flower', label: 'Darshan', href: '/darshan' },
   { icon: 'repeat', label: 'Japa', href: '/japa' },
   { icon: 'map', label: 'Journeys', href: '/journeys' },
   { icon: 'book', label: 'Stories', href: '/stories' },
@@ -31,6 +32,7 @@ export default function TodayScreen() {
   const premium = useIsPremium();
   const streak = useAppStore((s) => s.streak);
   const practiced = useAppStore(isPracticedToday);
+  const sankalpa = useAppStore(todaySankalpa);
   const load = usePlayerStore((s) => s.load);
 
   const plan = useMemo(() => getDailyPlan(), []);
@@ -92,14 +94,14 @@ export default function TodayScreen() {
       </Card>
 
       {/* Quick tools */}
-      <View style={{ flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.lg }}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: Spacing.sm, marginTop: Spacing.lg }}>
         {QUICK.map((a) => (
-          <Card key={a.label} onPress={() => router.push(a.href)} style={{ flex: 1, alignItems: 'center', paddingVertical: Spacing.md }}>
+          <Card key={a.label} onPress={() => router.push(a.href)} style={{ width: 88, alignItems: 'center', paddingVertical: Spacing.md }}>
             <Icon name={a.icon} size={22} color="primary" />
             <Text variant="caption" style={{ marginTop: 4 }}>{a.label}</Text>
           </Card>
         ))}
-      </View>
+      </ScrollView>
 
       {/* Deity of the day */}
       {deity && (
@@ -113,6 +115,16 @@ export default function TodayScreen() {
           <Icon name="chevron-forward" color="textMuted" />
         </Card>
       )}
+
+      {/* Sankalpa */}
+      <Card onPress={() => router.push('/sankalpa')} style={{ marginTop: Spacing.lg, flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
+        <Icon name="sparkles" size={22} color="gold" />
+        <View style={{ flex: 1 }}>
+          <Text variant="overline" color="textMuted">Today’s intention</Text>
+          <Text variant="body" numberOfLines={1}>{sankalpa || 'Set a sankalpa for today'}</Text>
+        </View>
+        <Icon name="chevron-forward" color="textMuted" />
+      </Card>
 
       {/* Today's practice */}
       <SectionHeader title="Today’s practice" />
