@@ -879,10 +879,7 @@
       "language": "en",
       "artist": "Diya",
       "duration": 60,
-      "audio": {
-        "type": "remote",
-        "uri": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-      },
+      "audio": null,
       "isFree": false,
       "previewSeconds": 20,
       "attribution": "Original guided practice",

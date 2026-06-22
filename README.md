@@ -140,6 +140,21 @@ Install the resulting build, then `npx expo start --dev-client` to load JS into
 it. Profiles in `eas.json`: `development` (dev client), `preview` (internal test
 build), `production` (store build).
 
+## Hear your own audio (test slot)
+
+The seed tracks have no recordings (they play via device text-to-speech, which is
+only a "learn the words" placeholder). To hear *real* audio, set one env var:
+
+```bash
+# .env
+EXPO_PUBLIC_TEST_AUDIO_URL=https://…/your-recitation.mp3
+```
+
+Restart, open **Gayatri Mantra**, press play — your MP3 plays with the words
+highlighting in sync. Any source works (a Suno/AI export, a Creative-Commons
+recitation, a file you have rights to). For production, set `Track.audio` on each
+track (bundled or via the live catalog JSON) to commissioned recordings.
+
 ## Offline downloads
 
 On the player, remote-audio tracks show a ⤓ button that saves the recitation to

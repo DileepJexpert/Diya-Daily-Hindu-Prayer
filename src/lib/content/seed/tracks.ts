@@ -561,10 +561,7 @@ const morningMeditation: Track = {
   language: 'en',
   artist: 'Diya',
   duration: 60,
-  // DEMO: placeholder royalty-free audio that proves the studio-recording path
-  // end-to-end (real audio plays and drives the player). Replace this uri with a
-  // commissioned recitation — the player needs no other change.
-  audio: { type: 'remote', uri: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+  audio: null,
   isFree: false,
   previewSeconds: 20,
   attribution: 'Original guided practice',

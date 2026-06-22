@@ -37,6 +37,14 @@ export const BUNDLED: ContentBundle = {
   quizzes: STORY_QUIZZES,
 };
 
+// Quick test slot: set EXPO_PUBLIC_TEST_AUDIO_URL to hear your own recording
+// (a Suno export, a CC recitation, etc.) on the Gayatri Mantra — synced words.
+const TEST_AUDIO_URL = process.env.EXPO_PUBLIC_TEST_AUDIO_URL;
+if (TEST_AUDIO_URL) {
+  const t = BUNDLED.tracks.find((x) => x.id === 'gayatri-mantra');
+  if (t) t.audio = { type: 'remote', uri: TEST_AUDIO_URL };
+}
+
 let active: ContentBundle = BUNDLED;
 
 /** Current content (remote if it loaded, otherwise bundled). Synchronous. */
