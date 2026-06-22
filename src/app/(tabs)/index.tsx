@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
-import { Spacing } from '@/constants/theme';
+import { Radius, Spacing } from '@/constants/theme';
 import { Button, Card, Icon, type IconName, Screen, SectionHeader, Text } from '@/components/ui';
+import { useColors } from '@/hooks/use-theme';
 import { DiyaFlame } from '@/components/brand/DiyaFlame';
 import { StreakRing } from '@/components/brand/StreakRing';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
@@ -30,6 +31,7 @@ const QUICK: { icon: IconName; label: string; href: string }[] = [
 ];
 
 export default function TodayScreen() {
+  const colors = useColors();
   const premium = useIsPremium();
   const streak = useAppStore((s) => s.streak);
   const practiced = useAppStore(isPracticedToday);
@@ -73,11 +75,34 @@ export default function TodayScreen() {
 
   return (
     <Screen>
-      <Text variant="overline" color="primary">
-        {WEEKDAY[now.getDay()]} · {MONTH[now.getMonth()]} {now.getDate()}
-      </Text>
-      <Text variant="h1" style={{ marginTop: Spacing.xs }}>{name ? `Namaste, ${name}` : plan.greeting}</Text>
-      {name ? <Text variant="body" color="textSecondary" style={{ marginTop: 2 }}>{plan.greeting}</Text> : null}
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: Spacing.md }}>
+        <View style={{ flex: 1 }}>
+          <Text variant="overline" color="primary">
+            {WEEKDAY[now.getDay()]} · {MONTH[now.getMonth()]} {now.getDate()}
+          </Text>
+          <Text variant="h1" style={{ marginTop: Spacing.xs }}>{name ? `Namaste, ${name}` : plan.greeting}</Text>
+          {name ? <Text variant="body" color="textSecondary" style={{ marginTop: 2 }}>{plan.greeting}</Text> : null}
+        </View>
+        <Pressable
+          onPress={() => router.push('/library?focus=1')}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel="Search prayers"
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: Radius.pill,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: colors.surfaceElevated,
+            borderWidth: 1,
+            borderColor: colors.border,
+            marginTop: Spacing.xs,
+          }}
+        >
+          <Icon name="search" size={20} color="textSecondary" />
+        </Pressable>
+      </View>
 
       {/* Hero */}
       <Card elevated style={{ marginTop: Spacing.lg, alignItems: 'center', paddingVertical: Spacing.xl }}>

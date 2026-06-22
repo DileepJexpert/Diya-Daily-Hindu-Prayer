@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, TextInput, View } from 'react-native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Radius, Spacing } from '@/constants/theme';
 import { Card, Icon, Pill, Screen, SectionHeader, Text } from '@/components/ui';
 import { TrackRow } from '@/components/content/TrackRow';
@@ -17,6 +17,18 @@ export default function LibraryScreen() {
   const [query, setQuery] = useState('');
   const [kind, setKind] = useState<TrackKind | null>(null);
   const q = query.trim().toLowerCase();
+
+  // Auto-focus the search box when opened from the Home search button (?focus=1).
+  const { focus } = useLocalSearchParams<{ focus?: string }>();
+  const inputRef = useRef<TextInput>(null);
+  useEffect(() => {
+    if (focus !== '1') return;
+    const id = setTimeout(() => {
+      inputRef.current?.focus();
+      router.setParams({ focus: '' });
+    }, 350);
+    return () => clearTimeout(id);
+  }, [focus]);
 
   const tracks = useMemo(() => {
     let list = q ? Catalog.search(q) : Catalog.tracks();
@@ -53,6 +65,7 @@ export default function LibraryScreen() {
       >
         <Icon name="search" size={18} color="textMuted" />
         <TextInput
+          ref={inputRef}
           value={query}
           onChangeText={setQuery}
           placeholder="Search practices, deities, stories…"
