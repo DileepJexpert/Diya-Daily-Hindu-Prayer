@@ -1,0 +1,39 @@
+name: Sync content catalog
+
+# Whenever the bundled prayer content changes on main, regenerate
+# public/catalog.json (the file served to apps via EXPO_PUBLIC_CONTENT_URL) and
+# commit it back, so the hosted catalog can never drift from the app's content.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/lib/content/seed/**'
+      - 'src/lib/content/source.ts'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run content:export
+      - name: Commit catalog if it changed
+        run: |
+          if [ -n "$(git status --porcelain public/catalog.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add public/catalog.json
+            git commit -m "chore: sync public/catalog.json [skip ci]"
+            git push
+          else
+            echo "public/catalog.json already up to date."
+          fi
