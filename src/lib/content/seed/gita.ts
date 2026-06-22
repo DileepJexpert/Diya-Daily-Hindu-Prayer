@@ -235,5 +235,83 @@ export const BHAGAVAD_GITA: Scripture = {
         },
       ],
     },
+    {
+      number: 6,
+      title: 'Dhyana Yoga — The Yoga of Meditation',
+      devanagari: 'ध्यानयोग',
+      summary: 'Lift yourself by your own effort; steady the mind like a lamp in a windless place.',
+      verses: [
+        {
+          ref: '6.5',
+          devanagari:
+            'उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।\nआत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः॥',
+          transliteration:
+            'uddhared ātmanātmānaṁ nātmānam avasādayet\nātmaiva hy ātmano bandhur ātmaiva ripur ātmanaḥ',
+          translation:
+            'Lift yourself by your own Self; do not degrade yourself. The Self alone is the friend of the self, and the Self alone is its enemy.',
+        },
+        {
+          ref: '6.19',
+          devanagari:
+            'यथा दीपो निवातस्थो नेङ्गते सोपमा स्मृता।\nयोगिनो यतचित्तस्य युञ्जतो योगमात्मनः॥',
+          transliteration:
+            'yathā dīpo nivāta-stho neṅgate sopamā smṛtā\nyogino yata-chittasya yuñjato yogam ātmanaḥ',
+          translation:
+            'As a lamp in a windless place does not flicker — such is the simile for the disciplined mind of the yogi absorbed in the Self.',
+        },
+      ],
+    },
+    {
+      number: 10,
+      title: 'Vibhuti Yoga — The Divine Glories',
+      devanagari: 'विभूतियोग',
+      summary: 'The Divine is the source of all and the Self seated in every heart.',
+      verses: [
+        {
+          ref: '10.8',
+          devanagari:
+            'अहं सर्वस्य प्रभवो मत्तः सर्वं प्रवर्तते।\nइति मत्वा भजन्ते मां बुधा भावसमन्विताः॥',
+          transliteration:
+            'ahaṁ sarvasya prabhavo mattaḥ sarvaṁ pravartate\niti matvā bhajante māṁ budhā bhāva-samanvitāḥ',
+          translation:
+            'I am the source of all; from Me everything proceeds. Knowing this, the wise worship Me with loving devotion.',
+        },
+        {
+          ref: '10.20',
+          devanagari:
+            'अहमात्मा गुडाकेश सर्वभूताशयस्थितः।\nअहमादिश्च मध्यं च भूतानामन्त एव च॥',
+          transliteration:
+            'aham ātmā guḍākeśa sarva-bhūtāśaya-sthitaḥ\naham ādiś cha madhyaṁ cha bhūtānām anta eva cha',
+          translation:
+            'I am the Self, O Arjuna, seated in the hearts of all beings; I am the beginning, the middle and the end of all that lives.',
+        },
+      ],
+    },
+    {
+      number: 11,
+      title: 'Vishvarupa Darshana — The Universal Form',
+      devanagari: 'विश्वरूपदर्शनयोग',
+      summary: 'Krishna reveals his cosmic form; the path home is loving, unattached service.',
+      verses: [
+        {
+          ref: '11.32',
+          devanagari:
+            'कालोऽस्मि लोकक्षयकृत्प्रवृद्धो लोकान्समाहर्तुमिह प्रवृत्तः।\nऋतेऽपि त्वां न भविष्यन्ति सर्वे येऽवस्थिताः प्रत्यनीकेषु योधाः॥',
+          transliteration:
+            "kālo'smi loka-kṣaya-kṛt pravṛddho lokān samāhartum iha pravṛttaḥ\nṛte'pi tvāṁ na bhaviṣyanti sarve ye'vasthitāḥ pratyanīkeṣu yodhāḥ",
+          translation:
+            'I am Time, the mighty destroyer of worlds, come forth to annihilate them. Even without you, none of these warriors arrayed for battle shall remain.',
+        },
+        {
+          ref: '11.55',
+          devanagari:
+            'मत्कर्मकृन्मत्परमो मद्भक्तः सङ्गवर्जितः।\nनिर्वैरः सर्वभूतेषु यः स मामेति पाण्डव॥',
+          transliteration:
+            'mat-karma-kṛn mat-paramo mad-bhaktaḥ saṅga-varjitaḥ\nnirvairaḥ sarva-bhūteṣu yaḥ sa mām eti pāṇḍava',
+          translation:
+            'One who works for Me, holds Me supreme, is devoted to Me, free from attachment and without enmity toward any being — that one comes to Me, O Arjuna.',
+        },
+      ],
+    },
   ],
 };

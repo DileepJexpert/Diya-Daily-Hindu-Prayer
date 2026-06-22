@@ -122,4 +122,21 @@ export const JOURNEYS: Journey[] = [
       { title: 'Stand tall', intention: 'I rise, protected and unafraid.', trackIds: ['durga-chalisa'] },
     ],
   },
+  {
+    id: 'the-witness-within',
+    title: 'The Witness Within',
+    subtitle: '5 days · stillness & the Self',
+    description:
+      'A gentle turn inward with the Gita and the breath — to meet the quiet awareness that watches every thought, steady as a lamp in a windless place.',
+    deityId: 'shiva',
+    colors: ['#5B4B9E', '#36506E'],
+    isFree: true,
+    days: [
+      { title: 'Steady the flame', intention: 'I let the mind grow still.', trackIds: ['morning-stillness'], verse: { scriptureId: 'bhagavad-gita', chapter: 6, ref: '6.19' } },
+      { title: 'Be your own friend', intention: 'I lift myself with kindness, not blame.', trackIds: ['gayatri-mantra'], verse: { scriptureId: 'bhagavad-gita', chapter: 6, ref: '6.5' } },
+      { title: 'Rest as awareness', intention: 'I am the quiet that watches.', trackIds: ['om-namah-shivaya'] },
+      { title: 'The Self in all', intention: 'I see the one Self in everyone I meet.', trackIds: ['morning-stillness'], verse: { scriptureId: 'bhagavad-gita', chapter: 10, ref: '10.20' } },
+      { title: 'Work, love, let go', intention: 'I serve freely and release the rest.', trackIds: ['hare-krishna-maha-mantra'], verse: { scriptureId: 'bhagavad-gita', chapter: 11, ref: '11.55' } },
+    ],
+  },
 ];
