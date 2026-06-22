@@ -26,6 +26,10 @@ e-puja/transactions.
   audio is wired; swap for expo-audio `currentTime` when `Track.audio` is set.
 - `lib/panchang/engine.ts` — offline astronomy; a paid API can replace it.
 - `lib/audio/ambience.ts` — ambience soundscape seam (awaiting looping audio).
+- `lib/admin/backend.ts` — Creator Studio (in-app admin, `src/app/studio/*`)
+  upload/publish seam. Mock layers published tracks over the catalog on-device
+  via `setStudioTracks`; swap for Supabase/Firebase to reach every user. Only
+  publish audio you have the rights to (re-uploading label recordings = infringe).
 - Player `loopRange` powers Learn mode (single-line loop); add word-level timings
   via `LyricLine.words` for karaoke highlight.
 

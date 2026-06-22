@@ -121,6 +121,7 @@ export default function MoreScreen() {
         <SettingRow icon="flower" label="Daily darshan" onPress={() => router.push('/darshan')} />
         <SettingRow icon="sparkles" label="Sankalpa journal" onPress={() => router.push('/sankalpa')} />
         <SettingRow icon="calendar" label="All festivals" onPress={() => router.push('/festivals')} />
+        <SettingRow icon="cloud-upload" label="Creator Studio" onPress={() => router.push('/studio')} />
         <SettingRow icon="cloud-done" label="Downloads" value={`${downloadCount}`} onPress={() => router.push('/saved')} />
         {downloadCount > 0 && <SettingRow icon="trash" label="Remove all downloads" onPress={removeAllDownloads} />}
       </Card>

@@ -27,6 +27,7 @@ Native so one codebase ships to iOS and Android.
 | **Panchang** | tithi/nakshatra/yoga/karana, sunrise/sunset, Rahu Kaal + festival calendar, offline for any timezone | ✅ |
 | **Scripture** | Bhagavad Gita reader (Ch. 2, 9, 12, 15, 18) with shareable, attributed verses | ✅ |
 | **Membership** | paywall, plans, gating, restore — RevenueCat seam with a dev mock | ✅ |
+| **Creator Studio** | in-app admin to publish your own bhajans (a Suno export / licensed audio) with synced lyrics — mock now, Supabase/Firebase-ready | ✅ |
 | **Retention** | streaks, practice-history heatmap, recently-played, favorites, daily reminders, light/dark | ✅ |
 | **Onboarding** | personalized — name, ishta-devata, location, reminders | ✅ |
 
@@ -154,6 +155,27 @@ Restart, open **Gayatri Mantra**, press play — your MP3 plays with the words
 highlighting in sync. Any source works (a Suno/AI export, a Creative-Commons
 recitation, a file you have rights to). For production, set `Track.audio` on each
 track (bundled or via the live catalog JSON) to commissioned recordings.
+
+## Creator Studio (publish your own bhajans)
+
+**More → Creator Studio** is an in-app admin screen to publish your own devotional
+audio — an AI track exported from Suno, or an original recording you have the
+rights to — without an app update. Enter the passcode, paste a direct MP3 URL,
+type the words with their start-times, and **Publish**: the track opens in the
+player and appears across the app with synced lyrics.
+
+By default this is a **local mock** — published tracks are saved on your device
+(`lib/admin/studioStore.ts`) and layered over the catalog, so you see them
+instantly. To share them with *every* user, wire `lib/admin/backend.ts` to a real
+backend (Supabase or Firebase) and set `EXPO_PUBLIC_STUDIO_BACKEND=supabase`:
+
+- `uploadAudio()` — store the MP3 bytes and return a public, streamable URL.
+- `publishCatalog()` — write the catalog JSON that `EXPO_PUBLIC_CONTENT_URL` serves.
+
+> ⚠ **Only publish audio you created or have the right to use.** Re-uploading a
+> commercial recording (e.g. a label-owned Lata Mangeshkar bhajan) is copyright
+> infringement — even for free. Original or Suno-generated audio keeps you clean
+> and *is* the out-craft-them wedge.
 
 ## Offline downloads
 

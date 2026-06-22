@@ -18,6 +18,7 @@ import { PlayerProvider } from '@/lib/audio/PlayerProvider';
 import { AudioBridge } from '@/lib/audio/AudioBridge';
 import { initSubscriptions } from '@/lib/subscription/entitlements';
 import { hydrateContent } from '@/lib/content/source';
+import { initStudio } from '@/lib/admin/studioStore';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -49,6 +50,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     initSubscriptions();
+    initStudio();
     hydrateContent().finally(() => setContentReady(true));
   }, []);
 
@@ -87,6 +89,8 @@ export default function RootLayout() {
               <Stack.Screen name="learn/[id]" options={{ presentation: 'card', animation: 'slide_from_bottom' }} />
               <Stack.Screen name="darshan" options={{ presentation: 'card', animation: 'slide_from_bottom' }} />
               <Stack.Screen name="sankalpa" />
+              <Stack.Screen name="studio/index" />
+              <Stack.Screen name="studio/compose" />
             </Stack>
           </PlayerProvider>
         </ThemeProvider>

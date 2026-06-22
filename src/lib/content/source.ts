@@ -45,10 +45,37 @@ if (TEST_AUDIO_URL) {
   if (t) t.audio = { type: 'remote', uri: TEST_AUDIO_URL };
 }
 
-let active: ContentBundle = BUNDLED;
+// `base` is the published catalog (the bundled seed, or the remote catalog if it
+// loaded at startup). `studio` holds tracks published locally from the in-app
+// Creator Studio (admin screen) — layered on top so a creator sees their new
+// bhajan immediately, before any backend sync exists.
+let base: ContentBundle = BUNDLED;
+let studio: Track[] = [];
 
-/** Current content (remote if it loaded, otherwise bundled). Synchronous. */
+function compose(): ContentBundle {
+  if (studio.length === 0) return base;
+  // Studio tracks first so the newest creation surfaces at the top of lists.
+  return { ...base, tracks: [...studio, ...base.tracks] };
+}
+
+let active: ContentBundle = compose();
+
+/**
+ * Current content (remote if it loaded, otherwise bundled), with any locally
+ * published Studio tracks layered on top. Synchronous.
+ */
 export const getContent = (): ContentBundle => active;
+
+/**
+ * Replace the locally published Studio tracks layered over the catalog. Called
+ * by the admin Studio store when it publishes a track and after it rehydrates
+ * from storage. Kept here (not in the store) so getContent stays the one read
+ * path and the merge is O(1) on the hot path.
+ */
+export function setStudioTracks(tracks: Track[]): void {
+  studio = tracks;
+  active = compose();
+}
 
 const REMOTE_URL = process.env.EXPO_PUBLIC_CONTENT_URL ?? '';
 const TIMEOUT_MS = 5000;
@@ -68,7 +95,7 @@ export async function hydrateContent(): Promise<void> {
     if (!res.ok) return;
     const data = (await res.json()) as Partial<ContentBundle>;
     // Any section the server provides overrides the bundle; the rest stays local.
-    active = {
+    base = {
       deities: data.deities ?? BUNDLED.deities,
       tracks: data.tracks ?? BUNDLED.tracks,
       scriptures: data.scriptures ?? BUNDLED.scriptures,
@@ -77,6 +104,7 @@ export async function hydrateContent(): Promise<void> {
       journeys: data.journeys ?? BUNDLED.journeys,
       quizzes: data.quizzes ?? BUNDLED.quizzes,
     };
+    active = compose();
   } catch {
     // offline / slow / malformed → keep bundled content
   }
