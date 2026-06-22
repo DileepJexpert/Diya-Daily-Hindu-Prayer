@@ -1412,7 +1412,7 @@
       "deityId": "krishna",
       "language": "hi",
       "artist": "Demo recording",
-      "duration": 150,
+      "duration": 205,
       "audio": {
         "type": "remote",
         "uri": "https://raw.githubusercontent.com/DileepJexpert/Diya-Daily-Hindu-Prayer/main/public/audio/aaj-brij-mai.mp3"
@@ -1433,19 +1433,19 @@
           "translation": "Today in Braj it is Holi, O playful Lord."
         },
         {
-          "t": 36,
+          "t": 50,
           "devanagari": "होरी रे रसिया, बरजोरी रे रसिया॥",
           "transliteration": "horī re rasiyā, barajorī re rasiyā",
           "translation": "Holi, O beloved — a Holi played with sweet, loving force."
         },
         {
-          "t": 72,
+          "t": 100,
           "devanagari": "उड़त गुलाल लाल भये बादर।",
           "transliteration": "uḍata gulāla lāla bhaye bādara",
           "translation": "Gulal fills the air; even the clouds have turned red."
         },
         {
-          "t": 108,
+          "t": 150,
           "devanagari": "केसर रंग में बोरी रे रसिया॥",
           "transliteration": "kesara raṅga mein borī re rasiyā",
           "translation": "Drenched in saffron colour, O beloved."

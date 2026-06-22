@@ -238,7 +238,7 @@ export const EXTRA_TRACKS: Track[] = [
     deityId: 'krishna',
     language: 'hi',
     artist: 'Demo recording',
-    duration: 150,
+    duration: 205,
     // Real audio — first track with an actual recording (uploaded demo). The
     // lyrics below are the traditional Braj Holi refrain as a placeholder; align
     // them to what the recording actually sings.
@@ -251,9 +251,9 @@ export const EXTRA_TRACKS: Track[] = [
     tags: ['krishna', 'holi', 'braj'],
     lyrics: [
       { t: 0, section: 'Refrain', devanagari: 'आज बिरज में होरी रे रसिया।', transliteration: 'āja biraja mein horī re rasiyā', translation: 'Today in Braj it is Holi, O playful Lord.' },
-      { t: 36, devanagari: 'होरी रे रसिया, बरजोरी रे रसिया॥', transliteration: 'horī re rasiyā, barajorī re rasiyā', translation: 'Holi, O beloved — a Holi played with sweet, loving force.' },
-      { t: 72, devanagari: 'उड़त गुलाल लाल भये बादर।', transliteration: 'uḍata gulāla lāla bhaye bādara', translation: 'Gulal fills the air; even the clouds have turned red.' },
-      { t: 108, devanagari: 'केसर रंग में बोरी रे रसिया॥', transliteration: 'kesara raṅga mein borī re rasiyā', translation: 'Drenched in saffron colour, O beloved.' },
+      { t: 50, devanagari: 'होरी रे रसिया, बरजोरी रे रसिया॥', transliteration: 'horī re rasiyā, barajorī re rasiyā', translation: 'Holi, O beloved — a Holi played with sweet, loving force.' },
+      { t: 100, devanagari: 'उड़त गुलाल लाल भये बादर।', transliteration: 'uḍata gulāla lāla bhaye bādara', translation: 'Gulal fills the air; even the clouds have turned red.' },
+      { t: 150, devanagari: 'केसर रंग में बोरी रे रसिया॥', transliteration: 'kesara raṅga mein borī re rasiyā', translation: 'Drenched in saffron colour, O beloved.' },
     ],
   },
 ];
