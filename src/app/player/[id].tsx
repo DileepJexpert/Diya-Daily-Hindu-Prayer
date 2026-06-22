@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { useAudioPlayerStatus } from 'expo-audio';
 import { Spacing } from '@/constants/theme';
 import { Button, Icon, Pill, Text } from '@/components/ui';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 import { LyricsView } from '@/components/player/LyricsView';
 import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
+import { audioSeek, audioSetRate, audioTogglePlay, getAudioPlayer } from '@/lib/audio/audioEngine';
 import { useActiveLyric } from '@/lib/audio/useActiveLyric';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
 import { useAppStore } from '@/lib/state/store';
@@ -28,16 +29,12 @@ export default function PlayerScreen() {
   const deity = track ? Catalog.deity(track.deityId) : undefined;
   const locked = !!track && !track.isFree && !premium;
 
-  // Real audio (expo-audio) when the track has a source; otherwise text-to-speech.
-  const rawAudio = track?.audio ?? null;
-  const audioSource = rawAudio ? (rawAudio.type === 'remote' ? { uri: rawAudio.uri } : rawAudio.module) : undefined;
-  const audioPlayer = useAudioPlayer(audioSource, { updateInterval: 100 });
-  const audioStatus = useAudioPlayerStatus(audioPlayer);
-  const hasRealAudio = !!audioSource;
-  const ttsMode = !rawAudio;
+  const audioStatus = useAudioPlayerStatus(getAudioPlayer());
+  const hasRealAudio = !!track?.audio;
+  const ttsMode = !!track && !track.audio;
 
   const {
-    rate, repeat, position: storePosition, load, pause, seek, cycleRate, cycleRepeat, next, prev,
+    rate, repeat, position: storePosition, load, pause, seek, cycleRate, cycleRepeat,
     sleepTimerEndsAt, setSleepTimer,
   } = usePlayerStore();
   const isFavorite = useAppStore((s) => (id ? s.favorites.includes(id) : false));
@@ -91,23 +88,15 @@ export default function PlayerScreen() {
 
   useEffect(() => {
     if (track && !locked && usePlayerStore.getState().trackId !== track.id) load(track.id, [track.id]);
-    pause(); // playback is driven by expo-audio or TTS, not the silent clock
+    pause();
   }, [track, locked, load, pause]);
 
-  // Apply playback speed to real audio.
   useEffect(() => {
-    if (hasRealAudio) {
-      try { audioPlayer.setPlaybackRate(rate); } catch {}
-    }
-  }, [rate, hasRealAudio, audioPlayer]);
+    if (hasRealAudio) audioSetRate(rate);
+  }, [rate, hasRealAudio]);
 
-  // Count a completed real-audio listen as practice.
-  useEffect(() => {
-    if (hasRealAudio && audioStatus?.didJustFinish) useAppStore.getState().recordPractice();
-  }, [hasRealAudio, audioStatus?.didJustFinish]);
-
-  // Stop everything on exit.
-  useEffect(() => () => { stopSpeaking(); try { audioPlayer.pause(); } catch {} }, [audioPlayer]);
+  // Audio persists across screens, so only TTS is stopped on exit.
+  useEffect(() => () => stopSpeaking(), []);
 
   const position = hasRealAudio ? audioStatus?.currentTime ?? 0 : storePosition;
   const duration = hasRealAudio
@@ -117,19 +106,6 @@ export default function PlayerScreen() {
   const displayIndex = ttsMode ? spokenIndex : activeIndex;
   const mainPlaying = hasRealAudio ? audioStatus?.playing ?? false : reading;
 
-  const onMainPress = () => {
-    if (hasRealAudio) {
-      if (audioStatus?.playing) audioPlayer.pause();
-      else audioPlayer.play();
-    } else {
-      reading ? stopReading() : startReading();
-    }
-  };
-  const onSeek = (target: number) => {
-    if (hasRealAudio) audioPlayer.seekTo(target);
-    else seek(target);
-  };
-
   if (!track) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background }}>
@@ -138,6 +114,27 @@ export default function PlayerScreen() {
       </View>
     );
   }
+
+  const onMainPress = () => {
+    if (hasRealAudio) audioTogglePlay();
+    else reading ? stopReading() : startReading();
+  };
+  const onSeek = (target: number) => {
+    if (hasRealAudio) audioSeek(target);
+    else seek(target);
+  };
+  const goTo = (delta: 1 | -1) => {
+    const q = usePlayerStore.getState().queue;
+    const i = q.indexOf(track.id);
+    let nid: string | null = null;
+    if (delta > 0) nid = i >= 0 && i < q.length - 1 ? q[i + 1] : repeat === 'all' ? q[0] : null;
+    else nid = i > 0 ? q[i - 1] : null;
+    if (nid) router.replace(`/player/${nid}`);
+  };
+  const onPrev = () => {
+    if (hasRealAudio && (audioStatus?.currentTime ?? 0) > 3) audioSeek(0);
+    else goTo(-1);
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background, paddingTop: insets.top + Spacing.sm }}>
@@ -240,14 +237,14 @@ export default function PlayerScreen() {
                 <Text variant="label" color="textSecondary">{rate}×</Text>
               </Pressable>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.xl }}>
-                <Pressable onPress={prev} hitSlop={10}><Icon name="play-skip-back" size={28} color="text" /></Pressable>
+                <Pressable onPress={onPrev} hitSlop={10}><Icon name="play-skip-back" size={28} color="text" /></Pressable>
                 <Pressable
                   onPress={onMainPress}
                   style={{ width: 68, height: 68, borderRadius: 34, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Icon name={mainPlaying ? 'pause' : 'play'} size={30} color="onPrimary" />
                 </Pressable>
-                <Pressable onPress={next} hitSlop={10}><Icon name="play-skip-forward" size={28} color="text" /></Pressable>
+                <Pressable onPress={() => goTo(1)} hitSlop={10}><Icon name="play-skip-forward" size={28} color="text" /></Pressable>
               </View>
               <View style={{ width: 56, alignItems: 'flex-end' }}>
                 <Text variant="caption" color={mainPlaying ? 'primary' : 'textMuted'}>{hasRealAudio ? '♪' : 'voice'}</Text>

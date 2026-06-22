@@ -1,31 +1,35 @@
 import { Pressable, View } from 'react-native';
 import { router } from 'expo-router';
+import { useAudioPlayerStatus } from 'expo-audio';
 import { Radius, Shadow, Spacing } from '@/constants/theme';
 import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
+import { audioTogglePlay, getAudioPlayer } from '@/lib/audio/audioEngine';
 import { useColors } from '@/hooks/use-theme';
 import { Icon, Text } from '@/components/ui';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 
-/** Persistent now-playing bar. Renders nothing when nothing is loaded. */
+/** Persistent now-playing bar. Controls the global audio engine for real-audio
+ *  tracks; for text-to-speech tracks it just reopens the player. */
 export function MiniPlayer({ bottom = 0 }: { bottom?: number }) {
   const colors = useColors();
   const trackId = usePlayerStore((s) => s.trackId);
-  const isPlaying = usePlayerStore((s) => s.isPlaying);
-  const position = usePlayerStore((s) => s.position);
-  const duration = usePlayerStore((s) => s.duration);
-  const toggle = usePlayerStore((s) => s.toggle);
+  const status = useAudioPlayerStatus(getAudioPlayer());
 
   if (!trackId) return null;
   const track = Catalog.track(trackId);
   if (!track) return null;
   const deity = Catalog.deity(track.deityId);
-  const pct = duration ? Math.min(1, position / duration) : 0;
+  const isAudio = !!track.audio;
+  const playing = isAudio ? status.playing : false;
+  const pct = isAudio && status.duration > 0 ? Math.min(1, status.currentTime / status.duration) : 0;
+
+  const openPlayer = () => router.push(`/player/${trackId}`);
 
   return (
     <View style={{ position: 'absolute', left: Spacing.md, right: Spacing.md, bottom }}>
       <Pressable
-        onPress={() => router.push(`/player/${trackId}`)}
+        onPress={openPlayer}
         style={{
           flexDirection: 'row',
           alignItems: 'center',
@@ -44,8 +48,8 @@ export function MiniPlayer({ bottom = 0 }: { bottom?: number }) {
           <Text variant="label" numberOfLines={1}>{track.title}</Text>
           <Text variant="caption" color="textMuted" numberOfLines={1}>{track.artist}</Text>
         </View>
-        <Pressable onPress={toggle} hitSlop={12}>
-          <Icon name={isPlaying ? 'pause' : 'play'} size={26} color="primary" />
+        <Pressable onPress={isAudio ? audioTogglePlay : openPlayer} hitSlop={12}>
+          <Icon name={playing ? 'pause' : 'play'} size={26} color="primary" />
         </Pressable>
       </Pressable>
       <View style={{ height: 3, backgroundColor: colors.border, borderRadius: 2, marginHorizontal: Spacing.md, marginTop: 4 }}>

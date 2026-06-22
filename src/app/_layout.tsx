@@ -15,6 +15,7 @@ import { Colors } from '@/constants/theme';
 import { useScheme } from '@/hooks/use-theme';
 import { useAppStore } from '@/lib/state/store';
 import { PlayerProvider } from '@/lib/audio/PlayerProvider';
+import { AudioBridge } from '@/lib/audio/AudioBridge';
 import { initSubscriptions } from '@/lib/subscription/entitlements';
 import { hydrateContent } from '@/lib/content/source';
 
@@ -72,6 +73,7 @@ export default function RootLayout() {
           }}
         >
           <PlayerProvider>
+            <AudioBridge />
             <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
             <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
               <Stack.Screen name="(tabs)" />

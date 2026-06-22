@@ -12,6 +12,7 @@
 import { create } from 'zustand';
 import { Catalog } from '../content/catalog';
 import { useAppStore } from '../state/store';
+import { audioLoadAndPlay } from './audioEngine';
 
 export const RATE_STEPS = [0.5, 0.75, 1, 1.25] as const;
 export type RepeatMode = 'off' | 'all' | 'one';
@@ -59,11 +60,12 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const track = Catalog.track(trackId);
     if (!track) return;
     useAppStore.getState().addRecentlyPlayed(trackId);
+    const isAudio = audioLoadAndPlay(track); // real audio plays on the global engine
     set({
       trackId,
       duration: track.duration,
       position: 0,
-      isPlaying: true,
+      isPlaying: !isAudio, // audio is driven by the engine; the clock stays idle
       loopRange: null,
       completedThisSession: false,
       queue: queue && queue.length ? queue : [trackId],
