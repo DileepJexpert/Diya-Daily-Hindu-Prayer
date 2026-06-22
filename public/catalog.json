@@ -1483,6 +1483,47 @@
               "translation": "Wherever there is Krishna, lord of yoga, and Arjuna the archer, there will surely be fortune, victory, prosperity and sound counsel — this is my conviction."
             }
           ]
+        },
+        {
+          "number": 3,
+          "title": "Karma Yoga — The Yoga of Action",
+          "devanagari": "कर्मयोग",
+          "summary": "Act for the welfare of the world, without attachment; the wise lead by example.",
+          "verses": [
+            {
+              "ref": "3.21",
+              "devanagari": "यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।\nस यत्प्रमाणं कुरुते लोकस्तदनुवर्तते॥",
+              "transliteration": "yad yad ācharati śreṣṭhas tat tad evetaro janaḥ\nsa yat pramāṇaṁ kurute lokas tad anuvartate",
+              "translation": "Whatever a great person does, others follow; whatever standard they set, the world pursues."
+            },
+            {
+              "ref": "3.35",
+              "devanagari": "श्रेयान्स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्।\nस्वधर्मे निधनं श्रेयः परधर्मो भयावहः॥",
+              "transliteration": "śreyān sva-dharmo viguṇaḥ para-dharmāt sv-anuṣṭhitāt\nsva-dharme nidhanaṁ śreyaḥ para-dharmo bhayāvahaḥ",
+              "translation": "Better your own duty, though imperfect, than another’s done well; to die in one’s own duty is good, another’s path brings danger."
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Jnana Karma Sanyasa Yoga — Knowledge & Action",
+          "devanagari": "ज्ञानकर्मसंन्यासयोग",
+          "summary": "The Lord descends age after age to restore dharma; act as an offering, free of attachment.",
+          "verses": [
+            {
+              "ref": "4.7",
+              "devanagari": "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥",
+              "transliteration": "yadā yadā hi dharmasya glānir bhavati bhārata\nabhyutthānam adharmasya tadātmānaṁ sṛjāmy aham",
+              "translation": "Whenever dharma declines and adharma rises, O Bharata, then I manifest myself."
+            },
+            {
+              "ref": "4.8",
+              "devanagari": "परित्राणाय साधूनां विनाशाय च दुष्कृताम्।\nधर्मसंस्थापनार्थाय सम्भवामि युगे युगे॥",
+              "transliteration": "paritrāṇāya sādhūnāṁ vināśāya cha duṣkṛtām\ndharma-saṁsthāpanārthāya sambhavāmi yuge yuge",
+              "translation": "To protect the good, to destroy the wicked, and to re-establish dharma, I am born in every age.",
+              "commentary": "The promise of the avatara — beloved across every tradition."
+            }
+          ]
         }
       ]
     }

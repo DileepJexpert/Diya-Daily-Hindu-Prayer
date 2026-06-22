@@ -29,7 +29,7 @@ export default function ScriptureDetailScreen() {
       <Text variant="body" color="textSecondary" style={{ marginTop: Spacing.sm }}>{scripture.description}</Text>
       <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.xs }}>{scripture.attribution}</Text>
 
-      {scripture.chapters.map((ch) => (
+      {[...scripture.chapters].sort((a, b) => a.number - b.number).map((ch) => (
         <Fragment key={ch.number}>
           <SectionHeader title={`Chapter ${ch.number} · ${ch.title}`} />
           {ch.devanagari && <Text variant="sanskrit" color="textSecondary" style={{ marginBottom: Spacing.sm }}>{ch.devanagari}</Text>}

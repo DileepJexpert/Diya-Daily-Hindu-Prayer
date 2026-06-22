@@ -120,6 +120,11 @@ rebuild. In production you'd host that JSON on a CMS/CDN and point
 `EXPO_PUBLIC_CONTENT_URL` at it (absolute URL for native). Unset it to go back to
 the bundled content (which always works offline).
 
+**On your phone:** the repo already serves the catalog at its GitHub raw URL, so
+set `EXPO_PUBLIC_CONTENT_URL` to that (see `.env.example`), reopen the app in Expo
+Go, and edits you push to `public/catalog.json` show up after the raw cache
+refreshes (a few minutes).
+
 ## Content & authenticity
 
 Sacred texts here are traditional/public-domain; transliterations and
