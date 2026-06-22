@@ -85,8 +85,8 @@ export function AartiCircle({
       style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}
     >
       <View
-        pointerEvents="none"
         style={{
+          pointerEvents: 'none',
           position: 'absolute',
           width: radius * 2 + 56,
           height: radius * 2 + 56,
@@ -96,8 +96,8 @@ export function AartiCircle({
           borderStyle: 'dashed',
         }}
       />
-      <View pointerEvents="none">{children}</View>
-      <View pointerEvents="none" style={{ position: 'absolute', left: diyaX - 28, top: diyaY - 28 }}>
+      <View style={{ pointerEvents: 'none' }}>{children}</View>
+      <View style={{ pointerEvents: 'none', position: 'absolute', left: diyaX - 28, top: diyaY - 28 }}>
         <DiyaFlame size={56} />
       </View>
     </View>
