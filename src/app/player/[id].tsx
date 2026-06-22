@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -12,6 +12,7 @@ import { useActiveLyric } from '@/lib/audio/useActiveLyric';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
 import { useAppStore } from '@/lib/state/store';
 import { formatTrackShare, shareText } from '@/lib/share';
+import { speak, stopSpeaking } from '@/lib/audio/speech';
 import { useColors } from '@/hooks/use-theme';
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
@@ -28,7 +29,7 @@ export default function PlayerScreen() {
 
   const {
     trackId, isPlaying, position, duration, rate, repeat,
-    load, toggle, seek, cycleRate, cycleRepeat, next, prev,
+    load, toggle, pause, seek, cycleRate, cycleRepeat, next, prev,
     sleepTimerEndsAt, setSleepTimer,
   } = usePlayerStore();
   const isFavorite = useAppStore((s) => (id ? s.favorites.includes(id) : false));
@@ -38,6 +39,9 @@ export default function PlayerScreen() {
   const [showTrans, setShowTrans] = useState(true);
   const [barWidth, setBarWidth] = useState(1);
   const [sleepMin, setSleepMin] = useState(0);
+  const [reading, setReading] = useState(false);
+  const [spokenIndex, setSpokenIndex] = useState(0);
+  const readingRef = useRef(false);
 
   const SLEEPS = [0, 10, 20, 30];
   const cycleSleep = () => {
@@ -46,11 +50,51 @@ export default function PlayerScreen() {
     setSleepTimer(nextMin);
   };
 
+  const stopReading = () => {
+    readingRef.current = false;
+    setReading(false);
+    stopSpeaking();
+  };
+
+  const startReading = () => {
+    if (!track) return;
+    pause(); // keep the silent follow-along clock out of the way
+    readingRef.current = true;
+    setReading(true);
+    const lines = track.lyrics;
+    const step = (i: number) => {
+      if (!readingRef.current) return;
+      if (i >= lines.length) {
+        readingRef.current = false;
+        setReading(false);
+        seek(track.duration);
+        useAppStore.getState().recordPractice();
+        return;
+      }
+      setSpokenIndex(i);
+      seek(lines[i].t);
+      speak(lines[i].transliteration, {
+        rate: usePlayerStore.getState().rate,
+        onDone: () => step(i + 1),
+        onError: () => step(i + 1),
+      });
+    };
+    step(0);
+  };
+
   useEffect(() => {
     if (track && !locked && trackId !== track.id) load(track.id, [track.id]);
   }, [track, locked, trackId, load]);
 
+  // No bundled recording → don't auto-run the clock; wait for "Read aloud".
+  useEffect(() => {
+    if (track?.audio === null) pause();
+    return () => stopSpeaking();
+  }, [track?.id, pause]);
+
   const { index: activeIndex } = useActiveLyric(track?.lyrics ?? [], position, duration);
+  const audible = !track?.audio; // no recording yet → use device text-to-speech
+  const displayIndex = audible ? spokenIndex : activeIndex;
 
   if (!track) {
     return (
@@ -60,6 +104,8 @@ export default function PlayerScreen() {
       </View>
     );
   }
+
+  const mainPlaying = audible ? reading : isPlaying;
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background, paddingTop: insets.top + Spacing.sm }}>
@@ -102,7 +148,7 @@ export default function PlayerScreen() {
           <View style={{ flex: 1, paddingHorizontal: Spacing.xl }}>
             <LyricsView
               lyrics={track.lyrics}
-              activeIndex={activeIndex}
+              activeIndex={displayIndex}
               position={position}
               showDevanagari={showDeva}
               showTranslation={showTrans}
@@ -135,6 +181,11 @@ export default function PlayerScreen() {
               <Pill label="अ Devanagari" active={showDeva} onPress={() => setShowDeva((v) => !v)} />
               <Pill label="A Translation" active={showTrans} onPress={() => setShowTrans((v) => !v)} />
             </View>
+            {audible && (
+              <Text variant="caption" color="textMuted" center>
+                🔊 Device voice (text-to-speech){track.audio === null ? ' — studio audio coming soon' : ''}
+              </Text>
+            )}
 
             {/* Seek bar */}
             <View>
@@ -161,15 +212,15 @@ export default function PlayerScreen() {
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.xl }}>
                 <Pressable onPress={prev} hitSlop={10}><Icon name="play-skip-back" size={28} color="text" /></Pressable>
                 <Pressable
-                  onPress={toggle}
+                  onPress={audible ? (reading ? stopReading : startReading) : toggle}
                   style={{ width: 68, height: 68, borderRadius: 34, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <Icon name={isPlaying ? 'pause' : 'play'} size={30} color="onPrimary" />
+                  <Icon name={mainPlaying ? 'pause' : 'play'} size={30} color="onPrimary" />
                 </Pressable>
                 <Pressable onPress={next} hitSlop={10}><Icon name="play-skip-forward" size={28} color="text" /></Pressable>
               </View>
               <View style={{ width: 56, alignItems: 'flex-end' }}>
-                {track.audio === null && <Text variant="caption" color="textMuted">follow</Text>}
+                {audible && <Text variant="caption" color={reading ? 'primary' : 'textMuted'}>voice</Text>}
               </View>
             </View>
           </View>

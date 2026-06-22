@@ -8,6 +8,7 @@ import { useColors } from '@/hooks/use-theme';
 import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
 import { activeWordIndex } from '@/components/player/LyricsView';
+import { speak, stopSpeaking } from '@/lib/audio/speech';
 
 /**
  * Learn mode — step through a chant one line at a time. The line loops
@@ -48,7 +49,7 @@ export default function LearnScreen() {
     seek(start);
   }, [index, lines.length, dur, setLoopRange, seek]);
 
-  useEffect(() => () => setLoopRange(null), [setLoopRange]);
+  useEffect(() => () => { setLoopRange(null); stopSpeaking(); }, [setLoopRange]);
 
   if (!track || !lines.length) {
     return (
@@ -71,9 +72,14 @@ export default function LearnScreen() {
           <Icon name="chevron-down" size={28} color="textSecondary" />
         </Pressable>
         <Text variant="overline" color="textMuted">LEARN · {track.title}</Text>
-        <Pressable onPress={() => setReveal((v) => !v)} hitSlop={12}>
-          <Icon name={reveal ? 'eye' : 'eye-off'} size={22} color={reveal ? 'primary' : 'textSecondary'} />
-        </Pressable>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.lg }}>
+          <Pressable onPress={() => speak(line.transliteration, { rate })} hitSlop={12}>
+            <Icon name="volume-high" size={22} color="primary" />
+          </Pressable>
+          <Pressable onPress={() => setReveal((v) => !v)} hitSlop={12}>
+            <Icon name={reveal ? 'eye' : 'eye-off'} size={22} color={reveal ? 'primary' : 'textSecondary'} />
+          </Pressable>
+        </View>
       </View>
 
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Spacing.xl, gap: Spacing.md }}>
