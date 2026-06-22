@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Radius, Spacing } from '@/constants/theme';
+import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { Spacing } from '@/constants/theme';
 import { Button, Icon, Pill, Text } from '@/components/ui';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 import { LyricsView } from '@/components/player/LyricsView';
@@ -27,9 +28,16 @@ export default function PlayerScreen() {
   const deity = track ? Catalog.deity(track.deityId) : undefined;
   const locked = !!track && !track.isFree && !premium;
 
+  // Real audio (expo-audio) when the track has a source; otherwise text-to-speech.
+  const rawAudio = track?.audio ?? null;
+  const audioSource = rawAudio ? (rawAudio.type === 'remote' ? { uri: rawAudio.uri } : rawAudio.module) : undefined;
+  const audioPlayer = useAudioPlayer(audioSource, { updateInterval: 100 });
+  const audioStatus = useAudioPlayerStatus(audioPlayer);
+  const hasRealAudio = !!audioSource;
+  const ttsMode = !rawAudio;
+
   const {
-    trackId, isPlaying, position, duration, rate, repeat,
-    load, toggle, pause, seek, cycleRate, cycleRepeat, next, prev,
+    rate, repeat, position: storePosition, load, pause, seek, cycleRate, cycleRepeat, next, prev,
     sleepTimerEndsAt, setSleepTimer,
   } = usePlayerStore();
   const isFavorite = useAppStore((s) => (id ? s.favorites.includes(id) : false));
@@ -55,10 +63,9 @@ export default function PlayerScreen() {
     setReading(false);
     stopSpeaking();
   };
-
   const startReading = () => {
     if (!track) return;
-    pause(); // keep the silent follow-along clock out of the way
+    pause();
     readingRef.current = true;
     setReading(true);
     const lines = track.lyrics;
@@ -83,18 +90,45 @@ export default function PlayerScreen() {
   };
 
   useEffect(() => {
-    if (track && !locked && trackId !== track.id) load(track.id, [track.id]);
-  }, [track, locked, trackId, load]);
+    if (track && !locked && usePlayerStore.getState().trackId !== track.id) load(track.id, [track.id]);
+    pause(); // playback is driven by expo-audio or TTS, not the silent clock
+  }, [track, locked, load, pause]);
 
-  // No bundled recording → don't auto-run the clock; wait for "Read aloud".
+  // Apply playback speed to real audio.
   useEffect(() => {
-    if (track?.audio === null) pause();
-    return () => stopSpeaking();
-  }, [track?.id, pause]);
+    if (hasRealAudio) {
+      try { audioPlayer.setPlaybackRate(rate); } catch {}
+    }
+  }, [rate, hasRealAudio, audioPlayer]);
 
+  // Count a completed real-audio listen as practice.
+  useEffect(() => {
+    if (hasRealAudio && audioStatus?.didJustFinish) useAppStore.getState().recordPractice();
+  }, [hasRealAudio, audioStatus?.didJustFinish]);
+
+  // Stop everything on exit.
+  useEffect(() => () => { stopSpeaking(); try { audioPlayer.pause(); } catch {} }, [audioPlayer]);
+
+  const position = hasRealAudio ? audioStatus?.currentTime ?? 0 : storePosition;
+  const duration = hasRealAudio
+    ? (audioStatus?.duration && audioStatus.duration > 0 ? audioStatus.duration : track?.duration ?? 0)
+    : track?.duration ?? 0;
   const { index: activeIndex } = useActiveLyric(track?.lyrics ?? [], position, duration);
-  const audible = !track?.audio; // no recording yet → use device text-to-speech
-  const displayIndex = audible ? spokenIndex : activeIndex;
+  const displayIndex = ttsMode ? spokenIndex : activeIndex;
+  const mainPlaying = hasRealAudio ? audioStatus?.playing ?? false : reading;
+
+  const onMainPress = () => {
+    if (hasRealAudio) {
+      if (audioStatus?.playing) audioPlayer.pause();
+      else audioPlayer.play();
+    } else {
+      reading ? stopReading() : startReading();
+    }
+  };
+  const onSeek = (target: number) => {
+    if (hasRealAudio) audioPlayer.seekTo(target);
+    else seek(target);
+  };
 
   if (!track) {
     return (
@@ -104,8 +138,6 @@ export default function PlayerScreen() {
       </View>
     );
   }
-
-  const mainPlaying = audible ? reading : isPlaying;
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background, paddingTop: insets.top + Spacing.sm }}>
@@ -152,7 +184,7 @@ export default function PlayerScreen() {
               position={position}
               showDevanagari={showDeva}
               showTranslation={showTrans}
-              onPressLine={(i) => seek(track.lyrics[i].t)}
+              onPressLine={(i) => onSeek(track.lyrics[i].t)}
             />
           </View>
 
@@ -181,17 +213,15 @@ export default function PlayerScreen() {
               <Pill label="अ Devanagari" active={showDeva} onPress={() => setShowDeva((v) => !v)} />
               <Pill label="A Translation" active={showTrans} onPress={() => setShowTrans((v) => !v)} />
             </View>
-            {audible && (
-              <Text variant="caption" color="textMuted" center>
-                🔊 Device voice (text-to-speech){track.audio === null ? ' — studio audio coming soon' : ''}
-              </Text>
+            {ttsMode && (
+              <Text variant="caption" color="textMuted" center>🔊 Device voice (text-to-speech) — studio audio coming soon</Text>
             )}
 
             {/* Seek bar */}
             <View>
               <Pressable
                 onLayout={(e) => setBarWidth(e.nativeEvent.layout.width)}
-                onPress={(e) => seek((e.nativeEvent.locationX / barWidth) * duration)}
+                onPress={(e) => onSeek((e.nativeEvent.locationX / barWidth) * duration)}
                 style={{ paddingVertical: Spacing.sm }}
               >
                 <View style={{ height: 4, borderRadius: 2, backgroundColor: colors.border }}>
@@ -212,7 +242,7 @@ export default function PlayerScreen() {
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.xl }}>
                 <Pressable onPress={prev} hitSlop={10}><Icon name="play-skip-back" size={28} color="text" /></Pressable>
                 <Pressable
-                  onPress={audible ? (reading ? stopReading : startReading) : toggle}
+                  onPress={onMainPress}
                   style={{ width: 68, height: 68, borderRadius: 34, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Icon name={mainPlaying ? 'pause' : 'play'} size={30} color="onPrimary" />
@@ -220,7 +250,7 @@ export default function PlayerScreen() {
                 <Pressable onPress={next} hitSlop={10}><Icon name="play-skip-forward" size={28} color="text" /></Pressable>
               </View>
               <View style={{ width: 56, alignItems: 'flex-end' }}>
-                {audible && <Text variant="caption" color={reading ? 'primary' : 'textMuted'}>voice</Text>}
+                <Text variant="caption" color={mainPlaying ? 'primary' : 'textMuted'}>{hasRealAudio ? '♪' : 'voice'}</Text>
               </View>
             </View>
           </View>
