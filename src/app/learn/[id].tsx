@@ -8,7 +8,7 @@ import { useColors } from '@/hooks/use-theme';
 import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
 import { activeWordIndex } from '@/components/player/LyricsView';
-import { speak, stopSpeaking } from '@/lib/audio/speech';
+import { speakLine, stopSpeaking } from '@/lib/audio/speech';
 
 /**
  * Learn mode — step through a chant one line at a time. The line loops
@@ -73,7 +73,7 @@ export default function LearnScreen() {
         </Pressable>
         <Text variant="overline" color="textMuted">LEARN · {track.title}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.lg }}>
-          <Pressable onPress={() => speak(line.transliteration, { rate })} hitSlop={12}>
+          <Pressable onPress={() => speakLine(line, { rate })} hitSlop={12}>
             <Icon name="volume-high" size={22} color="primary" />
           </Pressable>
           <Pressable onPress={() => setReveal((v) => !v)} hitSlop={12}>

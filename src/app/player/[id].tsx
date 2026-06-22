@@ -15,7 +15,7 @@ import { useActiveLyric } from '@/lib/audio/useActiveLyric';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
 import { useAppStore } from '@/lib/state/store';
 import { formatTrackShare, shareText } from '@/lib/share';
-import { speak, stopSpeaking } from '@/lib/audio/speech';
+import { speakLine, stopSpeaking } from '@/lib/audio/speech';
 import { useColors } from '@/hooks/use-theme';
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
@@ -83,7 +83,7 @@ export default function PlayerScreen() {
       }
       setSpokenIndex(i);
       seek(lines[i].t);
-      speak(lines[i].transliteration, {
+      speakLine(lines[i], {
         rate: usePlayerStore.getState().rate,
         onDone: () => step(i + 1),
         onError: () => step(i + 1),

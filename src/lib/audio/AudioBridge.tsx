@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAudioPlayerStatus } from 'expo-audio';
 import { audioPlay, audioSeek, configureAudioSession, getAudioPlayer } from './audioEngine';
+import { loadVoices } from './speech';
 import { usePlayerStore } from './playerStore';
 import { useAppStore } from '../state/store';
 
@@ -14,6 +15,7 @@ export function AudioBridge() {
 
   useEffect(() => {
     configureAudioSession(); // background + lock-screen playback
+    loadVoices(); // find a Hindi voice for clearer recitation
   }, []);
 
   useEffect(() => {

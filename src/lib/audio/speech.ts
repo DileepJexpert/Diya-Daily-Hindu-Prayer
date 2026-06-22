@@ -1,30 +1,48 @@
+import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 
-/** Strip IAST diacritics so a default TTS voice can pronounce the line. */
+/** Strip IAST diacritics so a default voice can pronounce the romanized fallback. */
 export function romanizeForTTS(s: string): string {
-  // Decompose, then drop combining diacritics (U+0300–U+036F): "bhūr" → "bhur".
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+let hindiVoice: string | undefined;
+let voicesLoaded = false;
+
+/** Find a Hindi TTS voice on the device (call once at startup). */
+export async function loadVoices() {
+  if (voicesLoaded) return;
+  voicesLoaded = true;
+  try {
+    const voices = await Speech.getAvailableVoicesAsync();
+    const hi = voices.find((v) => v.language?.toLowerCase().startsWith('hi'));
+    hindiVoice = hi?.identifier;
+  } catch {
+    /* ignore */
+  }
 }
 
 export interface SpeakOptions {
   rate?: number;
-  language?: string;
   onDone?: () => void;
   onError?: () => void;
 }
 
 /**
- * On-device text-to-speech. Lets users *hear* a recitation today without any
- * bundled audio assets. For authentic devotional audio, set `Track.audio` to a
- * commissioned recording and play it via expo-audio instead.
+ * Speak a lyric line as clearly as the device allows. Prefers the Devanagari
+ * read by a Hindi voice (`hi-IN`) — far more intelligible than an English voice
+ * reading romanized Sanskrit — and falls back to the romanized transliteration
+ * when no Hindi voice is available (e.g. some browsers). This is still robotic;
+ * real recitation needs commissioned audio set on `Track.audio`.
  */
-export function speak(text: string, opts: SpeakOptions = {}) {
-  Speech.speak(romanizeForTTS(text), {
-    rate: opts.rate ?? 0.9,
-    language: opts.language,
-    onDone: opts.onDone,
-    onError: opts.onError,
-  });
+export function speakLine(line: { devanagari?: string; transliteration: string }, opts: SpeakOptions = {}) {
+  const useDevanagari = !!line.devanagari && (!!hindiVoice || Platform.OS !== 'web');
+  const common = { rate: opts.rate ?? 0.85, onDone: opts.onDone, onError: opts.onError };
+  if (useDevanagari) {
+    Speech.speak(line.devanagari as string, { language: 'hi-IN', voice: hindiVoice, ...common });
+  } else {
+    Speech.speak(romanizeForTTS(line.transliteration), common);
+  }
 }
 
 export function stopSpeaking() {
