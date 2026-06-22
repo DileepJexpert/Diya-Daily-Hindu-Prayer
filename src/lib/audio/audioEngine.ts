@@ -59,7 +59,17 @@ export function audioTogglePlay() {
 }
 export function audioPlay() { getAudioPlayer().play(); }
 export function audioPause() { getAudioPlayer().pause(); }
-export function audioSeek(seconds: number) { getAudioPlayer().seekTo(seconds); }
+export function audioSeek(seconds: number) {
+  // Guard against NaN/Infinity/negative: on web, setting an audio element's
+  // currentTime to a non-finite value throws ("non-finite double value").
+  if (!Number.isFinite(seconds) || seconds < 0) return;
+  try {
+    const result = getAudioPlayer().seekTo(seconds) as unknown;
+    if (result && typeof (result as Promise<unknown>).then === 'function') {
+      (result as Promise<unknown>).catch(() => {});
+    }
+  } catch {}
+}
 export function audioSetRate(rate: number) {
   try { getAudioPlayer().setPlaybackRate(rate); } catch {}
 }

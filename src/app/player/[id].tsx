@@ -104,7 +104,8 @@ export default function PlayerScreen() {
   // Audio persists across screens, so only TTS is stopped on exit.
   useEffect(() => () => stopSpeaking(), []);
 
-  const position = hasRealAudio ? audioStatus?.currentTime ?? 0 : storePosition;
+  const rawPosition = hasRealAudio ? audioStatus?.currentTime ?? 0 : storePosition;
+  const position = Number.isFinite(rawPosition) ? rawPosition : 0;
   const duration = hasRealAudio
     ? (audioStatus?.duration && audioStatus.duration > 0 ? audioStatus.duration : track?.duration ?? 0)
     : track?.duration ?? 0;
@@ -126,8 +127,10 @@ export default function PlayerScreen() {
     else reading ? stopReading() : startReading();
   };
   const onSeek = (target: number) => {
-    if (hasRealAudio) audioSeek(target);
-    else seek(target);
+    const max = duration || 0;
+    const safe = Math.max(0, Math.min(Number.isFinite(target) ? target : 0, max));
+    if (hasRealAudio) audioSeek(safe);
+    else seek(safe);
   };
   const goTo = (delta: 1 | -1) => {
     const q = usePlayerStore.getState().queue;
@@ -233,7 +236,11 @@ export default function PlayerScreen() {
             <View>
               <Pressable
                 onLayout={(e) => setBarWidth(e.nativeEvent.layout.width)}
-                onPress={(e) => onSeek((e.nativeEvent.locationX / barWidth) * duration)}
+                onPress={(e) => {
+                  const x = e.nativeEvent.locationX;
+                  const frac = barWidth > 0 && Number.isFinite(x) ? Math.max(0, Math.min(1, x / barWidth)) : 0;
+                  onSeek(frac * duration);
+                }}
                 style={{ paddingVertical: Spacing.sm }}
               >
                 <View style={{ height: 4, borderRadius: 2, backgroundColor: colors.border }}>
