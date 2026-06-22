@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAudioPlayerStatus } from 'expo-audio';
-import { audioPlay, audioSeek, getAudioPlayer } from './audioEngine';
+import { audioPlay, audioSeek, configureAudioSession, getAudioPlayer } from './audioEngine';
 import { usePlayerStore } from './playerStore';
 import { useAppStore } from '../state/store';
 
@@ -11,6 +11,10 @@ import { useAppStore } from '../state/store';
  */
 export function AudioBridge() {
   const status = useAudioPlayerStatus(getAudioPlayer());
+
+  useEffect(() => {
+    configureAudioSession(); // background + lock-screen playback
+  }, []);
 
   useEffect(() => {
     if (!status.didJustFinish) return;

@@ -4,11 +4,24 @@
  * can control it from anywhere. (Text-to-speech tracks are still handled on the
  * player screen.)
  */
-import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 import type { Track } from '../content/types';
 
 let player: AudioPlayer | null = null;
 let loadedTrackId: string | null = null;
+
+/** Allow background + silent-mode playback and lock-screen controls. Call once. */
+export async function configureAudioSession() {
+  try {
+    await setAudioModeAsync({
+      allowsRecording: false,
+      playsInSilentMode: true,
+      shouldPlayInBackground: true,
+      shouldRouteThroughEarpiece: false,
+      interruptionMode: 'doNotMix', // required for lock-screen controls
+    });
+  } catch {}
+}
 
 export function getAudioPlayer(): AudioPlayer {
   if (!player) player = createAudioPlayer(null, { updateInterval: 100 });
@@ -30,6 +43,9 @@ export function audioLoadAndPlay(track: Track): boolean {
     loadedTrackId = track.id;
   }
   p.play();
+  try {
+    p.setActiveForLockScreen(true, { title: track.title, artist: track.artist, albumTitle: 'Diya' });
+  } catch {}
   return true;
 }
 
