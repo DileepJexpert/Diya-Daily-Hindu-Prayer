@@ -65,7 +65,7 @@ export default function PanchangScreen() {
         <Row label="Sun" value={today.sunRashi} />
       </Card>
 
-      <SectionHeader title="Upcoming festivals" />
+      <SectionHeader title="Upcoming festivals" actionLabel="See all" onAction={() => router.push('/festivals')} />
       {festivals.map((f) => (
         <Card key={f.festival.id} onPress={() => router.push(`/festival/${f.festival.id}`)} style={{ marginBottom: Spacing.md, flexDirection: 'row', gap: Spacing.md, alignItems: 'center' }}>
           <View style={{ alignItems: 'center', minWidth: 52 }}>

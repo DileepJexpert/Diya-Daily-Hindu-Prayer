@@ -154,5 +154,33 @@ export const BHAGAVAD_GITA: Scripture = {
         },
       ],
     },
+    {
+      number: 18,
+      title: 'Moksha Sanyasa Yoga — The Yoga of Liberation',
+      devanagari: 'मोक्षसंन्यासयोग',
+      summary:
+        'The Gita’s conclusion: renounce anxiety over outcomes, take refuge in the Divine, and act freely from love.',
+      verses: [
+        {
+          ref: '18.66',
+          devanagari:
+            'सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।\nअहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः॥',
+          transliteration:
+            'sarva-dharmān parityajya mām ekaṁ śaraṇaṁ vraja\nahaṁ tvā sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ',
+          translation:
+            'Abandoning all duties, take refuge in Me alone. I shall free you from all sins; do not grieve.',
+          commentary: 'The charama shloka — the Gita’s final, most intimate instruction: surrender.',
+        },
+        {
+          ref: '18.78',
+          devanagari:
+            'यत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः।\nतत्र श्रीर्विजयो भूतिर्ध्रुवा नीतिर्मतिर्मम॥',
+          transliteration:
+            'yatra yogeśvaraḥ kṛṣṇo yatra pārtho dhanur-dharaḥ\ntatra śrīr vijayo bhūtir dhruvā nītir matir mama',
+          translation:
+            'Wherever there is Krishna, lord of yoga, and Arjuna the archer, there will surely be fortune, victory, prosperity and sound counsel — this is my conviction.',
+        },
+      ],
+    },
   ],
 };

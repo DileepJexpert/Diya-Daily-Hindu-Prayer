@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
 import { Spacing } from '@/constants/theme';
 import { Button, Card, Icon, type IconName, Screen, SectionHeader, Text } from '@/components/ui';
@@ -15,6 +15,7 @@ import { usePlayerStore } from '@/lib/audio/playerStore';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
 import { useAppStore, isPracticedToday, todaySankalpa } from '@/lib/state/store';
 import { nextFestival } from '@/lib/panchang/festivals';
+import { formatVerseShare, shareText } from '@/lib/share';
 import type { Track } from '@/lib/content/types';
 
 const WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -160,9 +161,17 @@ export default function TodayScreen() {
             )}
             <Text variant="transliteration" color="primary">{verse.transliteration.split('\n')[0]}</Text>
             <Text variant="bodyLg" style={{ marginTop: Spacing.sm }}>{verse.translation}</Text>
-            <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.sm }}>
-              Bhagavad Gita {verse.ref}
-            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: Spacing.sm }}>
+              <Text variant="caption" color="textMuted">Bhagavad Gita {verse.ref}</Text>
+              <Pressable
+                onPress={() => shareText(formatVerseShare('Bhagavad Gita', verse.ref, verse.transliteration, verse.translation))}
+                hitSlop={8}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}
+              >
+                <Icon name="share-outline" size={16} color="primary" />
+                <Text variant="label" color="primary">Share</Text>
+              </Pressable>
+            </View>
           </Card>
         </>
       )}

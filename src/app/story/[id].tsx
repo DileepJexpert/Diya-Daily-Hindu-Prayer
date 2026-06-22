@@ -5,6 +5,7 @@ import { Spacing } from '@/constants/theme';
 import { Button, Card, Icon, Screen, Text } from '@/components/ui';
 import { StoryQuiz } from '@/components/content/StoryQuiz';
 import { Catalog } from '@/lib/content/catalog';
+import { formatStoryShare, shareText } from '@/lib/share';
 
 export default function StoryDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -70,6 +71,15 @@ export default function StoryDetailScreen() {
           )}
         </View>
       )}
+
+      <Button
+        label="Share this story"
+        icon="share-outline"
+        variant="ghost"
+        full
+        style={{ marginTop: Spacing.lg }}
+        onPress={() => shareText(formatStoryShare(story.title, story.moral))}
+      />
 
       {story.attribution && (
         <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.lg }}>{story.attribution}</Text>

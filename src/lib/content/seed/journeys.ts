@@ -88,4 +88,38 @@ export const JOURNEYS: Journey[] = [
       { title: 'Trust', intention: 'I trust that what I need is carried to me.', trackIds: ['morning-stillness'], verse: { scriptureId: 'bhagavad-gita', chapter: 9, ref: '9.22' } },
     ],
   },
+  {
+    id: 'letting-go',
+    title: 'Letting Go',
+    subtitle: '5 days · surrender & peace',
+    description:
+      'Some things are only healed by release. Five days to loosen the grip — on outcomes, on grudges, on fear — and rest in trust.',
+    deityId: 'shiva',
+    colors: ['#5B6E8A', '#36506E'],
+    isFree: true,
+    days: [
+      { title: 'Name it', intention: 'I notice the one thing I am gripping too tightly.', trackIds: ['om-namah-shivaya'] },
+      { title: 'Soften', intention: 'I unclench, breath by breath.', trackIds: ['gayatri-mantra'] },
+      { title: 'Offer it up', intention: 'I hand the outcome to something larger than me.', trackIds: ['om-jai-jagdish-hare'], verse: { scriptureId: 'bhagavad-gita', chapter: 18, ref: '18.66' } },
+      { title: 'Be still', intention: 'I rest in the quiet that remains.', trackIds: ['morning-stillness'] },
+      { title: 'Walk on', intention: 'Lighter now, I begin again.', trackIds: ['hare-krishna-maha-mantra'], verse: { scriptureId: 'bhagavad-gita', chapter: 2, ref: '2.48' } },
+    ],
+  },
+  {
+    id: 'devi-days',
+    title: 'Devi Days',
+    subtitle: '5 days · courage of the Mother',
+    description:
+      'Five days with the Goddess in her many forms — protective, fierce, tender. For when you need to find your strength.',
+    deityId: 'durga',
+    colors: ['#C0392B', '#9E2B25'],
+    isFree: true,
+    days: [
+      { title: 'Call the Mother', intention: 'I ask for the strength I cannot find alone.', trackIds: ['durga-chalisa'] },
+      { title: 'Her light', intention: 'I let her radiance steady me.', trackIds: ['ambe-tu-hai-jagdambe'] },
+      { title: 'Cut the fear', intention: 'I release what frightens me.', trackIds: ['kali-mantra'] },
+      { title: 'Gratitude', intention: 'I thank her for carrying me this far.', trackIds: ['om-jai-jagdish-hare'] },
+      { title: 'Stand tall', intention: 'I rise, protected and unafraid.', trackIds: ['durga-chalisa'] },
+    ],
+  },
 ];

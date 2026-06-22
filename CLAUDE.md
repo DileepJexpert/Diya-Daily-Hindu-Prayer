@@ -25,6 +25,9 @@ e-puja/transactions.
 - `lib/audio/PlayerProvider.tsx` — virtual clock drives synced lyrics until real
   audio is wired; swap for expo-audio `currentTime` when `Track.audio` is set.
 - `lib/panchang/engine.ts` — offline astronomy; a paid API can replace it.
+- `lib/audio/ambience.ts` — ambience soundscape seam (awaiting looping audio).
+- Player `loopRange` powers Learn mode (single-line loop); add word-level timings
+  via `LyricLine.words` for karaoke highlight.
 
 ## Content integrity
 Sacred text must be accurate. Seed translations are flagged for scholarly review.

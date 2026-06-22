@@ -4,6 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { Spacing } from '@/constants/theme';
 import { Card, Icon, Screen, SectionHeader, Text } from '@/components/ui';
 import { Catalog } from '@/lib/content/catalog';
+import { formatVerseShare, shareText } from '@/lib/share';
 
 export default function ScriptureDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -36,7 +37,12 @@ export default function ScriptureDetailScreen() {
 
           {ch.verses.map((v) => (
             <Card key={v.ref} style={{ marginTop: Spacing.lg }}>
-              <Text variant="overline" color="primary">{scripture.title} {v.ref}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Text variant="overline" color="primary">{scripture.title} {v.ref}</Text>
+                <Pressable onPress={() => shareText(formatVerseShare(scripture.title, v.ref, v.transliteration, v.translation))} hitSlop={8}>
+                  <Icon name="share-outline" size={18} color="textMuted" />
+                </Pressable>
+              </View>
               <Text variant="sanskrit" style={{ marginTop: Spacing.sm }}>{v.devanagari}</Text>
               <Text variant="transliteration" color="primary" style={{ marginTop: Spacing.sm }}>{v.transliteration}</Text>
               <Text variant="bodyLg" style={{ marginTop: Spacing.sm }}>{v.translation}</Text>

@@ -11,6 +11,7 @@ import { usePlayerStore } from '@/lib/audio/playerStore';
 import { useActiveLyric } from '@/lib/audio/useActiveLyric';
 import { useIsPremium } from '@/lib/subscription/subscriptionStore';
 import { useAppStore } from '@/lib/state/store';
+import { formatTrackShare, shareText } from '@/lib/share';
 import { useColors } from '@/hooks/use-theme';
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
@@ -68,9 +69,14 @@ export default function PlayerScreen() {
           <Icon name="chevron-down" size={28} color="textSecondary" />
         </Pressable>
         <Text variant="overline" color="textMuted">{track.kind.toUpperCase()}</Text>
-        <Pressable onPress={() => toggleFavorite(track.id)} hitSlop={12}>
-          <Icon name={isFavorite ? 'heart' : 'heart-outline'} size={24} color={isFavorite ? 'accent' : 'textSecondary'} />
-        </Pressable>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.lg }}>
+          <Pressable onPress={() => shareText(formatTrackShare(track.title, track.lyrics[0]?.transliteration))} hitSlop={12}>
+            <Icon name="share-outline" size={22} color="textSecondary" />
+          </Pressable>
+          <Pressable onPress={() => toggleFavorite(track.id)} hitSlop={12}>
+            <Icon name={isFavorite ? 'heart' : 'heart-outline'} size={24} color={isFavorite ? 'accent' : 'textSecondary'} />
+          </Pressable>
+        </View>
       </View>
 
       {/* Header */}
