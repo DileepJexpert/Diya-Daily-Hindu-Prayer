@@ -160,17 +160,20 @@ track (bundled or via the live catalog JSON) to commissioned recordings.
 
 **More → Creator Studio** is an in-app admin screen to publish your own devotional
 audio — an AI track exported from Suno, or an original recording you have the
-rights to — without an app update. Enter the passcode, paste a direct MP3 URL,
-type the words with their start-times, and **Publish**: the track opens in the
-player and appears across the app with synced lyrics.
+rights to — without an app update. Sign in, paste a direct MP3 URL, type the words
+with their start-times, and **Publish**: the track opens in the player and appears
+across the app with synced lyrics.
 
-By default this is a **local mock** — published tracks are saved on your device
-(`lib/admin/studioStore.ts`) and layered over the catalog, so you see them
-instantly. To share them with *every* user, wire `lib/admin/backend.ts` to a real
-backend (Supabase or Firebase) and set `EXPO_PUBLIC_STUDIO_BACKEND=supabase`:
+It has two backends, chosen by `EXPO_PUBLIC_STUDIO_BACKEND`:
 
-- `uploadAudio()` — store the MP3 bytes and return a public, streamable URL.
-- `publishCatalog()` — write the catalog JSON that `EXPO_PUBLIC_CONTENT_URL` serves.
+- **mock** (default) — published tracks are saved on your device
+  (`lib/admin/studioStore.ts`) and layered over the catalog, so you see them
+  instantly. A passcode gates the screen. No accounts needed.
+- **supabase** — the real path: `uploadAudio()` re-hosts the MP3 on your Supabase
+  bucket and `publishCatalog()` writes the track list so **every** user's app
+  loads it at startup. An email/password admin login gates writes. It's SDK-free
+  (plain `fetch` + `expo-file-system`). **Setup (~10 min):**
+  [`docs/CREATOR_STUDIO_SUPABASE.md`](docs/CREATOR_STUDIO_SUPABASE.md).
 
 > ⚠ **Only publish audio you created or have the right to use.** Re-uploading a
 > commercial recording (e.g. a label-owned Lata Mangeshkar bhajan) is copyright

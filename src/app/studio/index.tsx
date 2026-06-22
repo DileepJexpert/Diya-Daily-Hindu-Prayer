@@ -8,53 +8,100 @@ import { Catalog, TRACK_KINDS } from '@/lib/content/catalog';
 import { STUDIO_BACKEND } from '@/lib/admin/backend';
 import { useStudioStore } from '@/lib/admin/studioStore';
 
-/** Passcode gate — a mock admin login until real auth is wired. */
+/** Admin gate — email/password login in supabase mode, passcode in mock mode. */
 function Gate() {
   const colors = useColors();
+  const isSupabase = STUDIO_BACKEND === 'supabase';
   const unlock = useStudioStore((s) => s.unlock);
-  const [code, setCode] = useState('');
-  const [error, setError] = useState(false);
+  const signIn = useStudioStore((s) => s.signIn);
 
-  const submit = () => {
-    if (!unlock(code)) {
-      setError(true);
-      setCode('');
-    }
+  const [code, setCode] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const inputStyle = {
+    marginTop: Spacing.md,
+    fontSize: 16,
+    color: colors.text,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: error ? colors.danger : colors.border,
+    borderRadius: Radius.md,
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+  } as const;
+
+  const submitMock = () => {
+    if (!unlock(code)) { setError('Incorrect passcode.'); setCode(''); }
+  };
+  const submitSupabase = async () => {
+    setBusy(true);
+    setError(null);
+    const ok = await signIn(email, password);
+    if (!ok) setError('Sign-in failed — check your email and password.');
+    setBusy(false);
   };
 
   return (
     <Card elevated style={{ marginTop: Spacing.xl }}>
       <Text variant="overline" color="primary">Admin</Text>
-      <Text variant="title" style={{ marginTop: Spacing.xs }}>Enter your passcode</Text>
-      <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.xs }}>
-        The Studio is for you, the creator. (Mock gate for now — wire real login with your backend.)
+      <Text variant="title" style={{ marginTop: Spacing.xs }}>
+        {isSupabase ? 'Sign in' : 'Enter your passcode'}
       </Text>
-      <TextInput
-        value={code}
-        onChangeText={(t) => { setCode(t); setError(false); }}
-        placeholder="Passcode"
-        placeholderTextColor={colors.textMuted}
-        secureTextEntry
-        keyboardType="number-pad"
-        onSubmitEditing={submit}
-        style={{
-          marginTop: Spacing.md,
-          fontSize: 18,
-          color: colors.text,
-          backgroundColor: colors.surface,
-          borderWidth: 1,
-          borderColor: error ? colors.danger : colors.border,
-          borderRadius: Radius.md,
-          paddingVertical: Spacing.md,
-          paddingHorizontal: Spacing.lg,
-        }}
-      />
-      {error && (
-        <Text variant="caption" color="danger" style={{ marginTop: Spacing.sm }}>
-          Incorrect passcode.
-        </Text>
+      <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.xs }}>
+        {isSupabase
+          ? 'The Studio is for you, the creator. Sign in with your admin account.'
+          : 'The Studio is for you, the creator. (Mock gate — wire real login with your backend.)'}
+      </Text>
+
+      {isSupabase ? (
+        <>
+          <TextInput
+            value={email}
+            onChangeText={(t) => { setEmail(t); setError(null); }}
+            placeholder="Email"
+            placeholderTextColor={colors.textMuted}
+            autoCapitalize="none"
+            keyboardType="email-address"
+            style={inputStyle}
+          />
+          <TextInput
+            value={password}
+            onChangeText={(t) => { setPassword(t); setError(null); }}
+            placeholder="Password"
+            placeholderTextColor={colors.textMuted}
+            secureTextEntry
+            onSubmitEditing={submitSupabase}
+            style={inputStyle}
+          />
+        </>
+      ) : (
+        <TextInput
+          value={code}
+          onChangeText={(t) => { setCode(t); setError(null); }}
+          placeholder="Passcode"
+          placeholderTextColor={colors.textMuted}
+          secureTextEntry
+          keyboardType="number-pad"
+          onSubmitEditing={submitMock}
+          style={[inputStyle, { fontSize: 18 }]}
+        />
       )}
-      <Button label="Unlock Studio" icon="lock-open" full style={{ marginTop: Spacing.lg }} onPress={submit} />
+
+      {!!error && (
+        <Text variant="caption" color="danger" style={{ marginTop: Spacing.sm }}>{error}</Text>
+      )}
+
+      <Button
+        label={isSupabase ? (busy ? 'Signing in…' : 'Sign in') : 'Unlock Studio'}
+        icon="lock-open"
+        loading={busy}
+        full
+        style={{ marginTop: Spacing.lg }}
+        onPress={isSupabase ? submitSupabase : submitMock}
+      />
     </Card>
   );
 }
@@ -90,12 +137,11 @@ export default function StudioScreen() {
             onPress={() => router.push('/studio/compose')}
           />
 
-          {STUDIO_BACKEND === 'mock' && (
-            <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.md }}>
-              Preview mode — published tracks are saved on this device only. Connect a backend
-              (Supabase/Firebase) to share them with everyone.
-            </Text>
-          )}
+          <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.md }}>
+            {STUDIO_BACKEND === 'supabase'
+              ? 'Connected to Supabase — published tracks reach every user.'
+              : 'Preview mode — published tracks are saved on this device only. Set EXPO_PUBLIC_STUDIO_BACKEND=supabase to share them with everyone.'}
+          </Text>
 
           <SectionHeader title={tracks.length ? `Your tracks (${tracks.length})` : 'Your tracks'} />
 

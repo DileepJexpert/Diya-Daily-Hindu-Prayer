@@ -78,6 +78,7 @@ function Field({
 export default function ComposeScreen() {
   const colors = useColors();
   const publish = useStudioStore((s) => s.publish);
+  const token = useStudioStore((s) => s.session?.token);
   const deities = Catalog.deities();
 
   const [title, setTitle] = useState('');
@@ -106,10 +107,13 @@ export default function ComposeScreen() {
     setError(null);
     setPublishing(true);
     try {
+      const id = `studio-${slugify(title)}-${Date.now().toString(36).slice(-4)}`;
+
       let audio: AudioSource | null = null;
       const url = audioUrl.trim();
       if (url) {
-        const up = await uploadAudio({ uri: url });
+        // Mock returns the URL as-is; supabase re-hosts it on your bucket.
+        const up = await uploadAudio({ uri: url, filename: id }, token);
         audio = { type: 'remote', uri: up.uri };
       }
 
@@ -124,7 +128,6 @@ export default function ComposeScreen() {
 
       const lastT = lyrics.length ? lyrics[lyrics.length - 1].t : 0;
       const duration = Number(durationStr) || (lastT ? lastT + 30 : 0);
-      const id = `studio-${slugify(title)}-${Date.now().toString(36).slice(-4)}`;
 
       const track: Track = {
         id,

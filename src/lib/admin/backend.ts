@@ -1,26 +1,26 @@
 /**
  * Creator Studio — backend seam.
  *
- * Mock by default so the whole compose → publish → appears-in-app flow works
- * today with no accounts:
- *   • uploadAudio()    passes a pasted URL straight through.
- *   • publishCatalog() is a no-op (the on-device overlay in studioStore is what
- *                      makes a new track appear).
+ * Two modes, chosen by EXPO_PUBLIC_STUDIO_BACKEND:
  *
- * To make published tracks reach EVERY user (not just this device), set
- * EXPO_PUBLIC_STUDIO_BACKEND=supabase (or firebase) and fill in the two adapters
- * below. The contract the rest of the app relies on never changes:
- *   1. uploadAudio  — store the MP3 bytes and return a public, streamable URL.
- *   2. publishCatalog — persist the track list to the hosted catalog JSON that
- *      EXPO_PUBLIC_CONTENT_URL points at, so the app loads it at startup.
+ *   • mock (default) — uploadAudio() passes a pasted URL through and
+ *     publishCatalog() is a no-op. The on-device overlay in studioStore is what
+ *     makes a new track appear. No accounts needed.
+ *
+ *   • supabase — uploadAudio() stores the MP3 on your Supabase bucket (re-hosting
+ *     remote sources durably) and returns a public URL; publishCatalog() writes
+ *     the published track list as JSON so EVERY user's app loads it at startup.
+ *     Writes require an admin login (see lib/admin/supabase.ts). Setup guide:
+ *     docs/CREATOR_STUDIO_SUPABASE.md
  *
  * ⚠ Only publish audio you created or have the right to use. Re-uploading a
  * commercial recording (e.g. a label-owned bhajan) is copyright infringement —
  * even when given away for free.
  */
 import type { Track } from '../content/types';
+import { PUBLISHED_PATH, uploadAudioFile, uploadJson } from './supabase';
 
-export type StudioBackendKind = 'mock' | 'supabase' | 'firebase';
+export type StudioBackendKind = 'mock' | 'supabase';
 
 export const STUDIO_BACKEND =
   (process.env.EXPO_PUBLIC_STUDIO_BACKEND as StudioBackendKind | undefined) ?? 'mock';
@@ -28,36 +28,30 @@ export const STUDIO_BACKEND =
 export interface UploadInput {
   /** A device `file://` URI (from a file picker) or a public http(s) URL. */
   uri: string;
+  /** Suggested object name (e.g. the track id); sanitised before upload. */
   filename?: string;
 }
 
 /** Store an audio file and return a public, streamable URL. */
-export async function uploadAudio(input: UploadInput): Promise<{ uri: string }> {
-  switch (STUDIO_BACKEND) {
-    case 'supabase':
-    case 'firebase':
-      // TODO(real backend): read the bytes at input.uri and upload them to your
-      // Storage bucket (Supabase Storage / Firebase Storage / S3), then return
-      // the resulting public URL. Needs the provider SDK + a public bucket, and
-      // — to pick a file off the device — expo-document-picker.
-      throw new Error(
-        `Studio backend "${STUDIO_BACKEND}" is not wired yet — implement uploadAudio in lib/admin/backend.ts`,
-      );
-    default:
-      // Mock: the user pasted a ready URL (a Suno export, a Creative-Commons
-      // recitation, an MP3 they host) — use it as-is.
-      return { uri: input.uri };
+export async function uploadAudio(input: UploadInput, token?: string): Promise<{ uri: string }> {
+  if (STUDIO_BACKEND === 'supabase') {
+    if (!token) throw new Error('Sign in to the Studio before uploading.');
+    const raw = (input.filename ?? `track-${Date.now()}`).replace(/[^a-zA-Z0-9._-]/g, '-');
+    const path = `audio/${raw.toLowerCase().endsWith('.mp3') ? raw : `${raw}.mp3`}`;
+    const uri = await uploadAudioFile(input.uri, path, token);
+    return { uri };
   }
+  // Mock: the user pasted a ready URL (a Suno export, a Creative-Commons
+  // recitation, an MP3 they host) — use it as-is.
+  return { uri: input.uri };
 }
 
 /**
  * Publish the full Studio track list so every user receives it, not just this
  * device. Mock is a no-op (the local overlay already surfaced the track).
  */
-export async function publishCatalog(_tracks: Track[]): Promise<void> {
-  if (STUDIO_BACKEND === 'mock') return;
-  // TODO(real backend): merge _tracks into the hosted catalog JSON that
-  // EXPO_PUBLIC_CONTENT_URL serves (e.g. upsert a Supabase row and regenerate
-  // the catalog, or PUT to your CMS/CDN). Until then, published tracks live on
-  // this device only.
+export async function publishCatalog(tracks: Track[], token?: string): Promise<void> {
+  if (STUDIO_BACKEND !== 'supabase') return;
+  if (!token) return; // not signed in — track stays published on this device only
+  await uploadJson(PUBLISHED_PATH, { tracks }, token);
 }

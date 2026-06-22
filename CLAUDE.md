@@ -28,8 +28,10 @@ e-puja/transactions.
 - `lib/audio/ambience.ts` — ambience soundscape seam (awaiting looping audio).
 - `lib/admin/backend.ts` — Creator Studio (in-app admin, `src/app/studio/*`)
   upload/publish seam. Mock layers published tracks over the catalog on-device
-  via `setStudioTracks`; swap for Supabase/Firebase to reach every user. Only
-  publish audio you have the rights to (re-uploading label recordings = infringe).
+  via `setStudioTracks`; the `supabase` backend (`lib/admin/supabase.ts`, SDK-free
+  fetch + expo-file-system) re-hosts the MP3 and publishes a JSON overlay that
+  `hydrateStudio()` loads for every user (setup: docs/CREATOR_STUDIO_SUPABASE.md).
+  Only publish audio you have the rights to (re-uploading label recordings = infringe).
 - Player `loopRange` powers Learn mode (single-line loop); add word-level timings
   via `LyricLine.words` for karaoke highlight.
 

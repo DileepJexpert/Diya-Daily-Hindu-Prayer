@@ -18,7 +18,7 @@ import { PlayerProvider } from '@/lib/audio/PlayerProvider';
 import { AudioBridge } from '@/lib/audio/AudioBridge';
 import { initSubscriptions } from '@/lib/subscription/entitlements';
 import { hydrateContent } from '@/lib/content/source';
-import { initStudio } from '@/lib/admin/studioStore';
+import { hydrateStudio, initStudio } from '@/lib/admin/studioStore';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -51,7 +51,7 @@ export default function RootLayout() {
   useEffect(() => {
     initSubscriptions();
     initStudio();
-    hydrateContent().finally(() => setContentReady(true));
+    Promise.allSettled([hydrateContent(), hydrateStudio()]).finally(() => setContentReady(true));
   }, []);
 
   useEffect(() => {
