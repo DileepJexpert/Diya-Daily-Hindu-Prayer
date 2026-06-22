@@ -8,10 +8,13 @@ import { Catalog } from '@/lib/content/catalog';
 import { useAppStore } from '@/lib/state/store';
 import { useOpenTrack } from '@/lib/audio/useOpenTrack';
 
+const NO_DAYS: number[] = [];
+
 export default function JourneyDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const journey = id ? Catalog.journey(id) : undefined;
-  const done = useAppStore((s) => (id ? s.journeyProgress[id] ?? [] : []));
+  const doneRaw = useAppStore((s) => (id ? s.journeyProgress[id] : undefined));
+  const done = doneRaw ?? NO_DAYS;
   const completeDay = useAppStore((s) => s.completeJourneyDay);
   const open = useOpenTrack();
 

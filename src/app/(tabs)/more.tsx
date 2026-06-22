@@ -4,7 +4,7 @@ import { Radius, Spacing } from '@/constants/theme';
 import { Button, Card, Divider, Icon, Screen, SectionHeader, Text } from '@/components/ui';
 import { useColors } from '@/hooks/use-theme';
 import { useAppStore, type ThemeMode } from '@/lib/state/store';
-import { useIsPremium, useSubscriptionStore } from '@/lib/subscription/subscriptionStore';
+import { MEMBERSHIP_ENABLED, useIsPremium, useSubscriptionStore } from '@/lib/subscription/subscriptionStore';
 import { LOCATION_PRESETS } from '@/lib/panchang/locations';
 import { cancelReminders, scheduleDailyReminder } from '@/lib/notifications/reminders';
 import { PracticeHeatmap } from '@/components/brand/PracticeHeatmap';
@@ -120,27 +120,31 @@ export default function MoreScreen() {
         <SettingRow icon="calendar" label="All festivals" onPress={() => router.push('/festivals')} />
       </Card>
 
-      {/* Membership */}
-      <SectionHeader title="Membership" />
-      <Card style={{ borderColor: premium ? colors.gold : colors.border }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
-          <Icon name={premium ? 'sparkles' : 'sparkles-outline'} size={24} color={premium ? 'gold' : 'primary'} />
-          <View style={{ flex: 1 }}>
-            <Text variant="title">{premium ? 'Diya Member' : 'Free plan'}</Text>
-            <Text variant="caption" color="textMuted">
-              {premium ? 'Thank you for supporting the project 🪔' : 'Unlock the full library & guided sadhana'}
-            </Text>
-          </View>
-        </View>
-        {!premium && (
-          <Button label="See membership" icon="arrow-forward" full style={{ marginTop: Spacing.md }} onPress={() => router.push('/paywall')} />
-        )}
-        {premium && !usingRealSDK && (
-          <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.sm }}>
-            Dev mode — entitlement granted locally (RevenueCat not configured).
-          </Text>
-        )}
-      </Card>
+      {/* Membership — hidden while MEMBERSHIP_ENABLED is false */}
+      {MEMBERSHIP_ENABLED && (
+        <>
+          <SectionHeader title="Membership" />
+          <Card style={{ borderColor: premium ? colors.gold : colors.border }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
+              <Icon name={premium ? 'sparkles' : 'sparkles-outline'} size={24} color={premium ? 'gold' : 'primary'} />
+              <View style={{ flex: 1 }}>
+                <Text variant="title">{premium ? 'Diya Member' : 'Free plan'}</Text>
+                <Text variant="caption" color="textMuted">
+                  {premium ? 'Thank you for supporting the project 🪔' : 'Unlock the full library & guided sadhana'}
+                </Text>
+              </View>
+            </View>
+            {!premium && (
+              <Button label="See membership" icon="arrow-forward" full style={{ marginTop: Spacing.md }} onPress={() => router.push('/paywall')} />
+            )}
+            {premium && !usingRealSDK && (
+              <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.sm }}>
+                Dev mode — entitlement granted locally (RevenueCat not configured).
+              </Text>
+            )}
+          </Card>
+        </>
+      )}
 
       {/* Preferences */}
       <SectionHeader title="Preferences" />

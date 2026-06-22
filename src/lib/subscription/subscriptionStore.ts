@@ -34,6 +34,12 @@ export const PLANS: Plan[] = [
 
 export const ENTITLEMENT_ID = 'diya_premium';
 
+/**
+ * Master switch for paid membership. OFF for now — the whole app is unlocked and
+ * no paywall is shown. Flip to true (and wire RevenueCat) to re-enable gating.
+ */
+export const MEMBERSHIP_ENABLED = false;
+
 interface SubscriptionState {
   isPremium: boolean;
   activePlan: PlanId | null;
@@ -61,4 +67,8 @@ export const useSubscriptionStore = create<SubscriptionState>()(
   ),
 );
 
-export const useIsPremium = () => useSubscriptionStore((s) => s.isPremium);
+export const useIsPremium = () => {
+  const premium = useSubscriptionStore((s) => s.isPremium);
+  // While membership is disabled, treat everyone as entitled (nothing gated).
+  return MEMBERSHIP_ENABLED ? premium : true;
+};
