@@ -33,6 +33,7 @@ interface AppState {
   practiceLog: string[]; // ISO dates practiced
   journeyProgress: Record<string, number[]>; // journeyId -> completed day indices
   ishtaDevata: string | null;
+  name: string;
   sankalpas: Record<string, string>; // ISO date -> intention text
   completedCount: number;
 
@@ -46,6 +47,7 @@ interface AppState {
   recordPractice: () => void;
   completeJourneyDay: (journeyId: string, dayIndex: number) => void;
   setIshtaDevata: (deityId: string | null) => void;
+  setName: (n: string) => void;
   setSankalpa: (text: string) => void;
   hydrated: boolean;
   setHydrated: () => void;
@@ -68,6 +70,7 @@ export const useAppStore = create<AppState>()(
       practiceLog: [],
       journeyProgress: {},
       ishtaDevata: null,
+      name: '',
       sankalpas: {},
       completedCount: 0,
       hydrated: false,
@@ -119,6 +122,7 @@ export const useAppStore = create<AppState>()(
         }),
 
       setIshtaDevata: (ishtaDevata) => set({ ishtaDevata }),
+      setName: (name) => set({ name }),
       setSankalpa: (text) => set((s) => ({ sankalpas: { ...s.sankalpas, [dayKey()]: text } })),
 
       setHydrated: () => set({ hydrated: true }),

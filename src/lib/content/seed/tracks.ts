@@ -200,24 +200,32 @@ const gayatri: Track = {
       devanagari: 'ॐ भूर्भुवः स्वः।',
       transliteration: 'oṁ bhūr bhuvaḥ svaḥ',
       translation: 'Om. The earth, the atmosphere, the heavens.',
+      words: [
+        { text: 'oṁ', t: 0 }, { text: 'bhūr', t: 2 }, { text: 'bhuvaḥ', t: 4 }, { text: 'svaḥ', t: 6 },
+      ],
     },
     {
       t: 8,
       devanagari: 'तत्सवितुर्वरेण्यं।',
       transliteration: 'tat savitur vareṇyaṁ',
       translation: 'That adorable splendor of the divine Sun,',
+      words: [{ text: 'tat', t: 0 }, { text: 'savitur', t: 2.5 }, { text: 'vareṇyaṁ', t: 5 }],
     },
     {
       t: 16,
       devanagari: 'भर्गो देवस्य धीमहि।',
       transliteration: 'bhargo devasya dhīmahi',
       translation: 'the radiant light of the deity, on which we meditate —',
+      words: [{ text: 'bhargo', t: 0 }, { text: 'devasya', t: 2.5 }, { text: 'dhīmahi', t: 5 }],
     },
     {
       t: 24,
       devanagari: 'धियो यो नः प्रचोदयात्॥',
       transliteration: 'dhiyo yo naḥ prachodayāt',
       translation: 'may it illumine and inspire our understanding.',
+      words: [
+        { text: 'dhiyo', t: 0 }, { text: 'yo', t: 4 }, { text: 'naḥ', t: 8 }, { text: 'prachodayāt', t: 11 },
+      ],
     },
   ],
 };
@@ -241,12 +249,18 @@ const vakratunda: Track = {
       devanagari: 'वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।',
       transliteration: 'vakratuṇḍa mahākāya sūryakoṭi samaprabha',
       translation: 'O curved-trunk, mighty-bodied one, radiant as ten million suns,',
+      words: [
+        { text: 'vakratuṇḍa', t: 0 }, { text: 'mahākāya', t: 3 }, { text: 'sūryakoṭi', t: 6 }, { text: 'samaprabha', t: 9 },
+      ],
     },
     {
       t: 12,
       devanagari: 'निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥',
       transliteration: 'nirvighnaṁ kuru me deva sarva-kāryeṣu sarvadā',
       translation: 'make all my endeavors free of obstacles, O Lord, always.',
+      words: [
+        { text: 'nirvighnaṁ', t: 0 }, { text: 'kuru', t: 2 }, { text: 'me', t: 3.5 }, { text: 'deva', t: 5 }, { text: 'sarva-kāryeṣu', t: 7 }, { text: 'sarvadā', t: 10 },
+      ],
     },
   ],
 };

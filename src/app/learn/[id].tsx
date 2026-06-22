@@ -7,6 +7,7 @@ import { Button, Icon, Pill, Text } from '@/components/ui';
 import { useColors } from '@/hooks/use-theme';
 import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
+import { activeWordIndex } from '@/components/player/LyricsView';
 
 /**
  * Learn mode — step through a chant one line at a time. The line loops
@@ -80,9 +81,26 @@ export default function LearnScreen() {
         {line.devanagari && (
           <Text variant="sanskrit" center style={{ fontSize: 30, lineHeight: 50 }}>{line.devanagari}</Text>
         )}
-        <Text variant="transliteration" center color="primary" style={{ fontSize: 21, lineHeight: 32 }}>
-          {line.transliteration}
-        </Text>
+        {line.words?.length ? (
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {line.words.map((w, wi) => {
+              const wActive = wi === activeWordIndex(line, position - line.t);
+              return (
+                <Text
+                  key={wi}
+                  variant="transliteration"
+                  style={{ fontSize: 22, lineHeight: 34, color: wActive ? colors.primary : colors.textSecondary, fontWeight: wActive ? '700' : '400' }}
+                >
+                  {w.text}{wi < line.words!.length - 1 ? ' ' : ''}
+                </Text>
+              );
+            })}
+          </View>
+        ) : (
+          <Text variant="transliteration" center color="primary" style={{ fontSize: 21, lineHeight: 32 }}>
+            {line.transliteration}
+          </Text>
+        )}
         {reveal && (
           <Text variant="bodyLg" center color="textSecondary" style={{ marginTop: Spacing.sm }}>{line.translation}</Text>
         )}

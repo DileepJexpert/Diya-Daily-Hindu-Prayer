@@ -1,4 +1,4 @@
-import { Pressable, Switch, View } from 'react-native';
+import { Pressable, Switch, TextInput, View } from 'react-native';
 import { router } from 'expo-router';
 import { Radius, Spacing } from '@/constants/theme';
 import { Button, Card, Divider, Icon, Screen, SectionHeader, Text } from '@/components/ui';
@@ -8,6 +8,7 @@ import { useIsPremium, useSubscriptionStore } from '@/lib/subscription/subscript
 import { LOCATION_PRESETS } from '@/lib/panchang/locations';
 import { cancelReminders, scheduleDailyReminder } from '@/lib/notifications/reminders';
 import { PracticeHeatmap } from '@/components/brand/PracticeHeatmap';
+import { Catalog } from '@/lib/content/catalog';
 
 const THEME_MODES: { id: ThemeMode; label: string }[] = [
   { id: 'system', label: 'System' },
@@ -44,6 +45,10 @@ export default function MoreScreen() {
   const completedCount = useAppStore((s) => s.completedCount);
   const favorites = useAppStore((s) => s.favorites);
   const practiceLog = useAppStore((s) => s.practiceLog);
+  const name = useAppStore((s) => s.name);
+  const setName = useAppStore((s) => s.setName);
+  const ishta = useAppStore((s) => s.ishtaDevata);
+  const ishtaName = ishta ? Catalog.deity(ishta)?.name ?? 'Choose' : 'Choose';
   const themeMode = useAppStore((s) => s.themeMode);
   const setThemeMode = useAppStore((s) => s.setThemeMode);
   const location = useAppStore((s) => s.location);
@@ -139,6 +144,17 @@ export default function MoreScreen() {
       {/* Preferences */}
       <SectionHeader title="Preferences" />
       <Card>
+        <Text variant="overline" color="textMuted">Your name</Text>
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Add your name"
+          placeholderTextColor={colors.textMuted}
+          style={{ fontSize: 16, color: colors.text, paddingVertical: Spacing.sm }}
+        />
+        <Divider spacing={Spacing.sm} />
+        <SettingRow icon="flower" label="My deity" value={ishtaName} onPress={() => router.push(ishta ? `/deity/${ishta}` : '/mandir')} />
+        <Divider spacing={Spacing.sm} />
         <Text variant="overline" color="textMuted">Theme</Text>
         <View style={{ flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.sm, marginBottom: Spacing.sm }}>
           {THEME_MODES.map((m) => {

@@ -25,4 +25,12 @@ export const STORY_QUIZZES: Record<string, QuizQuestion[]> = {
     { q: 'What did Dhruva want that could never be taken away?', options: ['Gold', 'A steady place of his own', 'A toy', 'A horse'], answer: 1 },
     { q: 'What did Dhruva become?', options: ['The moon', 'The Pole Star', 'A river', 'A mountain'], answer: 1 },
   ],
+  'ganga-comes-to-earth': [
+    { q: 'Who prayed to bring Ganga to Earth?', options: ['Prince Bhagiratha', 'King Dasharatha', 'Sage Narada', 'Prince Dhruva'], answer: 0 },
+    { q: 'How did Ganga’s fall not shatter the Earth?', options: ['She fell slowly', 'Shiva caught her in his hair', 'Vishnu held the sky', 'She turned to rain'], answer: 1 },
+  ],
+  'the-elephant-king': [
+    { q: 'What seized the elephant king’s leg?', options: ['A crocodile', 'A snake', 'A net', 'A tiger'], answer: 0 },
+    { q: 'What finally saved Gajendra?', options: ['His own strength', 'His heartfelt call to the Lord', 'Another elephant', 'He swam away'], answer: 1 },
+  ],
 };

@@ -33,6 +33,7 @@ export default function TodayScreen() {
   const streak = useAppStore((s) => s.streak);
   const practiced = useAppStore(isPracticedToday);
   const sankalpa = useAppStore(todaySankalpa);
+  const name = useAppStore((s) => s.name);
   const load = usePlayerStore((s) => s.load);
 
   const plan = useMemo(() => getDailyPlan(), []);
@@ -74,7 +75,8 @@ export default function TodayScreen() {
       <Text variant="overline" color="primary">
         {WEEKDAY[now.getDay()]} · {MONTH[now.getMonth()]} {now.getDate()}
       </Text>
-      <Text variant="h1" style={{ marginTop: Spacing.xs }}>{plan.greeting}</Text>
+      <Text variant="h1" style={{ marginTop: Spacing.xs }}>{name ? `Namaste, ${name}` : plan.greeting}</Text>
+      {name ? <Text variant="body" color="textSecondary" style={{ marginTop: 2 }}>{plan.greeting}</Text> : null}
 
       {/* Hero */}
       <Card elevated style={{ marginTop: Spacing.lg, alignItems: 'center', paddingVertical: Spacing.xl }}>

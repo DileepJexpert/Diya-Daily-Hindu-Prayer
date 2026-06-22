@@ -97,6 +97,7 @@ export default function PlayerScreen() {
             <LyricsView
               lyrics={track.lyrics}
               activeIndex={activeIndex}
+              position={position}
               showDevanagari={showDeva}
               showTranslation={showTrans}
               onPressLine={(i) => seek(track.lyrics[i].t)}

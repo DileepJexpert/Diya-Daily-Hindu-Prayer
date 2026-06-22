@@ -136,6 +136,45 @@ export const DEITIES: Deity[] = [
     glyph: '☀️',
     mantraSeed: 'ॐ सूर्याय',
   },
+  {
+    id: 'kali',
+    name: 'Kali',
+    devanagari: 'काली',
+    epithet: 'The Fierce Mother',
+    tradition: 'shakta',
+    description:
+      'The dark, untamed form of the Mother Goddess who destroys ego and evil. Fearsome to the wicked yet infinitely tender to her children, she is time itself and the liberator from fear.',
+    auspiciousDays: [2, 6],
+    colors: ['#3A2A4A', '#1A1222'],
+    glyph: '🗡️',
+    mantraSeed: 'क्रीं',
+  },
+  {
+    id: 'kartikeya',
+    name: 'Kartikeya',
+    devanagari: 'कार्तिकेय',
+    epithet: 'Commander of the Divine Army',
+    tradition: 'shaiva',
+    description:
+      'Son of Shiva and Parvati, also beloved as Murugan, Skanda and Subramanya. The ever-youthful commander of the celestial army, riding his peacock, who vanquishes the demon of ignorance.',
+    auspiciousDays: [2],
+    colors: ['#C0392B', '#E8772E'],
+    glyph: '🦚',
+    mantraSeed: 'शरवण',
+  },
+  {
+    id: 'ganga',
+    name: 'Ganga',
+    devanagari: 'गंगा',
+    epithet: 'The Celestial River',
+    tradition: 'shakta',
+    description:
+      'The sacred river descended from the heavens, goddess of purity and forgiveness. To remember her is to be cleansed; her waters carry the prayers of millions toward liberation.',
+    auspiciousDays: [0],
+    colors: ['#3C6E9E', '#5BB0C9'],
+    glyph: '🌊',
+    mantraSeed: 'गं',
+  },
 ];
 
 export const DEITY_BY_ID: Record<string, Deity> = Object.fromEntries(

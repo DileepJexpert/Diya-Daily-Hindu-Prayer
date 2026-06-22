@@ -1,24 +1,38 @@
 import { useEffect, useRef } from 'react';
-import { Pressable, ScrollView } from 'react-native';
-import { Spacing } from '@/constants/theme';
+import { Pressable, ScrollView, View } from 'react-native';
+import { Spacing, Typography } from '@/constants/theme';
 import { useColors } from '@/hooks/use-theme';
 import type { LyricLine } from '@/lib/content/types';
 import { Text } from '@/components/ui';
 
+/** Index of the active word within a line, given seconds elapsed in that line. */
+export function activeWordIndex(line: LyricLine, secondsInLine: number): number {
+  if (!line.words?.length) return -1;
+  let idx = -1;
+  for (let i = 0; i < line.words.length; i++) {
+    if (secondsInLine >= line.words[i].t) idx = i;
+    else break;
+  }
+  return idx;
+}
+
 /**
  * Synced lyrics. Highlights the active line and auto-scrolls to keep it
- * centered — the karaoke-style "learn the words" experience. Devanagari and
- * English translation are independently toggleable; tap a line to seek to it.
+ * centered. When a line carries word-level timings, the active line is rendered
+ * word-by-word with the current word lit — the karaoke "follow every syllable"
+ * experience. Tap a line to seek to it.
  */
 export function LyricsView({
   lyrics,
   activeIndex,
+  position,
   showDevanagari = true,
   showTranslation = true,
   onPressLine,
 }: {
   lyrics: LyricLine[];
   activeIndex: number;
+  position?: number;
   showDevanagari?: boolean;
   showTranslation?: boolean;
   onPressLine?: (index: number) => void;
@@ -42,6 +56,9 @@ export function LyricsView({
       {lyrics.map((line, i) => {
         const active = i === activeIndex;
         const past = i < activeIndex;
+        const useWords = active && !!line.words?.length && position !== undefined;
+        const wIdx = useWords ? activeWordIndex(line, (position as number) - line.t) : -1;
+
         return (
           <Pressable
             key={i}
@@ -61,12 +78,31 @@ export function LyricsView({
                 {line.devanagari}
               </Text>
             )}
-            <Text
-              variant="transliteration"
-              style={{ color: active ? colors.primary : colors.textSecondary, marginTop: line.devanagari ? Spacing.xs : 0 }}
-            >
-              {line.transliteration}
-            </Text>
+
+            {useWords ? (
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: line.devanagari ? Spacing.xs : 0 }}>
+                {line.words!.map((w, wi) => (
+                  <Text
+                    key={wi}
+                    style={[
+                      Typography.transliteration,
+                      { color: wi === wIdx ? colors.primary : wi < wIdx ? colors.text : colors.textSecondary },
+                      wi === wIdx && { fontWeight: '700' },
+                    ]}
+                  >
+                    {w.text}{wi < line.words!.length - 1 ? ' ' : ''}
+                  </Text>
+                ))}
+              </View>
+            ) : (
+              <Text
+                variant="transliteration"
+                style={{ color: active ? colors.primary : colors.textSecondary, marginTop: line.devanagari ? Spacing.xs : 0 }}
+              >
+                {line.transliteration}
+              </Text>
+            )}
+
             {showTranslation && (
               <Text variant="translation" color="textMuted" style={{ marginTop: Spacing.xs }}>
                 {line.translation}
