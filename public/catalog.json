@@ -1,0 +1,2333 @@
+{
+  "deities": [
+    {
+      "id": "ganesha",
+      "name": "Ganesha",
+      "devanagari": "गणेश",
+      "epithet": "Remover of Obstacles",
+      "tradition": "ganapatya",
+      "description": "The elephant-headed son of Shiva and Parvati, invoked first before any undertaking as Vighnaharta — the remover of obstacles and lord of beginnings and wisdom.",
+      "auspiciousDays": [
+        3
+      ],
+      "colors": [
+        "#F4A300",
+        "#E8772E"
+      ],
+      "glyph": "🕉️",
+      "mantraSeed": "गं"
+    },
+    {
+      "id": "hanuman",
+      "name": "Hanuman",
+      "devanagari": "हनुमान",
+      "epithet": "The Devoted, The Mighty",
+      "tradition": "vaishnava",
+      "description": "The vanara devotee of Sri Rama, embodiment of strength, courage, selfless service and unwavering bhakti. Worshipped especially on Tuesdays and Saturdays.",
+      "auspiciousDays": [
+        2,
+        6
+      ],
+      "colors": [
+        "#E8772E",
+        "#9E2B25"
+      ],
+      "glyph": "🙏",
+      "mantraSeed": "राम"
+    },
+    {
+      "id": "krishna",
+      "name": "Krishna",
+      "devanagari": "कृष्ण",
+      "epithet": "The All-Attractive One",
+      "tradition": "vaishnava",
+      "description": "The eighth avatara of Vishnu, speaker of the Bhagavad Gita, the playful cowherd of Vrindavan and the supreme teacher of dharma, love and surrender.",
+      "auspiciousDays": [
+        3
+      ],
+      "colors": [
+        "#3C6E9E",
+        "#5B4B9E"
+      ],
+      "glyph": "🪈",
+      "mantraSeed": "क्लीं"
+    },
+    {
+      "id": "rama",
+      "name": "Rama",
+      "devanagari": "राम",
+      "epithet": "Maryada Purushottama",
+      "tradition": "vaishnava",
+      "description": "The seventh avatara of Vishnu, the ideal king and embodiment of dharma whose life is told in the Ramayana — righteousness, duty and devotion personified.",
+      "auspiciousDays": [
+        4
+      ],
+      "colors": [
+        "#4C8A5A",
+        "#2F6E45"
+      ],
+      "glyph": "🏹",
+      "mantraSeed": "राम"
+    },
+    {
+      "id": "shiva",
+      "name": "Shiva",
+      "devanagari": "शिव",
+      "epithet": "The Auspicious One",
+      "tradition": "shaiva",
+      "description": "Mahadeva, the great ascetic and lord of meditation, time and transformation. The still point of the cosmos, worshipped as the Linga and as Nataraja, lord of the cosmic dance.",
+      "auspiciousDays": [
+        1
+      ],
+      "colors": [
+        "#5B6E8A",
+        "#36506E"
+      ],
+      "glyph": "🔱",
+      "mantraSeed": "नमः शिवाय"
+    },
+    {
+      "id": "durga",
+      "name": "Durga",
+      "devanagari": "दुर्गा",
+      "epithet": "The Invincible Mother",
+      "tradition": "shakta",
+      "description": "The fierce and compassionate Mother Goddess, slayer of Mahishasura, the embodiment of Shakti — the divine feminine power that protects dharma and her devotees.",
+      "auspiciousDays": [
+        5
+      ],
+      "colors": [
+        "#C0392B",
+        "#9E2B25"
+      ],
+      "glyph": "🌺",
+      "mantraSeed": "दुं"
+    },
+    {
+      "id": "lakshmi",
+      "name": "Lakshmi",
+      "devanagari": "लक्ष्मी",
+      "epithet": "Bestower of Abundance",
+      "tradition": "vaishnava",
+      "description": "Consort of Vishnu and goddess of wealth, fortune, beauty and prosperity — both material and spiritual. Worshipped especially at Diwali.",
+      "auspiciousDays": [
+        5
+      ],
+      "colors": [
+        "#E4C77E",
+        "#C9A24B"
+      ],
+      "glyph": "🪷",
+      "mantraSeed": "श्रीं"
+    },
+    {
+      "id": "saraswati",
+      "name": "Saraswati",
+      "devanagari": "सरस्वती",
+      "epithet": "Goddess of Knowledge",
+      "tradition": "smarta",
+      "description": "Goddess of wisdom, music, art and learning, seated on a white lotus with the veena. Invoked by students and seekers of all knowledge.",
+      "auspiciousDays": [
+        3
+      ],
+      "colors": [
+        "#EDE6D6",
+        "#C9A24B"
+      ],
+      "glyph": "🎼",
+      "mantraSeed": "ऐं"
+    },
+    {
+      "id": "vishnu",
+      "name": "Vishnu",
+      "devanagari": "विष्णु",
+      "epithet": "The Preserver",
+      "tradition": "vaishnava",
+      "description": "The preserver and protector of the cosmos within the Trimurti, who descends across ages as the avataras to restore dharma. Worshipped as Narayana.",
+      "auspiciousDays": [
+        4
+      ],
+      "colors": [
+        "#3C6E9E",
+        "#2A4E7E"
+      ],
+      "glyph": "🐚",
+      "mantraSeed": "ॐ"
+    },
+    {
+      "id": "surya",
+      "name": "Surya",
+      "devanagari": "सूर्य",
+      "epithet": "The Radiant Sun",
+      "tradition": "smarta",
+      "description": "The visible divinity, the sun who sustains all life. The Gayatri mantra is addressed to the solar light of consciousness. Honored at dawn with Surya Namaskar.",
+      "auspiciousDays": [
+        0
+      ],
+      "colors": [
+        "#F4A300",
+        "#E8772E"
+      ],
+      "glyph": "☀️",
+      "mantraSeed": "ॐ सूर्याय"
+    },
+    {
+      "id": "kali",
+      "name": "Kali",
+      "devanagari": "काली",
+      "epithet": "The Fierce Mother",
+      "tradition": "shakta",
+      "description": "The dark, untamed form of the Mother Goddess who destroys ego and evil. Fearsome to the wicked yet infinitely tender to her children, she is time itself and the liberator from fear.",
+      "auspiciousDays": [
+        2,
+        6
+      ],
+      "colors": [
+        "#3A2A4A",
+        "#1A1222"
+      ],
+      "glyph": "🗡️",
+      "mantraSeed": "क्रीं"
+    },
+    {
+      "id": "kartikeya",
+      "name": "Kartikeya",
+      "devanagari": "कार्तिकेय",
+      "epithet": "Commander of the Divine Army",
+      "tradition": "shaiva",
+      "description": "Son of Shiva and Parvati, also beloved as Murugan, Skanda and Subramanya. The ever-youthful commander of the celestial army, riding his peacock, who vanquishes the demon of ignorance.",
+      "auspiciousDays": [
+        2
+      ],
+      "colors": [
+        "#C0392B",
+        "#E8772E"
+      ],
+      "glyph": "🦚",
+      "mantraSeed": "शरवण"
+    },
+    {
+      "id": "ganga",
+      "name": "Ganga",
+      "devanagari": "गंगा",
+      "epithet": "The Celestial River",
+      "tradition": "shakta",
+      "description": "The sacred river descended from the heavens, goddess of purity and forgiveness. To remember her is to be cleansed; her waters carry the prayers of millions toward liberation.",
+      "auspiciousDays": [
+        0
+      ],
+      "colors": [
+        "#3C6E9E",
+        "#5BB0C9"
+      ],
+      "glyph": "🌊",
+      "mantraSeed": "गं"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "hanuman-chalisa",
+      "title": "Hanuman Chalisa",
+      "devanagari": "हनुमान चालीसा",
+      "kind": "chalisa",
+      "deityId": "hanuman",
+      "language": "hi",
+      "artist": "Traditional · Tulsidas",
+      "duration": 368,
+      "audio": null,
+      "isFree": true,
+      "previewSeconds": 60,
+      "attribution": "Goswami Tulsidas (16th c.) · public domain",
+      "tags": [
+        "tuesday",
+        "saturday",
+        "strength",
+        "protection"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Doha",
+          "devanagari": "श्रीगुरु चरन सरोज रज, निज मनु मुकुरु सुधारि।",
+          "transliteration": "shrī guru charana saroja raja, nija manu mukuru sudhāri",
+          "translation": "Cleansing the mirror of my mind with the dust of my Guru's lotus feet,"
+        },
+        {
+          "t": 8,
+          "section": "Doha",
+          "devanagari": "बरनउँ रघुबर बिमल जसु, जो दायकु फल चारि॥",
+          "transliteration": "baranau raghubara bimala jasu, jo dāyaku phala chāri",
+          "translation": "I sing the pure glory of Sri Rama, who bestows the four fruits of life."
+        },
+        {
+          "t": 16,
+          "section": "Doha",
+          "devanagari": "बुद्धिहीन तनु जानिके, सुमिरौं पवनकुमार।",
+          "transliteration": "buddhihīna tanu jānike, sumirau pavana-kumāra",
+          "translation": "Knowing my body to be devoid of wit, I remember you, son of the Wind."
+        },
+        {
+          "t": 24,
+          "section": "Doha",
+          "devanagari": "बल बुधि बिद्या देहु मोहिं, हरहु कलेस बिकार॥",
+          "transliteration": "bala budhi bidyā dehu mohi, harahu kalesa bikāra",
+          "translation": "Grant me strength, wisdom and knowledge, and remove my afflictions."
+        },
+        {
+          "t": 32,
+          "section": "Chaupai",
+          "devanagari": "जय हनुमान ज्ञान गुन सागर। जय कपीस तिहुँ लोक उजागर॥",
+          "transliteration": "jaya hanumāna jñāna guna sāgara, jaya kapīsa tihu loka ujāgara",
+          "translation": "Victory to Hanuman, ocean of wisdom and virtue; victory to the lord of vanaras who lights the three worlds."
+        },
+        {
+          "t": 40,
+          "section": "Chaupai",
+          "devanagari": "राम दूत अतुलित बल धामा। अंजनि पुत्र पवनसुत नामा॥",
+          "transliteration": "rāma dūta atulita bala dhāmā, anjani putra pavanasuta nāmā",
+          "translation": "Messenger of Rama, abode of matchless strength, known as son of Anjani and child of the Wind."
+        },
+        {
+          "t": 48,
+          "section": "Chaupai",
+          "devanagari": "महाबीर बिक्रम बजरंगी। कुमति निवार सुमति के संगी॥",
+          "transliteration": "mahābīra bikrama bajarangī, kumati nivāra sumati ke sangī",
+          "translation": "Great hero, mighty as a thunderbolt, remover of base thoughts and companion of the wise."
+        },
+        {
+          "t": 56,
+          "section": "Chaupai",
+          "devanagari": "कंचन बरन बिराज सुबेसा। कानन कुंडल कुंचित केसा॥",
+          "transliteration": "kanchana barana birāja subesā, kānana kundala kunchita kesā",
+          "translation": "Golden-hued and beautifully adorned, with rings in your ears and curling hair."
+        },
+        {
+          "t": 64,
+          "section": "Chaupai",
+          "devanagari": "हाथ बज्र औ ध्वजा बिराजै। काँधे मूँज जनेऊ साजै॥",
+          "transliteration": "hātha bajra au dhvajā birājai, kāndhe mūnja janeū sājai",
+          "translation": "In your hands shine mace and banner; a sacred thread graces your shoulder."
+        },
+        {
+          "t": 72,
+          "section": "Chaupai",
+          "devanagari": "शंकर सुवन केसरी नंदन। तेज प्रताप महा जग बंदन॥",
+          "transliteration": "shankara suvana kesarī nandana, teja pratāpa mahā jaga bandana",
+          "translation": "Portion of Shiva, delight of Kesari; your splendor is revered by all the world."
+        },
+        {
+          "t": 80,
+          "section": "Chaupai",
+          "devanagari": "विद्यावान गुनी अति चातुर। राम काज करिबे को आतुर॥",
+          "transliteration": "vidyāvāna gunī ati chātura, rāma kāja karibe ko ātura",
+          "translation": "Learned, virtuous and exceedingly clever, ever eager to do the work of Rama."
+        },
+        {
+          "t": 88,
+          "section": "Chaupai",
+          "devanagari": "प्रभु चरित्र सुनिबे को रसिया। राम लखन सीता मन बसिया॥",
+          "transliteration": "prabhu charitra sunibe ko rasiyā, rāma lakhana sītā mana basiyā",
+          "translation": "You delight in the Lord's story; Rama, Lakshmana and Sita dwell within your heart."
+        },
+        {
+          "t": 96,
+          "section": "Chaupai",
+          "devanagari": "सूक्ष्म रूप धरि सियहिं दिखावा। बिकट रूप धरि लंक जरावा॥",
+          "transliteration": "sūkshma rūpa dhari siyahi dikhāvā, bikata rūpa dhari lanka jarāvā",
+          "translation": "In tiny form you appeared before Sita; in fearsome form you burned Lanka."
+        },
+        {
+          "t": 104,
+          "section": "Chaupai",
+          "devanagari": "भीम रूप धरि असुर सँहारे। रामचंद्र के काज सँवारे॥",
+          "transliteration": "bhīma rūpa dhari asura sanhāre, rāmachandra ke kāja sanvāre",
+          "translation": "In mighty form you slew the demons and set right Sri Rama's tasks."
+        },
+        {
+          "t": 112,
+          "section": "Chaupai",
+          "devanagari": "लाय सजीवन लखन जियाये। श्रीरघुबीर हरषि उर लाये॥",
+          "transliteration": "lāya sajīvana lakhana jiyāye, shrī raghubīra harashi ura lāye",
+          "translation": "You brought the sanjivani herb and revived Lakshmana; Sri Rama joyfully embraced you."
+        },
+        {
+          "t": 120,
+          "section": "Chaupai",
+          "devanagari": "रघुपति कीन्ही बहुत बड़ाई। तुम मम प्रिय भरतहि सम भाई॥",
+          "transliteration": "raghupati kīnhī bahuta baṛāī, tuma mama priya bharatahi sama bhāī",
+          "translation": "Rama praised you greatly, calling you as dear to him as his brother Bharata."
+        },
+        {
+          "t": 128,
+          "section": "Chaupai",
+          "devanagari": "सहस बदन तुम्हरो जस गावैं। अस कहि श्रीपति कंठ लगावैं॥",
+          "transliteration": "sahasa badana tumharo jasa gāvain, asa kahi shrīpati kantha lagāvain",
+          "translation": "A thousand mouths sing your glory — so saying, the Lord drew you to his heart."
+        },
+        {
+          "t": 136,
+          "section": "Chaupai",
+          "devanagari": "सनकादिक ब्रह्मादि मुनीसा। नारद सारद सहित अहीसा॥",
+          "transliteration": "sanakādika brahmādi munīsā, nārada sārada sahita ahīsā",
+          "translation": "Sanaka and the sages, Brahma and the great seers, Narada, Saraswati and Sheshnag,"
+        },
+        {
+          "t": 144,
+          "section": "Chaupai",
+          "devanagari": "जम कुबेर दिगपाल जहाँ ते। कबि कोबिद कहि सके कहाँ ते॥",
+          "transliteration": "jama kubera digapāla jahā te, kabi kobida kahi sake kahā te",
+          "translation": "Yama, Kubera and the guardians of the directions — what poet or scholar can tell your full glory?"
+        },
+        {
+          "t": 152,
+          "section": "Chaupai",
+          "devanagari": "तुम उपकार सुग्रीवहिं कीन्हा। राम मिलाय राज पद दीन्हा॥",
+          "transliteration": "tuma upakāra sugrīvahi kīnhā, rāma milāya rāja pada dīnhā",
+          "translation": "You did Sugriva a great kindness, uniting him with Rama and restoring his throne."
+        },
+        {
+          "t": 160,
+          "section": "Chaupai",
+          "devanagari": "तुम्हरो मंत्र बिभीषन माना। लंकेश्वर भए सब जग जाना॥",
+          "transliteration": "tumharo mantra bibhīshana mānā, lankeshvara bhaye saba jaga jānā",
+          "translation": "Vibhishana heeded your counsel and became lord of Lanka, as all the world knows."
+        },
+        {
+          "t": 168,
+          "section": "Chaupai",
+          "devanagari": "जुग सहस्र जोजन पर भानू। लील्यो ताहि मधुर फल जानू॥",
+          "transliteration": "juga sahasra jojana para bhānū, līlyo tāhi madhura phala jānū",
+          "translation": "The sun, thousands of yojanas away, you swallowed, mistaking it for a sweet fruit."
+        },
+        {
+          "t": 176,
+          "section": "Chaupai",
+          "devanagari": "प्रभु मुद्रिका मेलि मुख माहीं। जलधि लाँघि गये अचरज नाहीं॥",
+          "transliteration": "prabhu mudrikā meli mukha māhī, jaladhi lāghi gaye acharaja nāhī",
+          "translation": "Holding the Lord's ring in your mouth, you leapt across the ocean — no wonder at all."
+        },
+        {
+          "t": 184,
+          "section": "Chaupai",
+          "devanagari": "दुर्गम काज जगत के जेते। सुगम अनुग्रह तुम्हरे तेते॥",
+          "transliteration": "durgama kāja jagata ke jete, sugama anugraha tumhare tete",
+          "translation": "Every difficult task in the world becomes easy by your grace."
+        },
+        {
+          "t": 192,
+          "section": "Chaupai",
+          "devanagari": "राम दुआरे तुम रखवारे। होत न आज्ञा बिनु पैसारे॥",
+          "transliteration": "rāma duāre tuma rakhavāre, hota na ājñā binu paisāre",
+          "translation": "You guard the door of Rama; none may enter without your leave."
+        },
+        {
+          "t": 200,
+          "section": "Chaupai",
+          "devanagari": "सब सुख लहै तुम्हारी सरना। तुम रच्छक काहू को डर ना॥",
+          "transliteration": "saba sukha lahai tumhārī saranā, tuma rachchhaka kāhū ko ḍara nā",
+          "translation": "All joys are found in your refuge; with you as protector there is nothing to fear."
+        },
+        {
+          "t": 208,
+          "section": "Chaupai",
+          "devanagari": "आपन तेज सम्हारो आपै। तीनों लोक हाँक तें काँपै॥",
+          "transliteration": "āpana teja samhāro āpai, tīno loka hāka te kāpai",
+          "translation": "You alone hold your own might; at your roar the three worlds tremble."
+        },
+        {
+          "t": 216,
+          "section": "Chaupai",
+          "devanagari": "भूत पिशाच निकट नहिं आवै। महाबीर जब नाम सुनावै॥",
+          "transliteration": "bhūta pishācha nikata nahi āvai, mahābīra jaba nāma sunāvai",
+          "translation": "Ghosts and evil spirits dare not draw near when your name, O Mahavir, is spoken."
+        },
+        {
+          "t": 224,
+          "section": "Chaupai",
+          "devanagari": "नासै रोग हरै सब पीरा। जपत निरंतर हनुमत बीरा॥",
+          "transliteration": "nāsai roga harai saba pīrā, japata nirantara hanumata bīrā",
+          "translation": "Disease is destroyed and all pain removed by ceaseless repetition of brave Hanuman's name."
+        },
+        {
+          "t": 232,
+          "section": "Chaupai",
+          "devanagari": "संकट तें हनुमान छुड़ावै। मन क्रम बचन ध्यान जो लावै॥",
+          "transliteration": "sankata te hanumāna chhuṛāvai, mana krama bachana dhyāna jo lāvai",
+          "translation": "Hanuman frees from distress all who hold him in thought, word and deed."
+        },
+        {
+          "t": 240,
+          "section": "Chaupai",
+          "devanagari": "सब पर राम तपस्वी राजा। तिन के काज सकल तुम साजा॥",
+          "transliteration": "saba para rāma tapasvī rājā, tina ke kāja sakala tuma sājā",
+          "translation": "Rama the ascetic king reigns over all; you accomplish all his works."
+        },
+        {
+          "t": 248,
+          "section": "Chaupai",
+          "devanagari": "और मनोरथ जो कोई लावै। सोइ अमित जीवन फल पावै॥",
+          "transliteration": "aura manoratha jo koī lāvai, soi amita jīvana phala pāvai",
+          "translation": "Whoever brings any heartfelt wish to you obtains its boundless fruit in life."
+        },
+        {
+          "t": 256,
+          "section": "Chaupai",
+          "devanagari": "चारों जुग परताप तुम्हारा। है परसिद्ध जगत उजियारा॥",
+          "transliteration": "chāro juga paratāpa tumhārā, hai parasiddha jagata ujiyārā",
+          "translation": "Your glory blazes through all four ages, renowned and lighting up the world."
+        },
+        {
+          "t": 264,
+          "section": "Chaupai",
+          "devanagari": "साधु संत के तुम रखवारे। असुर निकंदन राम दुलारे॥",
+          "transliteration": "sādhu santa ke tuma rakhavāre, asura nikandana rāma dulāre",
+          "translation": "Guardian of the saints and sages, destroyer of demons, beloved of Rama,"
+        },
+        {
+          "t": 272,
+          "section": "Chaupai",
+          "devanagari": "अष्ट सिद्धि नौ निधि के दाता। अस बर दीन्ह जानकी माता॥",
+          "transliteration": "ashta siddhi nau nidhi ke dātā, asa bara dīnha jānakī mātā",
+          "translation": "Giver of the eight powers and nine treasures — such a boon Mother Janaki granted you."
+        },
+        {
+          "t": 280,
+          "section": "Chaupai",
+          "devanagari": "राम रसायन तुम्हरे पासा। सदा रहो रघुपति के दासा॥",
+          "transliteration": "rāma rasāyana tumhare pāsā, sadā raho raghupati ke dāsā",
+          "translation": "The elixir of Rama's name is yours; may you ever remain his servant."
+        },
+        {
+          "t": 288,
+          "section": "Chaupai",
+          "devanagari": "तुम्हरे भजन राम को पावै। जनम जनम के दुख बिसरावै॥",
+          "transliteration": "tumhare bhajana rāma ko pāvai, janama janama ke dukha bisarāvai",
+          "translation": "Through singing your praise one reaches Rama and forgets the sorrows of countless births."
+        },
+        {
+          "t": 296,
+          "section": "Chaupai",
+          "devanagari": "अंत काल रघुबर पुर जाई। जहाँ जन्म हरि-भक्त कहाई॥",
+          "transliteration": "anta kāla raghubara pura jāī, jahā janma hari-bhakta kahāī",
+          "translation": "At life's end one goes to Rama's abode, reborn ever after a devotee of Hari."
+        },
+        {
+          "t": 304,
+          "section": "Chaupai",
+          "devanagari": "और देवता चित्त न धरई। हनुमत सेइ सर्ब सुख करई॥",
+          "transliteration": "aura devatā chitta na dharaī, hanumata sei sarba sukha karaī",
+          "translation": "Hold no other god in mind; serving Hanuman alone brings every joy."
+        },
+        {
+          "t": 312,
+          "section": "Chaupai",
+          "devanagari": "संकट कटै मिटै सब पीरा। जो सुमिरै हनुमत बलबीरा॥",
+          "transliteration": "sankata katai mitai saba pīrā, jo sumirai hanumata balabīrā",
+          "translation": "All troubles are cut away and pain ends for whoever remembers mighty Hanuman."
+        },
+        {
+          "t": 320,
+          "section": "Chaupai",
+          "devanagari": "जय जय जय हनुमान गोसाईं। कृपा करहु गुरुदेव की नाईं॥",
+          "transliteration": "jaya jaya jaya hanumāna gosāī, kṛpā karahu gurudeva kī nāī",
+          "translation": "Victory, victory, victory to Lord Hanuman! Grant your grace as a guru would."
+        },
+        {
+          "t": 328,
+          "section": "Chaupai",
+          "devanagari": "जो सत बार पाठ कर कोई। छूटहि बंदि महा सुख होई॥",
+          "transliteration": "jo sata bāra pātha kara koī, chhūtahi bandi mahā sukha hoī",
+          "translation": "Whoever recites this a hundred times is freed from bondage and gains great bliss."
+        },
+        {
+          "t": 336,
+          "section": "Chaupai",
+          "devanagari": "जो यह पढ़ै हनुमान चालीसा। होय सिद्धि साखी गौरीसा॥",
+          "transliteration": "jo yaha paṛhai hanumāna chālīsā, hoya siddhi sākhī gaurīsā",
+          "translation": "Whoever reads this Hanuman Chalisa attains perfection — Shiva himself bears witness."
+        },
+        {
+          "t": 344,
+          "section": "Chaupai",
+          "devanagari": "तुलसीदास सदा हरि चेरा। कीजै नाथ हृदय महँ डेरा॥",
+          "transliteration": "tulasīdāsa sadā hari cherā, kījai nātha hṛdaya maha ḍerā",
+          "translation": "Tulsidas, ever Hari's servant, prays: O Lord, make your home within my heart."
+        },
+        {
+          "t": 352,
+          "section": "Doha",
+          "devanagari": "पवनतनय संकट हरन, मंगल मूरति रूप।",
+          "transliteration": "pavana-tanaya sankata harana, mangala mūrati rūpa",
+          "translation": "O son of the Wind, remover of distress, embodiment of auspiciousness,"
+        },
+        {
+          "t": 360,
+          "section": "Doha",
+          "devanagari": "राम लखन सीता सहित, हृदय बसहु सुर भूप॥",
+          "transliteration": "rāma lakhana sītā sahita, hridaya basahu sura bhūpa",
+          "translation": "dwell in my heart with Rama, Lakshmana and Sita, O king among the gods."
+        }
+      ]
+    },
+    {
+      "id": "om-jai-jagdish-hare",
+      "title": "Om Jai Jagdish Hare",
+      "devanagari": "ॐ जय जगदीश हरे",
+      "kind": "aarti",
+      "deityId": "vishnu",
+      "language": "hi",
+      "artist": "Traditional · Shardha Ram Phillauri",
+      "duration": 72,
+      "audio": null,
+      "isFree": true,
+      "previewSeconds": 45,
+      "attribution": "Pandit Shardha Ram Phillauri (1870) · public domain",
+      "tags": [
+        "aarti",
+        "universal",
+        "evening"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Refrain",
+          "devanagari": "ॐ जय जगदीश हरे, स्वामी जय जगदीश हरे।",
+          "transliteration": "oṁ jaya jagadīsha hare, swāmī jaya jagadīsha hare",
+          "translation": "Om, victory to the Lord of the universe, O master, victory to you."
+        },
+        {
+          "t": 10,
+          "section": "Refrain",
+          "devanagari": "भक्त जनों के संकट, क्षण में दूर करे॥",
+          "transliteration": "bhakta janon ke sankata, kshana men dūra kare",
+          "translation": "You remove the troubles of your devotees in an instant."
+        },
+        {
+          "t": 20,
+          "section": "Verse 1",
+          "devanagari": "जो ध्यावे फल पावे, दुख बिनसे मन का।",
+          "transliteration": "jo dhyāve phala pāve, dukha binase mana kā",
+          "translation": "Whoever meditates on you gains the fruit; the sorrow of the mind is destroyed."
+        },
+        {
+          "t": 30,
+          "section": "Verse 1",
+          "devanagari": "सुख सम्पति घर आवे, कष्ट मिटे तन का॥",
+          "transliteration": "sukha sampati ghara āve, kashta mite tana kā",
+          "translation": "Happiness and prosperity come home, and bodily suffering is removed."
+        }
+      ]
+    },
+    {
+      "id": "gayatri-mantra",
+      "title": "Gayatri Mantra",
+      "devanagari": "गायत्री मंत्र",
+      "kind": "mantra",
+      "deityId": "surya",
+      "language": "sa",
+      "artist": "Vedic · Rishi Vishvamitra",
+      "duration": 40,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Rig Veda 3.62.10 · public domain",
+      "tags": [
+        "dawn",
+        "clarity",
+        "vedic"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "ॐ भूर्भुवः स्वः।",
+          "transliteration": "oṁ bhūr bhuvaḥ svaḥ",
+          "translation": "Om. The earth, the atmosphere, the heavens.",
+          "words": [
+            {
+              "text": "oṁ",
+              "t": 0
+            },
+            {
+              "text": "bhūr",
+              "t": 2
+            },
+            {
+              "text": "bhuvaḥ",
+              "t": 4
+            },
+            {
+              "text": "svaḥ",
+              "t": 6
+            }
+          ]
+        },
+        {
+          "t": 8,
+          "devanagari": "तत्सवितुर्वरेण्यं।",
+          "transliteration": "tat savitur vareṇyaṁ",
+          "translation": "That adorable splendor of the divine Sun,",
+          "words": [
+            {
+              "text": "tat",
+              "t": 0
+            },
+            {
+              "text": "savitur",
+              "t": 2.5
+            },
+            {
+              "text": "vareṇyaṁ",
+              "t": 5
+            }
+          ]
+        },
+        {
+          "t": 16,
+          "devanagari": "भर्गो देवस्य धीमहि।",
+          "transliteration": "bhargo devasya dhīmahi",
+          "translation": "the radiant light of the deity, on which we meditate —",
+          "words": [
+            {
+              "text": "bhargo",
+              "t": 0
+            },
+            {
+              "text": "devasya",
+              "t": 2.5
+            },
+            {
+              "text": "dhīmahi",
+              "t": 5
+            }
+          ]
+        },
+        {
+          "t": 24,
+          "devanagari": "धियो यो नः प्रचोदयात्॥",
+          "transliteration": "dhiyo yo naḥ prachodayāt",
+          "translation": "may it illumine and inspire our understanding.",
+          "words": [
+            {
+              "text": "dhiyo",
+              "t": 0
+            },
+            {
+              "text": "yo",
+              "t": 4
+            },
+            {
+              "text": "naḥ",
+              "t": 8
+            },
+            {
+              "text": "prachodayāt",
+              "t": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vakratunda-mahakaya",
+      "title": "Vakratunda Mahakaya",
+      "devanagari": "वक्रतुण्ड महाकाय",
+      "kind": "mantra",
+      "deityId": "ganesha",
+      "language": "sa",
+      "artist": "Traditional",
+      "duration": 24,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Ganesha dhyana shloka · public domain",
+      "tags": [
+        "beginnings",
+        "obstacles"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।",
+          "transliteration": "vakratuṇḍa mahākāya sūryakoṭi samaprabha",
+          "translation": "O curved-trunk, mighty-bodied one, radiant as ten million suns,",
+          "words": [
+            {
+              "text": "vakratuṇḍa",
+              "t": 0
+            },
+            {
+              "text": "mahākāya",
+              "t": 3
+            },
+            {
+              "text": "sūryakoṭi",
+              "t": 6
+            },
+            {
+              "text": "samaprabha",
+              "t": 9
+            }
+          ]
+        },
+        {
+          "t": 12,
+          "devanagari": "निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥",
+          "transliteration": "nirvighnaṁ kuru me deva sarva-kāryeṣu sarvadā",
+          "translation": "make all my endeavors free of obstacles, O Lord, always.",
+          "words": [
+            {
+              "text": "nirvighnaṁ",
+              "t": 0
+            },
+            {
+              "text": "kuru",
+              "t": 2
+            },
+            {
+              "text": "me",
+              "t": 3.5
+            },
+            {
+              "text": "deva",
+              "t": 5
+            },
+            {
+              "text": "sarva-kāryeṣu",
+              "t": 7
+            },
+            {
+              "text": "sarvadā",
+              "t": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hare-krishna-maha-mantra",
+      "title": "Hare Krishna Maha Mantra",
+      "devanagari": "हरे कृष्ण महामंत्र",
+      "kind": "mantra",
+      "deityId": "krishna",
+      "language": "sa",
+      "artist": "Traditional",
+      "duration": 32,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Kali-Santarana Upanishad · public domain",
+      "tags": [
+        "kirtan",
+        "japa",
+        "joy"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे।",
+          "transliteration": "hare kṛṣṇa hare kṛṣṇa, kṛṣṇa kṛṣṇa hare hare",
+          "translation": "O energy of the Lord, O all-attractive Lord, please engage me in your service."
+        },
+        {
+          "t": 16,
+          "devanagari": "हरे राम हरे राम, राम राम हरे हरे॥",
+          "transliteration": "hare rāma hare rāma, rāma rāma hare hare",
+          "translation": "O energy of the Lord, O reservoir of joy, please engage me in your service."
+        }
+      ]
+    },
+    {
+      "id": "om-namah-shivaya",
+      "title": "Om Namah Shivaya",
+      "devanagari": "ॐ नमः शिवाय",
+      "kind": "mantra",
+      "deityId": "shiva",
+      "language": "sa",
+      "artist": "Traditional",
+      "duration": 30,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Panchakshara mantra, Yajurveda · public domain",
+      "tags": [
+        "monday",
+        "stillness",
+        "japa"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "ॐ नमः शिवाय।",
+          "transliteration": "oṁ namaḥ śivāya",
+          "translation": "Om, I bow to Shiva — the auspicious inner Self."
+        },
+        {
+          "t": 10,
+          "devanagari": "ॐ नमः शिवाय।",
+          "transliteration": "oṁ namaḥ śivāya",
+          "translation": "Om, I bow to Shiva — the auspicious inner Self."
+        },
+        {
+          "t": 20,
+          "devanagari": "ॐ नमः शिवाय।",
+          "transliteration": "oṁ namaḥ śivāya",
+          "translation": "Om, I bow to Shiva — the auspicious inner Self."
+        }
+      ]
+    },
+    {
+      "id": "morning-stillness",
+      "title": "Morning Stillness",
+      "kind": "meditation",
+      "deityId": "shiva",
+      "language": "en",
+      "artist": "Diya",
+      "duration": 60,
+      "audio": null,
+      "isFree": false,
+      "previewSeconds": 20,
+      "attribution": "Original guided practice",
+      "tags": [
+        "meditation",
+        "breath",
+        "morning"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "transliteration": "Settle comfortably, spine easy, eyes softly closed.",
+          "translation": "Arrive."
+        },
+        {
+          "t": 12,
+          "transliteration": "Breathe in for four… and release for six.",
+          "translation": "Lengthen the exhale."
+        },
+        {
+          "t": 28,
+          "transliteration": "Silently offer: Om Namah Shivaya.",
+          "translation": "Let the mantra arise on its own."
+        },
+        {
+          "t": 44,
+          "transliteration": "Rest in the stillness between two breaths.",
+          "translation": "This is the temple within."
+        }
+      ]
+    },
+    {
+      "id": "jai-ganesh-deva",
+      "title": "Jai Ganesh Deva",
+      "devanagari": "जय गणेश देवा",
+      "kind": "aarti",
+      "deityId": "ganesha",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 48,
+      "audio": null,
+      "isFree": true,
+      "previewSeconds": 30,
+      "attribution": "Traditional aarti · public domain",
+      "tags": [
+        "aarti",
+        "beginnings",
+        "wednesday"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Refrain",
+          "devanagari": "जय गणेश जय गणेश जय गणेश देवा।",
+          "transliteration": "jaya gaṇesha jaya gaṇesha jaya gaṇesha devā",
+          "translation": "Victory to Lord Ganesha, again and again."
+        },
+        {
+          "t": 10,
+          "section": "Refrain",
+          "devanagari": "माता जाकी पार्वती पिता महादेवा॥",
+          "transliteration": "mātā jākī pārvatī pitā mahādevā",
+          "translation": "Whose mother is Parvati and whose father is Mahadeva."
+        },
+        {
+          "t": 22,
+          "devanagari": "एकदंत दयावंत चार भुजाधारी।",
+          "transliteration": "ekadanta dayāvanta chāra bhujā dhārī",
+          "translation": "Single-tusked and compassionate, bearing four arms,"
+        },
+        {
+          "t": 34,
+          "devanagari": "माथे सिंदूर सोहे मूसे की सवारी॥",
+          "transliteration": "māthe sindūra sohe mūse kī savārī",
+          "translation": "vermilion gracing your brow, riding upon the mouse."
+        }
+      ]
+    },
+    {
+      "id": "om-jai-lakshmi-mata",
+      "title": "Om Jai Lakshmi Mata",
+      "devanagari": "ॐ जय लक्ष्मी माता",
+      "kind": "aarti",
+      "deityId": "lakshmi",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 44,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Traditional aarti · public domain",
+      "tags": [
+        "aarti",
+        "friday",
+        "abundance",
+        "diwali"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Refrain",
+          "devanagari": "ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।",
+          "transliteration": "oṁ jaya lakshmī mātā, maiyā jaya lakshmī mātā",
+          "translation": "Om, victory to Mother Lakshmi, hail to you, Mother."
+        },
+        {
+          "t": 12,
+          "section": "Refrain",
+          "devanagari": "तुमको निशदिन सेवत, हर विष्णु विधाता॥",
+          "transliteration": "tumako niśadina sevata, hara vishṇu vidhātā",
+          "translation": "Shiva, Vishnu and Brahma serve you day and night."
+        },
+        {
+          "t": 26,
+          "devanagari": "उमा रमा ब्रह्माणी, तुम ही जग माता।",
+          "transliteration": "umā ramā brahmāṇī, tuma hī jaga mātā",
+          "translation": "As Uma, Rama and Brahmani, you are the mother of the world."
+        },
+        {
+          "t": 36,
+          "devanagari": "सूर्य चंद्रमा ध्यावत, नारद ऋषि गाता॥",
+          "transliteration": "sūrya chandramā dhyāvata, nārada ṛṣi gātā",
+          "translation": "The sun and moon meditate on you; sage Narada sings your praise."
+        }
+      ]
+    },
+    {
+      "id": "ambe-tu-hai-jagdambe",
+      "title": "Ambe Tu Hai Jagdambe",
+      "devanagari": "अम्बे तू है जगदम्बे",
+      "kind": "aarti",
+      "deityId": "durga",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 46,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Traditional aarti · public domain",
+      "tags": [
+        "aarti",
+        "navratri",
+        "shakti"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Refrain",
+          "devanagari": "अम्बे तू है जगदम्बे काली, जय दुर्गे खप्पर वाली।",
+          "transliteration": "ambe tū hai jagadambe kālī, jaya durge khappara vālī",
+          "translation": "O Amba, you are the Mother of the world, Kali; victory to Durga who bears the bowl."
+        },
+        {
+          "t": 14,
+          "section": "Refrain",
+          "devanagari": "तेरे ही गुण गावें भारती, ओ मैया हम सब उतारें आरती॥",
+          "transliteration": "tere hī guṇa gāven bhāratī, o maiyā hama saba utāren āratī",
+          "translation": "We sing only your glories, Mother, and offer this aarti to you."
+        },
+        {
+          "t": 30,
+          "devanagari": "तेरे भक्त जनों पर माता, भीर पड़ी है भारी।",
+          "transliteration": "tere bhakta janon para mātā, bhīra paṛī hai bhārī",
+          "translation": "O Mother, when great trouble falls upon your devotees,"
+        },
+        {
+          "t": 40,
+          "devanagari": "दानव दल पर टूट पड़ो माँ, करके सिंह सवारी॥",
+          "transliteration": "dānava dala para ṭūṭa paṛo māṁ, karake siṁha savārī",
+          "translation": "fall upon the hordes of demons, riding your lion."
+        }
+      ]
+    },
+    {
+      "id": "om-jai-shiv-omkara",
+      "title": "Om Jai Shiv Omkara",
+      "devanagari": "ॐ जय शिव ओंकारा",
+      "kind": "aarti",
+      "deityId": "shiva",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 42,
+      "audio": null,
+      "isFree": false,
+      "previewSeconds": 25,
+      "attribution": "Traditional aarti · public domain",
+      "tags": [
+        "aarti",
+        "monday",
+        "shivaratri"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Refrain",
+          "devanagari": "ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।",
+          "transliteration": "oṁ jaya śiva oṁkārā, swāmī jaya śiva oṁkārā",
+          "translation": "Om, victory to Shiva, the primordial sound Omkara."
+        },
+        {
+          "t": 12,
+          "section": "Refrain",
+          "devanagari": "ब्रह्मा विष्णु सदाशिव, अर्द्धांगी धारा॥",
+          "transliteration": "brahmā vishṇu sadāśiva, arddhāṅgī dhārā",
+          "translation": "Brahma, Vishnu and eternal Shiva — you hold the half-feminine form."
+        },
+        {
+          "t": 26,
+          "devanagari": "एकानन चतुरानन पञ्चानन राजे।",
+          "transliteration": "ekānana chaturānana pañchānana rāje",
+          "translation": "One-faced, four-faced and five-faced, you reign,"
+        },
+        {
+          "t": 34,
+          "devanagari": "हंसासन गरुड़ासन वृषवाहन साजे॥",
+          "transliteration": "haṁsāsana garuḍāsana vṛṣavāhana sāje",
+          "translation": "adorned on swan, eagle and the bull as your mount."
+        }
+      ]
+    },
+    {
+      "id": "saraswati-vandana",
+      "title": "Saraswati Vandana",
+      "devanagari": "सरस्वती वंदना",
+      "kind": "stotra",
+      "deityId": "saraswati",
+      "language": "sa",
+      "artist": "Traditional",
+      "duration": 36,
+      "audio": null,
+      "isFree": false,
+      "previewSeconds": 20,
+      "attribution": "Traditional dhyana shloka · public domain",
+      "tags": [
+        "knowledge",
+        "students",
+        "vasant-panchami"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "या कुन्देन्दुतुषारहारधवला या शुभ्रवस्त्रावृता।",
+          "transliteration": "yā kundendu-tuṣāra-hāra-dhavalā yā śubhra-vastrāvṛtā",
+          "translation": "She who is white as jasmine, the moon and snow, robed in pure white,"
+        },
+        {
+          "t": 12,
+          "devanagari": "या वीणावरदण्डमण्डितकरा या श्वेतपद्मासना॥",
+          "transliteration": "yā vīṇā-vara-daṇḍa-maṇḍita-karā yā śveta-padmāsanā",
+          "translation": "whose hands are graced by the veena, seated upon the white lotus —"
+        },
+        {
+          "t": 24,
+          "devanagari": "सा मां पातु सरस्वती भगवती निःशेषजाड्यापहा॥",
+          "transliteration": "sā māṁ pātu sarasvatī bhagavatī niḥśeṣa-jāḍyāpahā",
+          "translation": "may that Goddess Saraswati, remover of all dullness, protect me."
+        }
+      ]
+    },
+    {
+      "id": "govind-bolo",
+      "title": "Govind Bolo Hari Gopal Bolo",
+      "devanagari": "गोविन्द बोलो",
+      "kind": "bhajan",
+      "deityId": "krishna",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 40,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Traditional bhajan · public domain",
+      "tags": [
+        "kirtan",
+        "joy",
+        "janmashtami"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "गोविन्द बोलो हरि गोपाल बोलो।",
+          "transliteration": "govinda bolo hari gopāla bolo",
+          "translation": "Sing the names: Govinda, Hari, Gopala!"
+        },
+        {
+          "t": 12,
+          "devanagari": "राधा रमण हरि गोविन्द बोलो॥",
+          "transliteration": "rādhā ramaṇa hari govinda bolo",
+          "translation": "Beloved of Radha, Hari — sing Govinda!"
+        },
+        {
+          "t": 24,
+          "devanagari": "गोविन्द बोलो हरि गोपाल बोलो।",
+          "transliteration": "govinda bolo hari gopāla bolo",
+          "translation": "Sing the names: Govinda, Hari, Gopala!"
+        }
+      ]
+    },
+    {
+      "id": "durga-chalisa",
+      "title": "Durga Chalisa",
+      "devanagari": "दुर्गा चालीसा",
+      "kind": "chalisa",
+      "deityId": "durga",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 40,
+      "audio": null,
+      "isFree": true,
+      "previewSeconds": 30,
+      "attribution": "Traditional chalisa · public domain",
+      "tags": [
+        "navratri",
+        "shakti",
+        "protection"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Doha",
+          "devanagari": "नमो नमो दुर्गे सुख करनी। नमो नमो अम्बे दुख हरनी॥",
+          "transliteration": "namo namo durge sukha karanī, namo namo ambe dukha haranī",
+          "translation": "Salutations, O Durga, giver of joy; salutations, O Amba, remover of sorrow."
+        },
+        {
+          "t": 12,
+          "devanagari": "निराकार है ज्योति तुम्हारी। तिहूँ लोक फैली उजियारी॥",
+          "transliteration": "nirākāra hai jyoti tumhārī, tihūn loka phailī ujiyārī",
+          "translation": "Formless is your light, spreading radiance through the three worlds."
+        },
+        {
+          "t": 26,
+          "devanagari": "शशि ललाट मुख महाविशाला। नेत्र लाल भृकुटी विकराला॥",
+          "transliteration": "śaśi lalāṭa mukha mahā-viśālā, netra lāla bhṛkuṭī vikarālā",
+          "translation": "The moon upon your brow, your face vast; eyes red, your gaze terrible to evil."
+        }
+      ]
+    },
+    {
+      "id": "shiv-chalisa",
+      "title": "Shiv Chalisa",
+      "devanagari": "शिव चालीसा",
+      "kind": "chalisa",
+      "deityId": "shiva",
+      "language": "hi",
+      "artist": "Traditional · Ayodhyadas",
+      "duration": 38,
+      "audio": null,
+      "isFree": false,
+      "previewSeconds": 25,
+      "attribution": "Ayodhyadas · public domain",
+      "tags": [
+        "monday",
+        "shivaratri"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Doha",
+          "devanagari": "जय गणेश गिरिजा सुवन, मंगल मूल सुजान।",
+          "transliteration": "jaya gaṇeśa girijā suvana, maṅgala mūla sujāna",
+          "translation": "Victory to Ganesha, son of Parvati, wise root of all auspiciousness."
+        },
+        {
+          "t": 12,
+          "devanagari": "कहत अयोध्यादास तुम, देहु अभय वरदान॥",
+          "transliteration": "kahata ayodhyādāsa tuma, dehu abhaya varadāna",
+          "translation": "Ayodhyadas prays: grant me the boon of fearlessness."
+        },
+        {
+          "t": 24,
+          "section": "Chaupai",
+          "devanagari": "जय गिरिजापति दीनदयाला। सदा करत सन्तन प्रतिपाला॥",
+          "transliteration": "jaya girijāpati dīnadayālā, sadā karata santana pratipālā",
+          "translation": "Victory to the Lord of Parvati, kind to the humble, ever protector of the saints."
+        }
+      ]
+    },
+    {
+      "id": "kali-mantra",
+      "title": "Kali Mantra",
+      "devanagari": "काली मंत्र",
+      "kind": "mantra",
+      "deityId": "kali",
+      "language": "sa",
+      "artist": "Traditional",
+      "duration": 24,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Beeja mantra · public domain",
+      "tags": [
+        "shakti",
+        "fearlessness",
+        "japa"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "ॐ क्रीं कालिकायै नमः।",
+          "transliteration": "oṁ krīṁ kālikāyai namaḥ",
+          "translation": "Om, salutations to Kali, who dissolves fear and ego."
+        },
+        {
+          "t": 12,
+          "devanagari": "ॐ क्रीं कालिकायै नमः।",
+          "transliteration": "oṁ krīṁ kālikāyai namaḥ",
+          "translation": "Om, salutations to Kali, who dissolves fear and ego."
+        }
+      ]
+    },
+    {
+      "id": "om-saravanabhava",
+      "title": "Om Saravanabhava",
+      "devanagari": "ॐ शरवणभव",
+      "kind": "mantra",
+      "deityId": "kartikeya",
+      "language": "sa",
+      "artist": "Traditional",
+      "duration": 24,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Shadakshara mantra · public domain",
+      "tags": [
+        "murugan",
+        "courage",
+        "tuesday"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "devanagari": "ॐ शरवणभव।",
+          "transliteration": "oṁ śaravaṇa-bhava",
+          "translation": "Om, salutations to Murugan, born amid the reeds."
+        },
+        {
+          "t": 12,
+          "devanagari": "ॐ शरवणभव।",
+          "transliteration": "oṁ śaravaṇa-bhava",
+          "translation": "Om, salutations to Murugan, born amid the reeds."
+        }
+      ]
+    },
+    {
+      "id": "om-jai-gange",
+      "title": "Om Jai Gange Mata",
+      "devanagari": "ॐ जय गंगे माता",
+      "kind": "aarti",
+      "deityId": "ganga",
+      "language": "hi",
+      "artist": "Traditional",
+      "duration": 36,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Traditional aarti · public domain",
+      "tags": [
+        "aarti",
+        "purity",
+        "river"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Refrain",
+          "devanagari": "ॐ जय गंगे माता, मैया जय गंगे माता।",
+          "transliteration": "oṁ jaya gaṅge mātā, maiyā jaya gaṅge mātā",
+          "translation": "Om, victory to Mother Ganga, hail to you, Mother."
+        },
+        {
+          "t": 14,
+          "devanagari": "जो नर तुमको ध्याता, मनवांछित फल पाता॥",
+          "transliteration": "jo nara tumako dhyātā, manavāñchita phala pātā",
+          "translation": "Whoever meditates on you attains the heart’s desire."
+        }
+      ]
+    }
+  ],
+  "scriptures": [
+    {
+      "id": "bhagavad-gita",
+      "title": "Bhagavad Gita",
+      "devanagari": "श्रीमद्भगवद्गीता",
+      "subtitle": "The Song of the Lord",
+      "description": "Krishna's counsel to Arjuna on the battlefield of Kurukshetra — 700 verses on duty, devotion, action and the nature of the Self, set within the Mahabharata.",
+      "attribution": "Vyasa · Diya plain-English rendering (pending scholarly review)",
+      "chapters": [
+        {
+          "number": 2,
+          "title": "Sankhya Yoga — The Yoga of Knowledge",
+          "devanagari": "सांख्ययोग",
+          "summary": "Krishna begins his teaching: the Self is eternal and indestructible; act according to your dharma without attachment to results.",
+          "verses": [
+            {
+              "ref": "2.13",
+              "devanagari": "देहिनोऽस्मिन्यथा देहे कौमारं यौवनं जरा।\nतथा देहान्तरप्राप्तिर्धीरस्तत्र न मुह्यति॥",
+              "transliteration": "dehino ’smin yathā dehe kaumāraṁ yauvanaṁ jarā\ntathā dehāntara-prāptir dhīras tatra na muhyati",
+              "translation": "As the embodied soul passes through childhood, youth and old age in this body, so too it passes into another body at death. The wise are not deluded by this."
+            },
+            {
+              "ref": "2.20",
+              "devanagari": "न जायते म्रियते वा कदाचिन्\nनायं भूत्वा भविता वा न भूयः।\nअजो नित्यः शाश्वतोऽयं पुराणो\nन हन्यते हन्यमाने शरीरे॥",
+              "transliteration": "na jāyate mriyate vā kadācin\nnāyaṁ bhūtvā bhavitā vā na bhūyaḥ\najo nityaḥ śāśvato ’yaṁ purāṇo\nna hanyate hanyamāne śarīre",
+              "translation": "The Self is never born and never dies; it has not come into being and will not cease to be. Unborn, eternal, ever-existing and ancient, it is not slain when the body is slain."
+            },
+            {
+              "ref": "2.47",
+              "devanagari": "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥",
+              "transliteration": "karmaṇy evādhikāras te mā phaleṣu kadācana\nmā karma-phala-hetur bhūr mā te saṅgo ’stv akarmaṇi",
+              "translation": "You have a right to your action alone, never to its fruits. Let not the fruits of action be your motive, nor let your attachment be to inaction.",
+              "commentary": "The most quoted verse of the Gita — nishkama karma, action without craving for the reward."
+            },
+            {
+              "ref": "2.48",
+              "devanagari": "योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।\nसिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते॥",
+              "transliteration": "yoga-sthaḥ kuru karmāṇi saṅgaṁ tyaktvā dhanañjaya\nsiddhy-asiddhyoḥ samo bhūtvā samatvaṁ yoga ucyate",
+              "translation": "Established in yoga, perform your actions abandoning attachment, even-minded in success and failure, Arjuna. This evenness of mind is called yoga."
+            },
+            {
+              "ref": "2.62",
+              "devanagari": "ध्यायतो विषयान्पुंसः सङ्गस्तेषूपजायते।\nसङ्गात्सञ्जायते कामः कामात्क्रोधोऽभिजायते॥",
+              "transliteration": "dhyāyato viṣayān puṁsaḥ saṅgas teṣūpajāyate\nsaṅgāt sañjāyate kāmaḥ kāmāt krodho ’bhijāyate",
+              "translation": "Dwelling on objects of the senses, a person grows attached to them; from attachment springs desire, and from thwarted desire arises anger."
+            }
+          ]
+        },
+        {
+          "number": 12,
+          "title": "Bhakti Yoga — The Yoga of Devotion",
+          "devanagari": "भक्तियोग",
+          "summary": "Krishna praises loving devotion as the most accessible path, and describes the qualities of one who is dear to the Divine.",
+          "verses": [
+            {
+              "ref": "12.8",
+              "devanagari": "मय्येव मन आधत्स्व मयि बुद्धिं निवेशय।\nनिवसिष्यसि मय्येव अत ऊर्ध्वं न संशयः॥",
+              "transliteration": "mayy eva mana ādhatsva mayi buddhiṁ niveśaya\nnivasiṣyasi mayy eva ata ūrdhvaṁ na saṁśayaḥ",
+              "translation": "Fix your mind on Me alone and rest your understanding in Me; thereafter you will dwell in Me — of this there is no doubt."
+            },
+            {
+              "ref": "12.13",
+              "devanagari": "अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च।\nनिर्ममो निरहंकारः समदुःखसुखः क्षमी॥",
+              "transliteration": "adveṣṭā sarva-bhūtānāṁ maitraḥ karuṇa eva ca\nnirmamo nirahaṅkāraḥ sama-duḥkha-sukhaḥ kṣamī",
+              "translation": "One who hates no creature, who is friendly and compassionate, free of possessiveness and ego, even-minded in pain and pleasure, and forgiving —",
+              "commentary": "The opening of Krishna’s portrait of the devotee who is dear to him."
+            }
+          ]
+        },
+        {
+          "number": 15,
+          "title": "Purushottama Yoga — The Supreme Person",
+          "devanagari": "पुरुषोत्तमयोग",
+          "summary": "The world is likened to an eternal tree; the living being is a fragment of the Divine, who dwells in every heart.",
+          "verses": [
+            {
+              "ref": "15.7",
+              "devanagari": "ममैवांशो जीवलोके जीवभूतः सनातनः।\nमनःषष्ठानीन्द्रियाणि प्रकृतिस्थानि कर्षति॥",
+              "transliteration": "mamaivāṁśo jīva-loke jīva-bhūtaḥ sanātanaḥ\nmanaḥ-ṣaṣṭhānīndriyāṇi prakṛti-sthāni karṣati",
+              "translation": "An eternal fragment of My own Self becomes the living being in the world of life, drawing to itself the senses and the mind that rest in nature."
+            },
+            {
+              "ref": "15.15",
+              "devanagari": "सर्वस्य चाहं हृदि सन्निविष्टो मत्तः स्मृतिर्ज्ञानमपोहनं च।",
+              "transliteration": "sarvasya cāhaṁ hṛdi sanniviṣṭo mattaḥ smṛtir jñānam apohanaṁ ca",
+              "translation": "I am seated in the heart of all beings; from Me come memory, knowledge and their absence."
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "title": "Raja Vidya Yoga — The Royal Knowledge",
+          "devanagari": "राजविद्यायोग",
+          "summary": "The most confidential teaching: the Divine pervades all, sustains the devoted, and accepts the simplest offering made with love.",
+          "verses": [
+            {
+              "ref": "9.22",
+              "devanagari": "अनन्याश्चिन्तयन्तो मां ये जनाः पर्युपासते।\nतेषां नित्याभियुक्तानां योगक्षेमं वहाम्यहम्॥",
+              "transliteration": "ananyāś cintayanto māṁ ye janāḥ paryupāsate\nteṣāṁ nityābhiyuktānāṁ yoga-kṣemaṁ vahāmy aham",
+              "translation": "To those who worship Me alone, thinking of no other, ever steadfast — I bring what they lack and protect what they have."
+            },
+            {
+              "ref": "9.26",
+              "devanagari": "पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।\nतदहं भक्त्युपहृतमश्नामि प्रयतात्मनः॥",
+              "transliteration": "patraṁ puṣpaṁ phalaṁ toyaṁ yo me bhaktyā prayacchati\ntad ahaṁ bhakty-upahṛtam aśnāmi prayatātmanaḥ",
+              "translation": "Whoever offers Me with devotion a leaf, a flower, a fruit or water — that loving offering from a pure heart, I accept.",
+              "commentary": "The verse behind the simplest home puja: it is the love, not the lavishness, that is received."
+            }
+          ]
+        },
+        {
+          "number": 18,
+          "title": "Moksha Sanyasa Yoga — The Yoga of Liberation",
+          "devanagari": "मोक्षसंन्यासयोग",
+          "summary": "The Gita’s conclusion: renounce anxiety over outcomes, take refuge in the Divine, and act freely from love.",
+          "verses": [
+            {
+              "ref": "18.66",
+              "devanagari": "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।\nअहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः॥",
+              "transliteration": "sarva-dharmān parityajya mām ekaṁ śaraṇaṁ vraja\nahaṁ tvā sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ",
+              "translation": "Abandoning all duties, take refuge in Me alone. I shall free you from all sins; do not grieve.",
+              "commentary": "The charama shloka — the Gita’s final, most intimate instruction: surrender."
+            },
+            {
+              "ref": "18.78",
+              "devanagari": "यत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः।\nतत्र श्रीर्विजयो भूतिर्ध्रुवा नीतिर्मतिर्मम॥",
+              "transliteration": "yatra yogeśvaraḥ kṛṣṇo yatra pārtho dhanur-dharaḥ\ntatra śrīr vijayo bhūtir dhruvā nītir matir mama",
+              "translation": "Wherever there is Krishna, lord of yoga, and Arjuna the archer, there will surely be fortune, victory, prosperity and sound counsel — this is my conviction."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "festivals": [
+    {
+      "id": "diwali",
+      "name": "Diwali",
+      "devanagari": "दीवाली",
+      "kind": "major",
+      "deityId": "lakshmi",
+      "description": "The festival of lights celebrating the victory of light over darkness. Homes are lit with diyas and Lakshmi is invoked for prosperity.",
+      "rule": {
+        "type": "tithi",
+        "month": 7,
+        "paksha": "krishna",
+        "tithi": 15
+      },
+      "significance": "Return of Sri Rama to Ayodhya; worship of Lakshmi.",
+      "observances": [
+        "Light diyas at dusk",
+        "Lakshmi puja",
+        "Rangoli",
+        "Share sweets"
+      ]
+    },
+    {
+      "id": "holi",
+      "name": "Holi",
+      "devanagari": "होली",
+      "kind": "major",
+      "deityId": "krishna",
+      "description": "The festival of colors marking the arrival of spring and the love of Radha and Krishna; preceded by Holika Dahan.",
+      "rule": {
+        "type": "tithi",
+        "month": 12,
+        "paksha": "shukla",
+        "tithi": 15
+      },
+      "observances": [
+        "Holika bonfire",
+        "Play with colors",
+        "Visit family"
+      ]
+    },
+    {
+      "id": "ganesh-chaturthi",
+      "name": "Ganesh Chaturthi",
+      "devanagari": "गणेश चतुर्थी",
+      "kind": "major",
+      "deityId": "ganesha",
+      "description": "The birthday of Ganesha, welcomed into homes and pandals for ten days and lovingly immersed on Anant Chaturdashi.",
+      "rule": {
+        "type": "tithi",
+        "month": 6,
+        "paksha": "shukla",
+        "tithi": 4
+      },
+      "observances": [
+        "Install Ganesha murti",
+        "Modak offering",
+        "Daily aarti",
+        "Visarjan"
+      ]
+    },
+    {
+      "id": "janmashtami",
+      "name": "Krishna Janmashtami",
+      "devanagari": "जन्माष्टमी",
+      "kind": "jayanti",
+      "deityId": "krishna",
+      "description": "Celebration of Krishna's birth at midnight, observed with fasting, bhajans, jhula and the Dahi Handi.",
+      "rule": {
+        "type": "tithi",
+        "month": 5,
+        "paksha": "krishna",
+        "tithi": 8
+      },
+      "observances": [
+        "Fast until midnight",
+        "Midnight aarti",
+        "Decorate jhula"
+      ]
+    },
+    {
+      "id": "navratri",
+      "name": "Sharad Navratri",
+      "devanagari": "नवरात्रि",
+      "kind": "major",
+      "deityId": "durga",
+      "description": "Nine nights honoring the nine forms of the Mother Goddess, culminating in Vijayadashami — the triumph of good over evil.",
+      "rule": {
+        "type": "tithi",
+        "month": 7,
+        "paksha": "shukla",
+        "tithi": 1
+      },
+      "observances": [
+        "Fast",
+        "Garba & Dandiya",
+        "Kanya puja",
+        "Durga aarti"
+      ]
+    },
+    {
+      "id": "ram-navami",
+      "name": "Rama Navami",
+      "devanagari": "राम नवमी",
+      "kind": "jayanti",
+      "deityId": "rama",
+      "description": "The birth of Sri Rama, observed with Ramayana recitation, fasting and bhajans.",
+      "rule": {
+        "type": "tithi",
+        "month": 1,
+        "paksha": "shukla",
+        "tithi": 9
+      },
+      "observances": [
+        "Ramayana path",
+        "Fast",
+        "Temple darshan"
+      ]
+    },
+    {
+      "id": "hanuman-jayanti",
+      "name": "Hanuman Jayanti",
+      "devanagari": "हनुमान जयंती",
+      "kind": "jayanti",
+      "deityId": "hanuman",
+      "description": "The appearance day of Hanuman, celebrated with Chalisa recitation and Sundarkand path.",
+      "rule": {
+        "type": "tithi",
+        "month": 1,
+        "paksha": "shukla",
+        "tithi": 15
+      },
+      "observances": [
+        "Hanuman Chalisa",
+        "Sundarkand path",
+        "Sindoor offering"
+      ]
+    },
+    {
+      "id": "maha-shivaratri",
+      "name": "Maha Shivaratri",
+      "devanagari": "महाशिवरात्रि",
+      "kind": "major",
+      "deityId": "shiva",
+      "description": "The great night of Shiva, observed with night-long vigil, fasting, abhishekam and chanting of Om Namah Shivaya.",
+      "rule": {
+        "type": "tithi",
+        "month": 11,
+        "paksha": "krishna",
+        "tithi": 14
+      },
+      "observances": [
+        "Night vigil",
+        "Rudrabhishekam",
+        "Fast",
+        "Bilva leaves"
+      ]
+    },
+    {
+      "id": "makar-sankranti",
+      "name": "Makar Sankranti",
+      "devanagari": "मकर संक्रांति",
+      "kind": "major",
+      "deityId": "surya",
+      "description": "Marks the sun's transition into Capricorn and the start of its northward journey; celebrated with kites, til-gud and holy dips.",
+      "rule": {
+        "type": "gregorian",
+        "month": 1,
+        "day": 14
+      },
+      "observances": [
+        "Holy dip",
+        "Til-gud sweets",
+        "Kite flying",
+        "Surya arghya"
+      ]
+    },
+    {
+      "id": "guru-purnima",
+      "name": "Guru Purnima",
+      "devanagari": "गुरु पूर्णिमा",
+      "kind": "major",
+      "description": "A day to honor one's spiritual and academic teachers, observed on the full moon of Ashadha.",
+      "rule": {
+        "type": "tithi",
+        "month": 4,
+        "paksha": "shukla",
+        "tithi": 15
+      },
+      "observances": [
+        "Honor the guru",
+        "Meditation",
+        "Study scripture"
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": "ganesha-wins-the-world",
+      "title": "Ganesha Wins the World",
+      "deityId": "ganesha",
+      "ageGroup": "kids",
+      "readingMinutes": 3,
+      "glyph": "🌍",
+      "summary": "A race around the world, won not by speed but by love.",
+      "body": [
+        "One day the sage Narada brought a single sweet, golden mango to Mount Kailash. “Whoever circles the whole world first,” said Shiva and Parvati, “will win this magical fruit.”",
+        "Quick young Kartikeya leapt onto his peacock and sped off to fly around all the oceans and mountains. But round-bellied Ganesha just smiled. He walked slowly around his mother and father, once, and folded his hands.",
+        "“My parents are my whole world,” said Ganesha. “To circle you is to circle everything.” Shiva and Parvati glowed with joy and gave him the mango."
+      ],
+      "moral": "The people who love us are a whole world. Devotion sees what speed cannot.",
+      "attribution": "Puranic katha · family retelling"
+    },
+    {
+      "id": "hanuman-and-the-sun",
+      "title": "Hanuman and the Sun",
+      "deityId": "hanuman",
+      "ageGroup": "kids",
+      "readingMinutes": 3,
+      "glyph": "☀️",
+      "summary": "A hungry little hero mistakes the sun for a ripe fruit.",
+      "body": [
+        "When Hanuman was a baby, he was always hungry and never afraid. One morning he saw the sun rising — round, golden and glowing — and thought it was the sweetest mango in the sky.",
+        "With one mighty leap the child shot up through the clouds, reaching for the sun itself! The whole heavens were amazed at such strength and such fearless love.",
+        "The gods gently guided him home, and blessed him with gifts beyond counting. That tiny leaper would grow into the greatest of devotees, strong enough to cross oceans for Sri Rama."
+      ],
+      "moral": "Great strength begins small — and is gentlest when it serves.",
+      "attribution": "Ramayana katha · family retelling"
+    },
+    {
+      "id": "krishna-lifts-govardhan",
+      "title": "Krishna Lifts the Mountain",
+      "deityId": "krishna",
+      "ageGroup": "all",
+      "readingMinutes": 4,
+      "glyph": "⛰️",
+      "summary": "A boy shelters his whole village beneath a hill.",
+      "body": [
+        "The people of Vrindavan once worshipped Indra, lord of rain, fearing his storms. But young Krishna said, “Let us instead thank Govardhan Hill, who gives our cows grass and our families shade.”",
+        "Indra grew angry and sent a flood of rain to drown the village. Rivers rose and children cried. Then Krishna bent down, lifted the entire Govardhan Hill on the tip of his little finger, and held it up like a great umbrella.",
+        "For seven days the villagers and their cows sheltered safe and dry beneath the hill. At last Indra understood his pride, and bowed before the smiling cowherd boy."
+      ],
+      "moral": "True power protects the small and humbles the proud.",
+      "attribution": "Bhagavata Purana · family retelling"
+    },
+    {
+      "id": "prahlada-and-the-fire",
+      "title": "Prahlada and the Fire",
+      "deityId": "vishnu",
+      "ageGroup": "all",
+      "readingMinutes": 4,
+      "glyph": "🔥",
+      "summary": "Why we light the Holika bonfire before Holi.",
+      "body": [
+        "Long ago a proud king forbade everyone to worship anyone but himself. Yet his own son, little Prahlada, kept singing the name of Vishnu, sweetly and without fear.",
+        "The angry king asked his sister Holika — who could not be burned by fire — to sit in a great blaze holding the boy. But as the flames roared, it was Prahlada who stayed safe, protected by his faith, while the cruelty turned to ash.",
+        "That is why, the night before Holi, families light the Holika bonfire — to remember that love and truth shine on, long after fear burns away."
+      ],
+      "moral": "Faith kept gently and bravely cannot be burned.",
+      "attribution": "Bhagavata Purana · family retelling"
+    },
+    {
+      "id": "dhruva-the-steady-star",
+      "title": "Dhruva, the Steady Star",
+      "deityId": "vishnu",
+      "ageGroup": "all",
+      "readingMinutes": 4,
+      "glyph": "⭐",
+      "summary": "A small boy becomes the still point of the night sky.",
+      "body": [
+        "A young prince named Dhruva was once told he was too small to sit on his father’s lap. Hurt but determined, he walked into the forest to find something that could never be taken away.",
+        "There he sat in deep meditation, calling on Vishnu with all his heart — through cold and heat, day and night, unmoving. His longing was so pure that the Lord himself appeared before him.",
+        "Vishnu blessed the boy with a place that would never waver: the Pole Star, around which all the other stars turn. To this day, Dhruva shines steady in the north, guiding travelers home."
+      ],
+      "moral": "A steady heart becomes a light for others to steer by.",
+      "attribution": "Vishnu Purana · family retelling"
+    },
+    {
+      "id": "ganga-comes-to-earth",
+      "title": "Ganga Comes to Earth",
+      "deityId": "ganga",
+      "ageGroup": "all",
+      "readingMinutes": 4,
+      "glyph": "🌊",
+      "summary": "A prince’s long penance brings a heavenly river down to the world.",
+      "body": [
+        "Long ago, a noble prince named Bhagiratha wished to bring the heavenly river Ganga down to Earth, so her sacred waters could bless his ancestors. He prayed for years with great devotion.",
+        "But Ganga’s fall from heaven was so powerful it would have shattered the Earth. So Lord Shiva stepped forward and gently caught the mighty river in the locks of his hair, letting her flow out softly, gently, in streams the land could hold.",
+        "And so Ganga came winding down the mountains, giving life to all she touched. To this day people offer her lamps at dusk and whisper their prayers to her flowing water."
+      ],
+      "moral": "Patience and humility can bring even heaven down to earth — gently.",
+      "attribution": "Ramayana / Puranas · family retelling"
+    },
+    {
+      "id": "the-elephant-king",
+      "title": "The Elephant King’s Prayer",
+      "deityId": "vishnu",
+      "ageGroup": "all",
+      "readingMinutes": 4,
+      "glyph": "🐘",
+      "summary": "When all his strength fails, an elephant calls out — and is heard.",
+      "body": [
+        "Gajendra, the mighty king of elephants, was bathing in a lake when a great crocodile seized his leg. He pulled and pulled with all his enormous strength, but he could not break free.",
+        "For a very long time they struggled, until at last the elephant’s great strength was spent. Then, humbly, he lifted a lotus flower in his trunk and called out with his whole heart to the Lord for help.",
+        "In an instant Vishnu appeared and freed him. It was not Gajendra’s strength that saved him in the end, but his heartfelt call — for the Lord answers the cry of any who truly turn to him."
+      ],
+      "moral": "When our own strength runs out, a sincere call for help is never unheard.",
+      "attribution": "Bhagavata Purana · family retelling"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "begin-with-ganesha",
+      "title": "Begin with Ganesha",
+      "subtitle": "3 days · for new beginnings",
+      "description": "Open any new chapter — a move, a job, a baby, a fresh start — by invoking the remover of obstacles. Three short days to clear the path and steady the mind.",
+      "deityId": "ganesha",
+      "colors": [
+        "#F4A300",
+        "#E8772E"
+      ],
+      "isFree": true,
+      "days": [
+        {
+          "title": "Clear the path",
+          "intention": "I set down what blocks me and ask for a clear beginning.",
+          "trackIds": [
+            "vakratunda-mahakaya"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 2,
+            "ref": "2.47"
+          }
+        },
+        {
+          "title": "Offer the light",
+          "intention": "I offer this small light and my full attention.",
+          "trackIds": [
+            "jai-ganesh-deva"
+          ]
+        },
+        {
+          "title": "Begin the work",
+          "intention": "I begin, steady and unattached to the result.",
+          "trackIds": [
+            "vakratunda-mahakaya",
+            "jai-ganesh-deva"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 2,
+            "ref": "2.48"
+          }
+        }
+      ]
+    },
+    {
+      "id": "seven-days-hanuman",
+      "title": "Seven Days with Hanuman",
+      "subtitle": "7 days · courage & service",
+      "description": "A week of the Hanuman Chalisa, one focus each day — from fear to fearlessness, from doubt to devotion. Build the habit and feel your strength return.",
+      "deityId": "hanuman",
+      "colors": [
+        "#E8772E",
+        "#9E2B25"
+      ],
+      "isFree": true,
+      "days": [
+        {
+          "title": "Begin",
+          "intention": "I show up, exactly as I am.",
+          "trackIds": [
+            "hanuman-chalisa"
+          ]
+        },
+        {
+          "title": "Steadiness",
+          "intention": "I meet today with a calm, strong heart.",
+          "trackIds": [
+            "hanuman-chalisa",
+            "om-namah-shivaya"
+          ]
+        },
+        {
+          "title": "Clarity",
+          "intention": "May my mind be bright and my purpose clear.",
+          "trackIds": [
+            "hanuman-chalisa",
+            "gayatri-mantra"
+          ]
+        },
+        {
+          "title": "Joy",
+          "intention": "I serve with gladness, not grievance.",
+          "trackIds": [
+            "hanuman-chalisa",
+            "hare-krishna-maha-mantra"
+          ]
+        },
+        {
+          "title": "Courage",
+          "intention": "I do the hard, right thing today.",
+          "trackIds": [
+            "hanuman-chalisa"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 2,
+            "ref": "2.20"
+          }
+        },
+        {
+          "title": "Surrender",
+          "intention": "I offer the outcome and keep walking.",
+          "trackIds": [
+            "hanuman-chalisa",
+            "om-jai-jagdish-hare"
+          ]
+        },
+        {
+          "title": "Devotion",
+          "intention": "Let Rama dwell where my fear once lived.",
+          "trackIds": [
+            "hanuman-chalisa"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 2,
+            "ref": "2.47"
+          }
+        }
+      ]
+    },
+    {
+      "id": "the-light-within",
+      "title": "The Light Within",
+      "subtitle": "5 days · stillness & breath",
+      "description": "A gentle introduction to meditation, rooted in mantra and breath. Five mornings to find the quiet temple that is always within you.",
+      "deityId": "shiva",
+      "colors": [
+        "#5B6E8A",
+        "#36506E"
+      ],
+      "isFree": true,
+      "days": [
+        {
+          "title": "Arrive",
+          "intention": "For five minutes, there is nowhere else to be.",
+          "trackIds": [
+            "morning-stillness"
+          ]
+        },
+        {
+          "title": "The mantra",
+          "intention": "I let the mantra carry the mind home.",
+          "trackIds": [
+            "om-namah-shivaya"
+          ]
+        },
+        {
+          "title": "The breath",
+          "intention": "I rest in the space between two breaths.",
+          "trackIds": [
+            "morning-stillness",
+            "gayatri-mantra"
+          ]
+        },
+        {
+          "title": "Stillness",
+          "intention": "I let thoughts pass like clouds.",
+          "trackIds": [
+            "om-namah-shivaya"
+          ]
+        },
+        {
+          "title": "The witness",
+          "intention": "I am the quiet that watches it all.",
+          "trackIds": [
+            "morning-stillness"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 2,
+            "ref": "2.62"
+          }
+        }
+      ]
+    },
+    {
+      "id": "a-grateful-heart",
+      "title": "A Grateful Heart",
+      "subtitle": "5 days · gratitude & abundance",
+      "description": "Abundance begins with noticing what is already here. Five days to soften into gratitude and offer it back — a leaf, a flower, a song.",
+      "deityId": "lakshmi",
+      "colors": [
+        "#E4C77E",
+        "#C9A24B"
+      ],
+      "isFree": true,
+      "days": [
+        {
+          "title": "What is already here",
+          "intention": "Today I notice one gift I usually overlook.",
+          "trackIds": [
+            "om-jai-lakshmi-mata"
+          ]
+        },
+        {
+          "title": "The light in small things",
+          "intention": "I find the sacred in an ordinary moment.",
+          "trackIds": [
+            "gayatri-mantra"
+          ]
+        },
+        {
+          "title": "The offering",
+          "intention": "I give back, simply and with love.",
+          "trackIds": [
+            "om-jai-jagdish-hare"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 9,
+            "ref": "9.26"
+          }
+        },
+        {
+          "title": "Joyful praise",
+          "intention": "I let gratitude become a song.",
+          "trackIds": [
+            "govind-bolo"
+          ]
+        },
+        {
+          "title": "Trust",
+          "intention": "I trust that what I need is carried to me.",
+          "trackIds": [
+            "morning-stillness"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 9,
+            "ref": "9.22"
+          }
+        }
+      ]
+    },
+    {
+      "id": "letting-go",
+      "title": "Letting Go",
+      "subtitle": "5 days · surrender & peace",
+      "description": "Some things are only healed by release. Five days to loosen the grip — on outcomes, on grudges, on fear — and rest in trust.",
+      "deityId": "shiva",
+      "colors": [
+        "#5B6E8A",
+        "#36506E"
+      ],
+      "isFree": true,
+      "days": [
+        {
+          "title": "Name it",
+          "intention": "I notice the one thing I am gripping too tightly.",
+          "trackIds": [
+            "om-namah-shivaya"
+          ]
+        },
+        {
+          "title": "Soften",
+          "intention": "I unclench, breath by breath.",
+          "trackIds": [
+            "gayatri-mantra"
+          ]
+        },
+        {
+          "title": "Offer it up",
+          "intention": "I hand the outcome to something larger than me.",
+          "trackIds": [
+            "om-jai-jagdish-hare"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 18,
+            "ref": "18.66"
+          }
+        },
+        {
+          "title": "Be still",
+          "intention": "I rest in the quiet that remains.",
+          "trackIds": [
+            "morning-stillness"
+          ]
+        },
+        {
+          "title": "Walk on",
+          "intention": "Lighter now, I begin again.",
+          "trackIds": [
+            "hare-krishna-maha-mantra"
+          ],
+          "verse": {
+            "scriptureId": "bhagavad-gita",
+            "chapter": 2,
+            "ref": "2.48"
+          }
+        }
+      ]
+    },
+    {
+      "id": "devi-days",
+      "title": "Devi Days",
+      "subtitle": "5 days · courage of the Mother",
+      "description": "Five days with the Goddess in her many forms — protective, fierce, tender. For when you need to find your strength.",
+      "deityId": "durga",
+      "colors": [
+        "#C0392B",
+        "#9E2B25"
+      ],
+      "isFree": true,
+      "days": [
+        {
+          "title": "Call the Mother",
+          "intention": "I ask for the strength I cannot find alone.",
+          "trackIds": [
+            "durga-chalisa"
+          ]
+        },
+        {
+          "title": "Her light",
+          "intention": "I let her radiance steady me.",
+          "trackIds": [
+            "ambe-tu-hai-jagdambe"
+          ]
+        },
+        {
+          "title": "Cut the fear",
+          "intention": "I release what frightens me.",
+          "trackIds": [
+            "kali-mantra"
+          ]
+        },
+        {
+          "title": "Gratitude",
+          "intention": "I thank her for carrying me this far.",
+          "trackIds": [
+            "om-jai-jagdish-hare"
+          ]
+        },
+        {
+          "title": "Stand tall",
+          "intention": "I rise, protected and unafraid.",
+          "trackIds": [
+            "durga-chalisa"
+          ]
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "ganesha-wins-the-world": [
+      {
+        "q": "How did Ganesha win the race?",
+        "options": [
+          "He flew around the world",
+          "He walked around his parents",
+          "He rode a peacock",
+          "He climbed a mountain"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What was the prize?",
+        "options": [
+          "A crown",
+          "A golden mango",
+          "A drum",
+          "A bow"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did Ganesha call his whole world?",
+        "options": [
+          "The ocean",
+          "His parents",
+          "The sky",
+          "His mouse"
+        ],
+        "answer": 1
+      }
+    ],
+    "hanuman-and-the-sun": [
+      {
+        "q": "What did baby Hanuman think the sun was?",
+        "options": [
+          "A ball",
+          "A ripe mango",
+          "A lamp",
+          "A coin"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did he do when he saw it?",
+        "options": [
+          "Cried",
+          "Leapt up to reach it",
+          "Ran away",
+          "Fell asleep"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Whom would Hanuman grow up to serve?",
+        "options": [
+          "Krishna",
+          "Sri Rama",
+          "Indra",
+          "Brahma"
+        ],
+        "answer": 1
+      }
+    ],
+    "krishna-lifts-govardhan": [
+      {
+        "q": "Whom did the villagers fear at first?",
+        "options": [
+          "Indra",
+          "Agni",
+          "Varuna",
+          "Yama"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did Krishna lift?",
+        "options": [
+          "A river",
+          "Govardhan Hill",
+          "A great tree",
+          "A chariot"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "On what did he balance the hill?",
+        "options": [
+          "His head",
+          "His little finger",
+          "His shoulder",
+          "A staff"
+        ],
+        "answer": 1
+      }
+    ],
+    "prahlada-and-the-fire": [
+      {
+        "q": "Whose name did Prahlada sing?",
+        "options": [
+          "Shiva",
+          "Vishnu",
+          "Brahma",
+          "Indra"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Which festival remembers this with a bonfire?",
+        "options": [
+          "Diwali",
+          "Holi",
+          "Navratri",
+          "Onam"
+        ],
+        "answer": 1
+      }
+    ],
+    "dhruva-the-steady-star": [
+      {
+        "q": "What did Dhruva want that could never be taken away?",
+        "options": [
+          "Gold",
+          "A steady place of his own",
+          "A toy",
+          "A horse"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did Dhruva become?",
+        "options": [
+          "The moon",
+          "The Pole Star",
+          "A river",
+          "A mountain"
+        ],
+        "answer": 1
+      }
+    ],
+    "ganga-comes-to-earth": [
+      {
+        "q": "Who prayed to bring Ganga to Earth?",
+        "options": [
+          "Prince Bhagiratha",
+          "King Dasharatha",
+          "Sage Narada",
+          "Prince Dhruva"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "How did Ganga’s fall not shatter the Earth?",
+        "options": [
+          "She fell slowly",
+          "Shiva caught her in his hair",
+          "Vishnu held the sky",
+          "She turned to rain"
+        ],
+        "answer": 1
+      }
+    ],
+    "the-elephant-king": [
+      {
+        "q": "What seized the elephant king’s leg?",
+        "options": [
+          "A crocodile",
+          "A snake",
+          "A net",
+          "A tiger"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What finally saved Gajendra?",
+        "options": [
+          "His own strength",
+          "His heartfelt call to the Lord",
+          "Another elephant",
+          "He swam away"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

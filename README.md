@@ -103,6 +103,23 @@ more code:
    quizzes }`); at startup the app loads it (5s timeout) and otherwise uses the
    bundled content. Lets editors/scholars update prayers without an app update.
 
+## Try live content updates (no app rebuild)
+
+The whole prayer catalog can come from a file/CMS instead of the app binary. To
+see it on web:
+
+```bash
+npm run content:export      # writes public/catalog.json from the bundled seed
+cp .env.example .env        # sets EXPO_PUBLIC_CONTENT_URL=/catalog.json
+npx expo start --web
+```
+
+Now edit `public/catalog.json` — change a track title, fix a translation, add a
+deity — and **reload the page**. The change appears with no code change and no
+rebuild. In production you'd host that JSON on a CMS/CDN and point
+`EXPO_PUBLIC_CONTENT_URL` at it (absolute URL for native). Unset it to go back to
+the bundled content (which always works offline).
+
 ## Content & authenticity
 
 Sacred texts here are traditional/public-domain; transliterations and
