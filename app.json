@@ -9,8 +9,7 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.diya.app",
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "com.diya.app"
     },
     "android": {
       "package": "com.diya.app",
