@@ -9,6 +9,7 @@ import { LOCATION_PRESETS } from '@/lib/panchang/locations';
 import { cancelReminders, scheduleDailyReminder } from '@/lib/notifications/reminders';
 import { PracticeHeatmap } from '@/components/brand/PracticeHeatmap';
 import { Catalog } from '@/lib/content/catalog';
+import { useDownloadsStore } from '@/lib/audio/downloads';
 
 const THEME_MODES: { id: ThemeMode; label: string }[] = [
   { id: 'system', label: 'System' },
@@ -45,6 +46,8 @@ export default function MoreScreen() {
   const completedCount = useAppStore((s) => s.completedCount);
   const favorites = useAppStore((s) => s.favorites);
   const practiceLog = useAppStore((s) => s.practiceLog);
+  const downloadCount = useDownloadsStore((s) => Object.keys(s.downloads).length);
+  const removeAllDownloads = useDownloadsStore((s) => s.removeAll);
   const name = useAppStore((s) => s.name);
   const setName = useAppStore((s) => s.setName);
   const ishta = useAppStore((s) => s.ishtaDevata);
@@ -118,6 +121,8 @@ export default function MoreScreen() {
         <SettingRow icon="flower" label="Daily darshan" onPress={() => router.push('/darshan')} />
         <SettingRow icon="sparkles" label="Sankalpa journal" onPress={() => router.push('/sankalpa')} />
         <SettingRow icon="calendar" label="All festivals" onPress={() => router.push('/festivals')} />
+        <SettingRow icon="cloud-done" label="Downloads" value={`${downloadCount}`} onPress={() => router.push('/saved')} />
+        {downloadCount > 0 && <SettingRow icon="trash" label="Remove all downloads" onPress={removeAllDownloads} />}
       </Card>
 
       {/* Membership — hidden while MEMBERSHIP_ENABLED is false */}

@@ -16,6 +16,7 @@ interface DownloadsState {
   downloading: Record<string, boolean>;
   download: (track: Track) => Promise<void>;
   remove: (trackId: string) => Promise<void>;
+  removeAll: () => Promise<void>;
 }
 
 export const useDownloadsStore = create<DownloadsState>()(
@@ -47,6 +48,10 @@ export const useDownloadsStore = create<DownloadsState>()(
           delete downloads[trackId];
           return { downloads };
         });
+      },
+
+      removeAll: async () => {
+        for (const id of Object.keys(get().downloads)) await get().remove(id);
       },
     }),
     {
