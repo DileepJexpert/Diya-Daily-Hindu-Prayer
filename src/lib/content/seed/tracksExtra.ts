@@ -230,4 +230,30 @@ export const EXTRA_TRACKS: Track[] = [
       { t: 14, devanagari: 'जो नर तुमको ध्याता, मनवांछित फल पाता॥', transliteration: 'jo nara tumako dhyātā, manavāñchita phala pātā', translation: 'Whoever meditates on you attains the heart’s desire.' },
     ],
   },
+  {
+    id: 'aaj-brij-mein',
+    title: 'Aaj Brij Mein',
+    devanagari: 'आज ब्रज में',
+    kind: 'bhajan',
+    deityId: 'krishna',
+    language: 'hi',
+    artist: 'Demo recording',
+    duration: 150,
+    // Real audio — first track with an actual recording (uploaded demo). The
+    // lyrics below are the traditional Braj Holi refrain as a placeholder; align
+    // them to what the recording actually sings.
+    audio: {
+      type: 'remote',
+      uri: 'https://raw.githubusercontent.com/DileepJexpert/Diya-Daily-Hindu-Prayer/main/public/audio/aaj-brij-mai.mp3',
+    },
+    isFree: true,
+    attribution: 'Traditional Braj Holi bhajan · demo audio · lyrics pending alignment',
+    tags: ['krishna', 'holi', 'braj'],
+    lyrics: [
+      { t: 0, section: 'Refrain', devanagari: 'आज बिरज में होरी रे रसिया।', transliteration: 'āja biraja mein horī re rasiyā', translation: 'Today in Braj it is Holi, O playful Lord.' },
+      { t: 36, devanagari: 'होरी रे रसिया, बरजोरी रे रसिया॥', transliteration: 'horī re rasiyā, barajorī re rasiyā', translation: 'Holi, O beloved — a Holi played with sweet, loving force.' },
+      { t: 72, devanagari: 'उड़त गुलाल लाल भये बादर।', transliteration: 'uḍata gulāla lāla bhaye bādara', translation: 'Gulal fills the air; even the clouds have turned red.' },
+      { t: 108, devanagari: 'केसर रंग में बोरी रे रसिया॥', transliteration: 'kesara raṅga mein borī re rasiyā', translation: 'Drenched in saffron colour, O beloved.' },
+    ],
+  },
 ];
