@@ -1,0 +1,142 @@
+import { useMemo } from 'react';
+import { View } from 'react-native';
+import { router } from 'expo-router';
+import { Spacing } from '@/constants/theme';
+import { Button, Card, Icon, Screen, SectionHeader, Text } from '@/components/ui';
+import { DiyaFlame } from '@/components/brand/DiyaFlame';
+import { StreakRing } from '@/components/brand/StreakRing';
+import { DeityAvatar } from '@/components/content/DeityAvatar';
+import { TrackRow } from '@/components/content/TrackRow';
+import { Catalog } from '@/lib/content/catalog';
+import { getDailyPlan } from '@/lib/content/daily';
+import { usePlayerStore } from '@/lib/audio/playerStore';
+import { useIsPremium } from '@/lib/subscription/subscriptionStore';
+import { useAppStore, isPracticedToday } from '@/lib/state/store';
+import { nextFestival } from '@/lib/panchang/festivals';
+import type { Track } from '@/lib/content/types';
+
+const WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+export default function TodayScreen() {
+  const premium = useIsPremium();
+  const streak = useAppStore((s) => s.streak);
+  const practiced = useAppStore(isPracticedToday);
+  const load = usePlayerStore((s) => s.load);
+
+  const plan = useMemo(() => getDailyPlan(), []);
+  const location = useAppStore((s) => s.location);
+  const festival = useMemo(() => nextFestival(location), [location]);
+
+  const deity = Catalog.deity(plan.deityOfDay);
+  const planTracks = plan.items
+    .map((i) => Catalog.track(i.trackId))
+    .filter((t): t is Track => !!t);
+  const queue = planTracks.map((t) => t.id);
+
+  const verse = useMemo(() => {
+    const s = Catalog.scripture(plan.verse.scriptureId);
+    const ch = s?.chapters.find((c) => c.number === plan.verse.chapter);
+    return ch?.verses.find((v) => v.ref === plan.verse.ref);
+  }, [plan]);
+
+  const now = new Date();
+
+  const openTrack = (track: Track) => {
+    if (!track.isFree && !premium) {
+      router.push('/paywall');
+      return;
+    }
+    load(track.id, queue);
+    router.push(`/player/${track.id}`);
+  };
+
+  const startDaily = () => {
+    const first = planTracks[0];
+    if (first) openTrack(first);
+  };
+
+  return (
+    <Screen>
+      <Text variant="overline" color="primary">
+        {WEEKDAY[now.getDay()]} · {MONTH[now.getMonth()]} {now.getDate()}
+      </Text>
+      <Text variant="h1" style={{ marginTop: Spacing.xs }}>{plan.greeting}</Text>
+
+      {/* Hero */}
+      <Card elevated style={{ marginTop: Spacing.lg, alignItems: 'center', paddingVertical: Spacing.xl }}>
+        <DiyaFlame size={150} lit={practiced} />
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.xl, marginTop: Spacing.sm }}>
+          <StreakRing count={streak.count} />
+          <View style={{ flex: 1 }}>
+            <Text variant="subtitle">{practiced ? 'Your diya is lit today' : 'Light your diya'}</Text>
+            <Text variant="body" color="textSecondary" style={{ marginVertical: Spacing.xs }}>
+              {practiced
+                ? 'Beautiful. Return any time to sit longer.'
+                : 'Complete one practice to keep your streak alive.'}
+            </Text>
+            <Button label={practiced ? 'Practice again' : 'Begin'} icon="play" onPress={startDaily} />
+          </View>
+        </View>
+      </Card>
+
+      {/* Deity of the day */}
+      {deity && (
+        <Card onPress={() => router.push(`/deity/${deity.id}`)} style={{ marginTop: Spacing.lg, flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
+          <DeityAvatar deity={deity} size={56} />
+          <View style={{ flex: 1 }}>
+            <Text variant="overline" color="textMuted">Deity of the day</Text>
+            <Text variant="title">{deity.name}</Text>
+            <Text variant="caption" color="textSecondary">{deity.epithet}</Text>
+          </View>
+          <Icon name="chevron-forward" color="textMuted" />
+        </Card>
+      )}
+
+      {/* Today's practice */}
+      <SectionHeader title="Today’s practice" />
+      <Card>
+        {planTracks.map((t, i) => (
+          <View key={t.id}>
+            <TrackRow track={t} onPress={() => openTrack(t)} />
+            {i < planTracks.length - 1 && <View style={{ height: 1, backgroundColor: 'transparent' }} />}
+          </View>
+        ))}
+      </Card>
+
+      {/* Verse of the day */}
+      {verse && (
+        <>
+          <SectionHeader title="Verse of the day" actionLabel="Read Gita" onAction={() => router.push('/scripture')} />
+          <Card onPress={() => router.push(`/scripture/${plan.verse.scriptureId}`)}>
+            {verse.devanagari && (
+              <Text variant="sanskrit" style={{ marginBottom: Spacing.sm }}>{verse.devanagari.split('\n')[0]}</Text>
+            )}
+            <Text variant="transliteration" color="primary">{verse.transliteration.split('\n')[0]}</Text>
+            <Text variant="bodyLg" style={{ marginTop: Spacing.sm }}>{verse.translation}</Text>
+            <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.sm }}>
+              Bhagavad Gita {verse.ref}
+            </Text>
+          </Card>
+        </>
+      )}
+
+      {/* Upcoming festival */}
+      {festival && (
+        <>
+          <SectionHeader title="Coming up" actionLabel="Calendar" onAction={() => router.push('/panchang')} />
+          <Card style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
+            <View style={{ alignItems: 'center', minWidth: 52 }}>
+              <Text variant="h2" color="primary">{festival.daysAway}</Text>
+              <Text variant="caption" color="textMuted">{festival.daysAway === 1 ? 'day' : 'days'}</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text variant="title">{festival.festival.name}</Text>
+              <Text variant="caption" color="textSecondary" numberOfLines={2}>{festival.festival.description}</Text>
+            </View>
+          </Card>
+        </>
+      )}
+    </Screen>
+  );
+}
