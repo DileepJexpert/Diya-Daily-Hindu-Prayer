@@ -7,6 +7,7 @@ import { useAppStore, type ThemeMode } from '@/lib/state/store';
 import { useIsPremium, useSubscriptionStore } from '@/lib/subscription/subscriptionStore';
 import { LOCATION_PRESETS } from '@/lib/panchang/locations';
 import { cancelReminders, scheduleDailyReminder } from '@/lib/notifications/reminders';
+import { PracticeHeatmap } from '@/components/brand/PracticeHeatmap';
 
 const THEME_MODES: { id: ThemeMode; label: string }[] = [
   { id: 'system', label: 'System' },
@@ -42,6 +43,7 @@ export default function MoreScreen() {
   const streak = useAppStore((s) => s.streak);
   const completedCount = useAppStore((s) => s.completedCount);
   const favorites = useAppStore((s) => s.favorites);
+  const practiceLog = useAppStore((s) => s.practiceLog);
   const themeMode = useAppStore((s) => s.themeMode);
   const setThemeMode = useAppStore((s) => s.setThemeMode);
   const location = useAppStore((s) => s.location);
@@ -93,6 +95,21 @@ export default function MoreScreen() {
           <Text variant="h2" color="primary">{favorites.length}</Text>
           <Text variant="caption" color="textMuted">saved</Text>
         </View>
+      </Card>
+
+      {/* Practice history */}
+      <SectionHeader title="Your practice" />
+      <Card>
+        <PracticeHeatmap log={practiceLog} />
+      </Card>
+
+      {/* Explore */}
+      <SectionHeader title="Explore" />
+      <Card>
+        <SettingRow icon="heart" label="Saved & recent" onPress={() => router.push('/saved')} />
+        <SettingRow icon="map" label="Journeys" onPress={() => router.push('/journeys')} />
+        <SettingRow icon="book" label="Stories for the family" onPress={() => router.push('/stories')} />
+        <SettingRow icon="repeat" label="Japa counter" onPress={() => router.push('/japa')} />
       </Card>
 
       {/* Membership */}

@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
 import { Spacing } from '@/constants/theme';
-import { Button, Card, Icon, Screen, SectionHeader, Text } from '@/components/ui';
+import { Button, Card, Icon, type IconName, Screen, SectionHeader, Text } from '@/components/ui';
 import { DiyaFlame } from '@/components/brand/DiyaFlame';
 import { StreakRing } from '@/components/brand/StreakRing';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 import { TrackRow } from '@/components/content/TrackRow';
+import { JourneyCard } from '@/components/content/JourneyCard';
+import { StoryCard } from '@/components/content/StoryCard';
 import { Catalog } from '@/lib/content/catalog';
 import { getDailyPlan } from '@/lib/content/daily';
 import { usePlayerStore } from '@/lib/audio/playerStore';
@@ -17,6 +19,13 @@ import type { Track } from '@/lib/content/types';
 
 const WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const QUICK: { icon: IconName; label: string; href: string }[] = [
+  { icon: 'repeat', label: 'Japa', href: '/japa' },
+  { icon: 'map', label: 'Journeys', href: '/journeys' },
+  { icon: 'book', label: 'Stories', href: '/stories' },
+  { icon: 'heart', label: 'Saved', href: '/saved' },
+];
 
 export default function TodayScreen() {
   const premium = useIsPremium();
@@ -33,6 +42,8 @@ export default function TodayScreen() {
     .map((i) => Catalog.track(i.trackId))
     .filter((t): t is Track => !!t);
   const queue = planTracks.map((t) => t.id);
+  const journeys = Catalog.journeys();
+  const stories = Catalog.stories();
 
   const verse = useMemo(() => {
     const s = Catalog.scripture(plan.verse.scriptureId);
@@ -80,6 +91,16 @@ export default function TodayScreen() {
         </View>
       </Card>
 
+      {/* Quick tools */}
+      <View style={{ flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.lg }}>
+        {QUICK.map((a) => (
+          <Card key={a.label} onPress={() => router.push(a.href)} style={{ flex: 1, alignItems: 'center', paddingVertical: Spacing.md }}>
+            <Icon name={a.icon} size={22} color="primary" />
+            <Text variant="caption" style={{ marginTop: 4 }}>{a.label}</Text>
+          </Card>
+        ))}
+      </View>
+
       {/* Deity of the day */}
       {deity && (
         <Card onPress={() => router.push(`/deity/${deity.id}`)} style={{ marginTop: Spacing.lg, flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
@@ -96,13 +117,24 @@ export default function TodayScreen() {
       {/* Today's practice */}
       <SectionHeader title="Today’s practice" />
       <Card>
-        {planTracks.map((t, i) => (
-          <View key={t.id}>
-            <TrackRow track={t} onPress={() => openTrack(t)} />
-            {i < planTracks.length - 1 && <View style={{ height: 1, backgroundColor: 'transparent' }} />}
-          </View>
+        {planTracks.map((t) => (
+          <TrackRow key={t.id} track={t} onPress={() => openTrack(t)} />
         ))}
       </Card>
+
+      {/* Journeys */}
+      <SectionHeader title="Continue your journey" actionLabel="All" onAction={() => router.push('/journeys')} />
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: Spacing.md, paddingRight: Spacing.xl }}>
+        {journeys.map((j) => (
+          <JourneyCard key={j.id} journey={j} />
+        ))}
+      </ScrollView>
+
+      {/* Stories for the family */}
+      <SectionHeader title="For the family" actionLabel="All stories" onAction={() => router.push('/stories')} />
+      {stories.slice(0, 3).map((s) => (
+        <StoryCard key={s.id} story={s} />
+      ))}
 
       {/* Verse of the day */}
       {verse && (
@@ -125,7 +157,7 @@ export default function TodayScreen() {
       {festival && (
         <>
           <SectionHeader title="Coming up" actionLabel="Calendar" onAction={() => router.push('/panchang')} />
-          <Card style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
+          <Card onPress={() => router.push(`/festival/${festival.festival.id}`)} style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.md }}>
             <View style={{ alignItems: 'center', minWidth: 52 }}>
               <Text variant="h2" color="primary">{festival.daysAway}</Text>
               <Text variant="caption" color="textMuted">{festival.daysAway === 1 ? 'day' : 'days'}</Text>
@@ -134,6 +166,7 @@ export default function TodayScreen() {
               <Text variant="title">{festival.festival.name}</Text>
               <Text variant="caption" color="textSecondary" numberOfLines={2}>{festival.festival.description}</Text>
             </View>
+            <Icon name="chevron-forward" color="textMuted" />
           </Card>
         </>
       )}

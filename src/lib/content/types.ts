@@ -158,3 +158,36 @@ export interface DailyPlan {
   verse: { scriptureId: string; chapter: number; ref: string };
   items: DailyItem[];
 }
+
+/** A bite-size sacred story (katha) — the heart of the "teach my kids" wedge. */
+export interface Story {
+  id: string;
+  title: string;
+  deityId?: DeityId;
+  ageGroup: 'all' | 'kids';
+  readingMinutes: number;
+  summary: string;
+  body: string[]; // paragraphs
+  moral?: string;
+  glyph: string;
+  attribution?: string;
+}
+
+export interface JourneyDay {
+  title: string;
+  intention: string;
+  trackIds: string[];
+  verse?: { scriptureId: string; chapter: number; ref: string };
+}
+
+/** A multi-day guided program — the Hallow-style retention engine. */
+export interface Journey {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  deityId?: DeityId;
+  colors: [string, string];
+  days: JourneyDay[];
+  isFree?: boolean;
+}

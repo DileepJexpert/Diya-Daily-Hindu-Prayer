@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Pressable, View } from 'react-native';
+import { router } from 'expo-router';
 import { Spacing } from '@/constants/theme';
 import { Card, Divider, Icon, Screen, SectionHeader, Text } from '@/components/ui';
 import { computePanchang, formatTime } from '@/lib/panchang/engine';
@@ -66,7 +67,7 @@ export default function PanchangScreen() {
 
       <SectionHeader title="Upcoming festivals" />
       {festivals.map((f) => (
-        <Card key={f.festival.id} style={{ marginBottom: Spacing.md, flexDirection: 'row', gap: Spacing.md, alignItems: 'center' }}>
+        <Card key={f.festival.id} onPress={() => router.push(`/festival/${f.festival.id}`)} style={{ marginBottom: Spacing.md, flexDirection: 'row', gap: Spacing.md, alignItems: 'center' }}>
           <View style={{ alignItems: 'center', minWidth: 52 }}>
             <Text variant="h2" color="primary">{f.daysAway}</Text>
             <Text variant="caption" color="textMuted">{f.daysAway === 1 ? 'day' : 'days'}</Text>

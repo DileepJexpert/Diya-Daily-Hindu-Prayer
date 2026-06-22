@@ -45,6 +45,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   load: (trackId, queue) => {
     const track = Catalog.track(trackId);
     if (!track) return;
+    useAppStore.getState().addRecentlyPlayed(trackId);
     set({
       trackId,
       duration: track.duration,

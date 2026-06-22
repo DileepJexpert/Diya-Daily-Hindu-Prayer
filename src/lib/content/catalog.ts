@@ -4,11 +4,15 @@
  * without changing callers.
  */
 import { DEITIES, DEITY_BY_ID } from './seed/deities';
-import { TRACKS } from './seed/tracks';
+import { TRACKS as CORE_TRACKS } from './seed/tracks';
+import { EXTRA_TRACKS } from './seed/tracksExtra';
 import { BHAGAVAD_GITA } from './seed/gita';
 import { FESTIVALS } from './seed/festivals';
-import type { Deity, Scripture, Track, TrackKind } from './types';
+import { STORIES } from './seed/stories';
+import { JOURNEYS } from './seed/journeys';
+import type { Deity, Journey, Scripture, Story, Track, TrackKind } from './types';
 
+const TRACKS: Track[] = [...CORE_TRACKS, ...EXTRA_TRACKS];
 const TRACK_BY_ID: Record<string, Track> = Object.fromEntries(TRACKS.map((t) => [t.id, t]));
 const SCRIPTURES: Scripture[] = [BHAGAVAD_GITA];
 
@@ -18,6 +22,7 @@ export const Catalog = {
 
   tracks: (): Track[] => TRACKS,
   track: (id: string): Track | undefined => TRACK_BY_ID[id],
+  tracksById: (ids: string[]): Track[] => ids.map((id) => TRACK_BY_ID[id]).filter((t): t is Track => !!t),
   tracksByDeity: (deityId: string): Track[] => TRACKS.filter((t) => t.deityId === deityId),
   tracksByKind: (kind: TrackKind): Track[] => TRACKS.filter((t) => t.kind === kind),
 
@@ -26,6 +31,13 @@ export const Catalog = {
 
   festivals: () => FESTIVALS,
   festival: (id: string) => FESTIVALS.find((f) => f.id === id),
+
+  stories: (): Story[] => STORIES,
+  story: (id: string): Story | undefined => STORIES.find((s) => s.id === id),
+  storiesByDeity: (deityId: string): Story[] => STORIES.filter((s) => s.deityId === deityId),
+
+  journeys: (): Journey[] => JOURNEYS,
+  journey: (id: string): Journey | undefined => JOURNEYS.find((j) => j.id === id),
 
   search: (query: string): Track[] => {
     const q = query.trim().toLowerCase();

@@ -1,7 +1,7 @@
 /**
  * App + user store. Persisted to device storage. Holds preferences (theme,
- * location, reminders), the practice streak, and favorites. Subscription state
- * lives in its own store.
+ * location, reminders), the practice streak + history, recently played, journey
+ * progress and favorites. Subscription state lives in its own store.
  */
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
@@ -29,6 +29,9 @@ interface AppState {
   reminders: ReminderSettings;
   streak: Streak;
   favorites: string[];
+  recentlyPlayed: string[];
+  practiceLog: string[]; // ISO dates practiced
+  journeyProgress: Record<string, number[]>; // journeyId -> completed day indices
   completedCount: number;
 
   setOnboarded: (v: boolean) => void;
@@ -37,7 +40,9 @@ interface AppState {
   setReminders: (r: Partial<ReminderSettings>) => void;
   toggleFavorite: (trackId: string) => void;
   isFavorite: (trackId: string) => boolean;
+  addRecentlyPlayed: (trackId: string) => void;
   recordPractice: () => void;
+  completeJourneyDay: (journeyId: string, dayIndex: number) => void;
   hydrated: boolean;
   setHydrated: () => void;
 }
@@ -55,6 +60,9 @@ export const useAppStore = create<AppState>()(
       reminders: { enabled: false, hour: 7, minute: 0 },
       streak: { count: 0, longest: 0, lastPracticeISO: null },
       favorites: [],
+      recentlyPlayed: [],
+      practiceLog: [],
+      journeyProgress: {},
       completedCount: 0,
       hydrated: false,
 
@@ -71,11 +79,19 @@ export const useAppStore = create<AppState>()(
         })),
       isFavorite: (trackId) => get().favorites.includes(trackId),
 
+      addRecentlyPlayed: (trackId) =>
+        set((s) => ({
+          recentlyPlayed: [trackId, ...s.recentlyPlayed.filter((id) => id !== trackId)].slice(0, 15),
+        })),
+
       recordPractice: () =>
         set((s) => {
           const today = dayKey();
+          const practiceLog = s.practiceLog.includes(today)
+            ? s.practiceLog
+            : [...s.practiceLog, today].slice(-400);
           if (s.streak.lastPracticeISO === today) {
-            return { completedCount: s.completedCount + 1 };
+            return { completedCount: s.completedCount + 1, practiceLog };
           }
           let count = 1;
           if (s.streak.lastPracticeISO) {
@@ -85,7 +101,15 @@ export const useAppStore = create<AppState>()(
           return {
             streak: { count, longest: Math.max(count, s.streak.longest), lastPracticeISO: today },
             completedCount: s.completedCount + 1,
+            practiceLog,
           };
+        }),
+
+      completeJourneyDay: (journeyId, dayIndex) =>
+        set((s) => {
+          const done = s.journeyProgress[journeyId] ?? [];
+          if (done.includes(dayIndex)) return {};
+          return { journeyProgress: { ...s.journeyProgress, [journeyId]: [...done, dayIndex] } };
         }),
 
       setHydrated: () => set({ hydrated: true }),
