@@ -18,11 +18,7 @@ let player: AudioPlayer | null = null;
 let currentId: string | null = null;
 
 function ensure(): AudioPlayer {
-  if (!player) {
-    player = createAudioPlayer(null, { updateInterval: 1000 });
-    player.loop = true;
-    player.volume = AMBIENCE_VOLUME;
-  }
+  if (!player) player = createAudioPlayer(null, { updateInterval: 1000 });
   return player;
 }
 
@@ -36,12 +32,12 @@ export function setAmbience(id: string): void {
     return;
   }
   const p = ensure();
-  try {
-    p.replace({ uri: item.uri });
-    p.loop = true;
-    p.volume = AMBIENCE_VOLUME;
-    p.play();
-  } catch {}
+  // Guard each call independently — on web a single setter (e.g. loop) can throw
+  // without that meaning playback should fail.
+  try { p.replace({ uri: item.uri }); } catch {}
+  try { p.loop = true; } catch {}
+  try { p.volume = AMBIENCE_VOLUME; } catch {}
+  try { p.play(); } catch {}
 }
 
 export function stopAmbience(): void {
