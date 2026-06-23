@@ -200,3 +200,27 @@ export interface Journey {
   days: JourneyDay[];
   isFree?: boolean;
 }
+
+/**
+ * A LIVE, dated festival challenge — a journey anchored to the festival
+ * calendar, so it surfaces with a countdown as the festival nears (the single
+ * highest-retention mechanic in the category). Reuses `JourneyDay` and the
+ * journey progress store.
+ */
+export interface Challenge {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  deityId?: DeityId;
+  colors: [string, string];
+  /** Festival (by id) whose resolved date anchors the challenge window. */
+  festivalId: string;
+  /**
+   * Which 0-based day of the challenge the festival itself falls on:
+   * 0 = the challenge starts on the festival; days.length-1 = it ends on it.
+   */
+  festivalDayIndex: number;
+  days: JourneyDay[];
+  isFree?: boolean;
+}

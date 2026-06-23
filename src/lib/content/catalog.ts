@@ -4,7 +4,7 @@
  * where prayers come from. Lookups are computed on read; the catalog stays small.
  */
 import { getContent } from './source';
-import type { Deity, Journey, Scripture, Story, Track, TrackKind } from './types';
+import type { Challenge, Deity, Journey, Scripture, Story, Track, TrackKind } from './types';
 
 export const Catalog = {
   deities: (): Deity[] => getContent().deities,
@@ -30,6 +30,9 @@ export const Catalog = {
 
   journeys: (): Journey[] => getContent().journeys,
   journey: (id: string): Journey | undefined => getContent().journeys.find((j) => j.id === id),
+
+  challenges: (): Challenge[] => getContent().challenges,
+  challenge: (id: string): Challenge | undefined => getContent().challenges.find((c) => c.id === id),
 
   search: (query: string): Track[] => {
     const q = query.trim().toLowerCase();

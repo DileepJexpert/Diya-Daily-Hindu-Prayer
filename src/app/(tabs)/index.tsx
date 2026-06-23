@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
-import { Radius, Spacing } from '@/constants/theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Radius, Shadow, Spacing } from '@/constants/theme';
 import { Button, Card, Icon, type IconName, Screen, SectionHeader, Text } from '@/components/ui';
 import { useColors } from '@/hooks/use-theme';
+import { liveChallenges } from '@/lib/panchang/challenges';
 import { DiyaFlame } from '@/components/brand/DiyaFlame';
 import { StreakRing } from '@/components/brand/StreakRing';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
@@ -42,6 +44,7 @@ export default function TodayScreen() {
   const plan = useMemo(() => getDailyPlan(), []);
   const location = useAppStore((s) => s.location);
   const festival = useMemo(() => nextFestival(location), [location]);
+  const liveCh = useMemo(() => liveChallenges(new Date(), location)[0], [location]);
 
   const deity = Catalog.deity(plan.deityOfDay);
   const planTracks = plan.items
@@ -120,6 +123,32 @@ export default function TodayScreen() {
           </View>
         </View>
       </Card>
+
+      {/* Live festival challenge */}
+      {liveCh && (
+        <Pressable onPress={() => router.push(`/challenge/${liveCh.challenge.id}`)} style={{ marginTop: Spacing.lg }}>
+          <LinearGradient
+            colors={liveCh.challenge.colors}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ borderRadius: Radius.lg, padding: Spacing.lg, ...Shadow.card }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.sm }}>
+              <Icon name="flame" size={14} color="#FFFFFF" />
+              <Text variant="overline" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                {liveCh.status === 'active'
+                  ? `Live · day ${liveCh.dayIndex + 1} of ${liveCh.challenge.days.length}`
+                  : `Starts in ${liveCh.daysUntilStart} ${liveCh.daysUntilStart === 1 ? 'day' : 'days'}`}
+              </Text>
+            </View>
+            <Text variant="title" style={{ color: '#FFFFFF', marginTop: 4 }}>{liveCh.challenge.title}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: Spacing.sm }}>
+              <Text variant="caption" style={{ color: 'rgba(255,255,255,0.95)' }}>{liveCh.challenge.subtitle}</Text>
+              <Text variant="label" style={{ color: '#FFFFFF' }}>{liveCh.status === 'active' ? 'Continue →' : 'Join →'}</Text>
+            </View>
+          </LinearGradient>
+        </Pressable>
+      )}
 
       {/* Quick tools */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: Spacing.sm, marginTop: Spacing.lg }}>

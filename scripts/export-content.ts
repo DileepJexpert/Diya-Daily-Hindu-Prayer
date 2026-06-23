@@ -16,5 +16,5 @@ writeFileSync(out, `${JSON.stringify(BUNDLED, null, 2)}\n`);
 console.log(
   `Wrote ${out}\n  ${BUNDLED.deities.length} deities · ${BUNDLED.tracks.length} tracks · ` +
     `${BUNDLED.scriptures.length} scriptures · ${BUNDLED.stories.length} stories · ` +
-    `${BUNDLED.journeys.length} journeys · ${BUNDLED.festivals.length} festivals`,
+    `${BUNDLED.journeys.length} journeys · ${BUNDLED.challenges.length} challenges · ${BUNDLED.festivals.length} festivals`,
 );

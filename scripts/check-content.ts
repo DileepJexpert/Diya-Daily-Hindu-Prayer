@@ -37,8 +37,19 @@ for (const st of BUNDLED.stories) {
   });
 }
 
+const festivalIds = new Set(BUNDLED.festivals.map((f) => f.id));
 for (const f of BUNDLED.festivals) {
   if (f.deityId && !deityIds.has(f.deityId)) errors.push(`festival "${f.id}" → unknown deity "${f.deityId}"`);
+}
+
+for (const c of BUNDLED.challenges) {
+  if (c.deityId && !deityIds.has(c.deityId)) errors.push(`challenge "${c.id}" → unknown deity "${c.deityId}"`);
+  if (!festivalIds.has(c.festivalId)) errors.push(`challenge "${c.id}" → unknown festival "${c.festivalId}"`);
+  if (c.festivalDayIndex < 0 || c.festivalDayIndex >= c.days.length)
+    errors.push(`challenge "${c.id}" → festivalDayIndex ${c.festivalDayIndex} out of range`);
+  c.days.forEach((d, i) => {
+    for (const id of d.trackIds) if (!trackIds.has(id)) errors.push(`challenge "${c.id}" day ${i + 1} → unknown track "${id}"`);
+  });
 }
 
 if (errors.length) {
@@ -49,5 +60,6 @@ if (errors.length) {
 
 console.log(
   `✓ content OK — ${BUNDLED.deities.length} deities · ${BUNDLED.tracks.length} tracks · ` +
-    `${BUNDLED.journeys.length} journeys · ${BUNDLED.stories.length} stories · ${BUNDLED.festivals.length} festivals`,
+    `${BUNDLED.journeys.length} journeys · ${BUNDLED.challenges.length} challenges · ` +
+    `${BUNDLED.stories.length} stories · ${BUNDLED.festivals.length} festivals`,
 );

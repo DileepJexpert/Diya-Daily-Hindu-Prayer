@@ -14,8 +14,9 @@ import { BHAGAVAD_GITA } from './seed/gita';
 import { FESTIVALS } from './seed/festivals';
 import { STORIES } from './seed/stories';
 import { JOURNEYS } from './seed/journeys';
+import { CHALLENGES } from './seed/challenges';
 import { STORY_QUIZZES } from './seed/quizzes';
-import type { Deity, Festival, Journey, QuizQuestion, Scripture, Story, Track } from './types';
+import type { Challenge, Deity, Festival, Journey, QuizQuestion, Scripture, Story, Track } from './types';
 
 export interface ContentBundle {
   deities: Deity[];
@@ -24,6 +25,7 @@ export interface ContentBundle {
   festivals: Festival[];
   stories: Story[];
   journeys: Journey[];
+  challenges: Challenge[];
   quizzes: Record<string, QuizQuestion[]>;
 }
 
@@ -34,6 +36,7 @@ export const BUNDLED: ContentBundle = {
   festivals: FESTIVALS,
   stories: STORIES,
   journeys: JOURNEYS,
+  challenges: CHALLENGES,
   quizzes: STORY_QUIZZES,
 };
 
@@ -102,6 +105,7 @@ export async function hydrateContent(): Promise<void> {
       festivals: data.festivals ?? BUNDLED.festivals,
       stories: data.stories ?? BUNDLED.stories,
       journeys: data.journeys ?? BUNDLED.journeys,
+      challenges: data.challenges ?? BUNDLED.challenges,
       quizzes: data.quizzes ?? BUNDLED.quizzes,
     };
     active = compose();

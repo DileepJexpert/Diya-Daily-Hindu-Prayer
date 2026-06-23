@@ -89,3 +89,14 @@ export function upcomingFestivals(
 export function nextFestival(loc: GeoLocation = DEFAULT_LOCATION): ResolvedFestival | null {
   return upcomingFestivals(new Date(), 1, loc)[0] ?? null;
 }
+
+/** Resolve a festival's Gregorian date in a specific year (by festival id). */
+export function resolveFestivalInYear(
+  festivalId: string,
+  year: number,
+  loc: GeoLocation = DEFAULT_LOCATION,
+): { date: Date; estimated: boolean } | null {
+  const festival = FESTIVALS.find((f) => f.id === festivalId);
+  if (!festival) return null;
+  return resolveInYear(festival, year, loc);
+}

@@ -19,6 +19,7 @@ Native so one codebase ships to iOS and Android.
 | **Learn mode** | step a chant line-by-line, each line loops until it sticks, reveal-on-demand, word highlight | ✅ |
 | **Daily darshan** | interactive aarti — drag the diya around the deity, ring the bell, offer flowers; ambience seam | ✅ |
 | **Journeys** | multi-day guided programs with per-day intention + practices + verse and progress tracking | ✅ |
+| **Live festival challenges** | dated, **countdown**-driven programs (Navratri 9 Nights, 21-Day Hanuman Chalisa, Diwali 5 Days…) that auto-surface as the festival nears — the Hallow-style retention engine, fired by the panchang | ✅ |
 | **Stories (katha)** | family-friendly sacred tales with comprehension **quizzes** and an all-ages/kids filter | ✅ |
 | **Japa** | tap-to-count mala with haptics (27/54/108) | ✅ |
 | **Sankalpa** | daily intention journal with history | ✅ |
@@ -31,8 +32,8 @@ Native so one codebase ships to iOS and Android.
 | **Retention** | streaks, practice-history heatmap, recently-played, favorites, daily reminders, light/dark | ✅ |
 | **Onboarding** | personalized — name, ishta-devata, location, reminders | ✅ |
 
-**Content footprint:** 13 deities · 18 recitations (synced lyrics) · 5 Gita
-chapters · 6 journeys · 7 stories (+quizzes) · 10 festivals.
+**Content footprint:** 13 deities · 19 recitations (synced lyrics) · 5 Gita
+chapters · 7 journeys · 4 live festival challenges · 7 stories (+quizzes) · 10 festivals.
 
 ## Tech stack
 
