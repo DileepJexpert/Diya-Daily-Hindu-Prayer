@@ -45,8 +45,10 @@ export default function PlayerScreen() {
   const downloading = useDownloadsStore((s) => (id ? !!s.downloading[id] : false));
   const download = useDownloadsStore((s) => s.download);
   const removeDownload = useDownloadsStore((s) => s.remove);
+  const script = useAppStore((s) => s.script);
 
-  const [showDeva, setShowDeva] = useState(true);
+  const [showDeva, setShowDeva] = useState(script !== 'roman');
+  const [showTranslit, setShowTranslit] = useState(script !== 'deva');
   const [showTrans, setShowTrans] = useState(true);
   const [barWidth, setBarWidth] = useState(1);
   const [sleepMin, setSleepMin] = useState(0);
@@ -198,6 +200,7 @@ export default function PlayerScreen() {
               activeIndex={displayIndex}
               position={position}
               showDevanagari={showDeva}
+              showTransliteration={showTranslit}
               showTranslation={showTrans}
               onPressLine={(i) => onSeek(track.lyrics[i].t)}
             />
@@ -226,6 +229,7 @@ export default function PlayerScreen() {
             </View>
             <View style={{ flexDirection: 'row', gap: Spacing.sm, justifyContent: 'center' }}>
               <Pill label="अ Devanagari" active={showDeva} onPress={() => setShowDeva((v) => !v)} />
+              <Pill label="Roman" active={showTranslit} onPress={() => setShowTranslit((v) => !v)} />
               <Pill label="A Translation" active={showTrans} onPress={() => setShowTrans((v) => !v)} />
             </View>
             {ttsMode && (

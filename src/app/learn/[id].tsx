@@ -9,6 +9,7 @@ import { Catalog } from '@/lib/content/catalog';
 import { usePlayerStore } from '@/lib/audio/playerStore';
 import { activeWordIndex } from '@/components/player/LyricsView';
 import { speakLine, stopSpeaking } from '@/lib/audio/speech';
+import { useAppStore } from '@/lib/state/store';
 
 /**
  * Learn mode — step through a chant one line at a time. The line loops
@@ -21,6 +22,7 @@ export default function LearnScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const track = id ? Catalog.track(id) : undefined;
+  const script = useAppStore((s) => s.script);
 
   const trackId = usePlayerStore((s) => s.trackId);
   const isPlaying = usePlayerStore((s) => s.isPlaying);
@@ -84,10 +86,10 @@ export default function LearnScreen() {
 
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Spacing.xl, gap: Spacing.md }}>
         <Text variant="overline" color="primary">{line.section ?? `Line ${index + 1}`}</Text>
-        {line.devanagari && (
+        {script !== 'roman' && line.devanagari && (
           <Text variant="sanskrit" center style={{ fontSize: 30, lineHeight: 50 }}>{line.devanagari}</Text>
         )}
-        {line.words?.length ? (
+        {(script !== 'deva' || !line.devanagari) && (line.words?.length ? (
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
             {line.words.map((w, wi) => {
               const wActive = wi === activeWordIndex(line, position - line.t);
@@ -106,7 +108,7 @@ export default function LearnScreen() {
           <Text variant="transliteration" center color="primary" style={{ fontSize: 21, lineHeight: 32 }}>
             {line.transliteration}
           </Text>
-        )}
+        ))}
         {reveal && (
           <Text variant="bodyLg" center color="textSecondary" style={{ marginTop: Spacing.sm }}>{line.translation}</Text>
         )}

@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { Pressable, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
-import { Spacing } from '@/constants/theme';
+import { Radius, Spacing } from '@/constants/theme';
 import { Card, Icon, Screen, SectionHeader, Text } from '@/components/ui';
+import { useColors } from '@/hooks/use-theme';
 import { DeityAvatar } from '@/components/content/DeityAvatar';
 import { TrackRow } from '@/components/content/TrackRow';
 import { Catalog } from '@/lib/content/catalog';
@@ -12,6 +13,7 @@ import { upcomingFestivals } from '@/lib/panchang/festivals';
 
 export default function FestivalDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const colors = useColors();
   const festival = id ? Catalog.festival(id) : undefined;
   const location = useAppStore((s) => s.location);
   const open = useOpenTrack();
@@ -74,6 +76,34 @@ export default function FestivalDetailScreen() {
               <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.sm }}>
                 <Icon name="ellipse" size={6} color="primary" />
                 <Text variant="body">{o}</Text>
+              </View>
+            ))}
+          </View>
+        </Card>
+      )}
+
+      {festival.homeCelebration && (
+        <Card style={{ marginTop: Spacing.lg }}>
+          <Text variant="overline" color="primary">Celebrate at home</Text>
+          {festival.homeCelebration.needs && festival.homeCelebration.needs.length > 0 && (
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.sm, marginTop: Spacing.sm }}>
+              {festival.homeCelebration.needs.map((n, i) => (
+                <View
+                  key={i}
+                  style={{ paddingVertical: 6, paddingHorizontal: Spacing.md, borderRadius: Radius.pill, backgroundColor: colors.surfaceElevated, borderWidth: 1, borderColor: colors.border }}
+                >
+                  <Text variant="caption" color="textSecondary">{n}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+          <View style={{ marginTop: Spacing.md, gap: Spacing.md }}>
+            {festival.homeCelebration.steps.map((s, i) => (
+              <View key={i} style={{ flexDirection: 'row', gap: Spacing.md, alignItems: 'flex-start' }}>
+                <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center', marginTop: 1 }}>
+                  <Text variant="caption" style={{ color: colors.onPrimary, fontWeight: '700' }}>{i + 1}</Text>
+                </View>
+                <Text variant="body" style={{ flex: 1 }}>{s}</Text>
               </View>
             ))}
           </View>

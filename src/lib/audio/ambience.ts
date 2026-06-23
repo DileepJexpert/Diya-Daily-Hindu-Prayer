@@ -9,6 +9,12 @@ export interface Ambience {
   id: string;
   label: string;
   icon: IconName;
+  /**
+   * Looping audio source (a remote URL to a seamless loop). Undefined = silent
+   * until a loop asset is added — the engine + picker are already wired, so
+   * setting this is all that's needed to make an ambience play.
+   */
+  uri?: string;
 }
 
 export const AMBIENCE: Ambience[] = [

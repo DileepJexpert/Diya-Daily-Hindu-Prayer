@@ -10,6 +10,9 @@ import { DEFAULT_LOCATION, GeoLocation } from '../panchang/engine';
 
 export type ThemeMode = 'system' | 'light' | 'dark';
 
+/** How prayer text is shown: Devanagari + Roman, Roman only, or Devanagari only. */
+export type ScriptPref = 'both' | 'roman' | 'deva';
+
 export interface ReminderSettings {
   enabled: boolean;
   hour: number; // 0-23, local
@@ -25,6 +28,7 @@ interface Streak {
 interface AppState {
   onboarded: boolean;
   themeMode: ThemeMode;
+  script: ScriptPref;
   location: GeoLocation;
   reminders: ReminderSettings;
   streak: Streak;
@@ -39,6 +43,7 @@ interface AppState {
 
   setOnboarded: (v: boolean) => void;
   setThemeMode: (m: ThemeMode) => void;
+  setScript: (s: ScriptPref) => void;
   setLocation: (l: GeoLocation) => void;
   setReminders: (r: Partial<ReminderSettings>) => void;
   toggleFavorite: (trackId: string) => void;
@@ -62,6 +67,7 @@ export const useAppStore = create<AppState>()(
     (set, get) => ({
       onboarded: false,
       themeMode: 'system',
+      script: 'both',
       location: DEFAULT_LOCATION,
       reminders: { enabled: false, hour: 7, minute: 0 },
       streak: { count: 0, longest: 0, lastPracticeISO: null },
@@ -77,6 +83,7 @@ export const useAppStore = create<AppState>()(
 
       setOnboarded: (v) => set({ onboarded: v }),
       setThemeMode: (themeMode) => set({ themeMode }),
+      setScript: (script) => set({ script }),
       setLocation: (location) => set({ location }),
       setReminders: (r) => set((s) => ({ reminders: { ...s.reminders, ...r } })),
 

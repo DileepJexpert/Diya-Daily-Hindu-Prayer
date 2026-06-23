@@ -134,6 +134,8 @@ export interface Festival {
   rule: FestivalRule;
   significance?: string;
   observances?: string[];
+  /** Diaspora-friendly "celebrate at home" guide: what to gather + ordered steps. */
+  homeCelebration?: { needs?: string[]; steps: string[] };
 }
 
 export type FestivalRule =

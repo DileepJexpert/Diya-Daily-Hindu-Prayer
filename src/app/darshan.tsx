@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Platform, Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -13,6 +13,7 @@ import { getDailyPlan } from '@/lib/content/daily';
 import { useAppStore } from '@/lib/state/store';
 import { useOpenTrack } from '@/lib/audio/useOpenTrack';
 import { AMBIENCE } from '@/lib/audio/ambience';
+import { setAmbience as playAmbience, stopAmbience } from '@/lib/audio/ambienceEngine';
 
 export default function DarshanScreen() {
   const colors = useColors();
@@ -30,6 +31,8 @@ export default function DarshanScreen() {
   const [done, setDone] = useState(false);
   const [flowers, setFlowers] = useState(0);
   const [ambience, setAmbience] = useState('none');
+
+  useEffect(() => () => stopAmbience(), []);
 
   if (!deity) return null;
   const aarti = Catalog.tracksByDeity(deity.id).find((t) => t.kind === 'aarti' || t.kind === 'chalisa');
@@ -79,10 +82,16 @@ export default function DarshanScreen() {
       <View style={{ paddingHorizontal: Spacing.xl, paddingBottom: insets.bottom + Spacing.lg, gap: Spacing.md }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: Spacing.sm }}>
           {AMBIENCE.map((a) => (
-            <Pill key={a.id} label={a.label} icon={a.icon} active={ambience === a.id} onPress={() => setAmbience(a.id)} />
+            <Pill
+              key={a.id}
+              label={a.label}
+              icon={a.icon}
+              active={ambience === a.id}
+              onPress={() => { setAmbience(a.id); playAmbience(a.id); }}
+            />
           ))}
         </ScrollView>
-        {ambience !== 'none' && (
+        {ambience !== 'none' && !AMBIENCE.find((a) => a.id === ambience)?.uri && (
           <Text variant="caption" color="textMuted">Ambient sound — audio coming soon.</Text>
         )}
 

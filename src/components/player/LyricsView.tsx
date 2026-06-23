@@ -27,6 +27,7 @@ export function LyricsView({
   activeIndex,
   position,
   showDevanagari = true,
+  showTransliteration = true,
   showTranslation = true,
   onPressLine,
 }: {
@@ -34,6 +35,7 @@ export function LyricsView({
   activeIndex: number;
   position?: number;
   showDevanagari?: boolean;
+  showTransliteration?: boolean;
   showTranslation?: boolean;
   onPressLine?: (index: number) => void;
 }) {
@@ -58,6 +60,9 @@ export function LyricsView({
         const past = i < activeIndex;
         const useWords = active && !!line.words?.length && position !== undefined;
         const wIdx = useWords ? activeWordIndex(line, (position as number) - line.t) : -1;
+        // Always keep some text visible: show the Roman line if it's enabled OR
+        // there's no Devanagari to fall back on.
+        const showRoman = showTransliteration || !(showDevanagari && line.devanagari);
 
         return (
           <Pressable
@@ -79,7 +84,7 @@ export function LyricsView({
               </Text>
             )}
 
-            {useWords ? (
+            {showRoman && (useWords ? (
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: line.devanagari ? Spacing.xs : 0 }}>
                 {line.words!.map((w, wi) => (
                   <Text
@@ -101,7 +106,7 @@ export function LyricsView({
               >
                 {line.transliteration}
               </Text>
-            )}
+            ))}
 
             {showTranslation && (
               <Text variant="translation" color="textMuted" style={{ marginTop: Spacing.xs }}>

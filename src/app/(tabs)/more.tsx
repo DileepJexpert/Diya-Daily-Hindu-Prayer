@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import { Radius, Spacing } from '@/constants/theme';
 import { Button, Card, Divider, Icon, Screen, SectionHeader, Text } from '@/components/ui';
 import { useColors } from '@/hooks/use-theme';
-import { useAppStore, type ThemeMode } from '@/lib/state/store';
+import { useAppStore, type ScriptPref, type ThemeMode } from '@/lib/state/store';
 import { MEMBERSHIP_ENABLED, useIsPremium, useSubscriptionStore } from '@/lib/subscription/subscriptionStore';
 import { LOCATION_PRESETS } from '@/lib/panchang/locations';
 import { cancelReminders, scheduleDailyReminder } from '@/lib/notifications/reminders';
@@ -15,6 +15,11 @@ const THEME_MODES: { id: ThemeMode; label: string }[] = [
   { id: 'system', label: 'System' },
   { id: 'light', label: 'Light' },
   { id: 'dark', label: 'Dark' },
+];
+const SCRIPTS: { id: ScriptPref; label: string }[] = [
+  { id: 'both', label: 'Both' },
+  { id: 'roman', label: 'Roman (abc)' },
+  { id: 'deva', label: 'देव' },
 ];
 const REMINDER_TIMES = [
   { hour: 6, minute: 0 },
@@ -54,6 +59,8 @@ export default function MoreScreen() {
   const ishtaName = ishta ? Catalog.deity(ishta)?.name ?? 'Choose' : 'Choose';
   const themeMode = useAppStore((s) => s.themeMode);
   const setThemeMode = useAppStore((s) => s.setThemeMode);
+  const script = useAppStore((s) => s.script);
+  const setScript = useAppStore((s) => s.setScript);
   const location = useAppStore((s) => s.location);
   const setLocation = useAppStore((s) => s.setLocation);
   const reminders = useAppStore((s) => s.reminders);
@@ -189,6 +196,33 @@ export default function MoreScreen() {
             );
           })}
         </View>
+        <Divider spacing={Spacing.sm} />
+        <Text variant="overline" color="textMuted">Prayer script</Text>
+        <View style={{ flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.sm }}>
+          {SCRIPTS.map((sopt) => {
+            const active = script === sopt.id;
+            return (
+              <Pressable
+                key={sopt.id}
+                onPress={() => setScript(sopt.id)}
+                style={{
+                  flex: 1,
+                  paddingVertical: Spacing.sm,
+                  borderRadius: Radius.md,
+                  alignItems: 'center',
+                  backgroundColor: active ? colors.primary : colors.surfaceElevated,
+                  borderWidth: 1,
+                  borderColor: active ? colors.primary : colors.border,
+                }}
+              >
+                <Text variant="label" style={{ color: active ? colors.onPrimary : colors.textSecondary }}>{sopt.label}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+        <Text variant="caption" color="textMuted" style={{ marginTop: Spacing.sm }}>
+          Roman shows prayers in English letters — read along without Devanagari.
+        </Text>
         <Divider spacing={Spacing.sm} />
 
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.md, paddingVertical: Spacing.md }}>

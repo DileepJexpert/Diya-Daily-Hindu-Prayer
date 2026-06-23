@@ -15,7 +15,7 @@ Native so one codebase ships to iOS and Android.
 | Pillar | What it does | Status |
 | --- | --- | --- |
 | **Today** | name greeting, deity of the day, streak ring, daily practice queue, sankalpa, verse, next festival, quick tools | ✅ |
-| **Synced-lyric player** | Devanagari + transliteration + translation, **word-by-word** highlight, auto-scroll, slow-down (0.5–1.25×), repeat, sleep timer, tap-to-seek, share | ✅ |
+| **Synced-lyric player** | Devanagari + transliteration + translation, **word-by-word** karaoke highlight, **script toggle** (Devanagari / Roman / both), auto-scroll, slow-down (0.5–1.25×), repeat, sleep timer, tap-to-seek, share | ✅ |
 | **Learn mode** | step a chant line-by-line, each line loops until it sticks, reveal-on-demand, word highlight | ✅ |
 | **Daily darshan** | interactive aarti — drag the diya around the deity, ring the bell, offer flowers; ambience seam | ✅ |
 | **Journeys** | multi-day guided programs with per-day intention + practices + verse and progress tracking | ✅ |
@@ -24,7 +24,7 @@ Native so one codebase ships to iOS and Android.
 | **Sankalpa** | daily intention journal with history | ✅ |
 | **Library** | global search across practices, deities & stories + category filters | ✅ |
 | **Mandir** | deity browser → detail, set your ishta-devata | ✅ |
-| **Panchang** | tithi/nakshatra/yoga/karana, sunrise/sunset, Rahu Kaal + festival calendar, offline for any timezone | ✅ |
+| **Panchang** | tithi/nakshatra/yoga/karana, sunrise/sunset, Rahu Kaal + festival calendar with **celebrate-at-home guides**, offline for any timezone | ✅ |
 | **Scripture** | Bhagavad Gita reader (Ch. 2, 9, 12, 15, 18) with shareable, attributed verses | ✅ |
 | **Membership** | paywall, plans, gating, restore — RevenueCat seam with a dev mock | ✅ |
 | **Creator Studio** | in-app admin to publish your own bhajans (a Suno export / licensed audio) with synced lyrics — mock now, Supabase/Firebase-ready | ✅ |

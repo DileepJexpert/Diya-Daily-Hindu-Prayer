@@ -508,12 +508,20 @@ const mahaMantra: Track = {
       devanagari: 'हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे।',
       transliteration: 'hare kṛṣṇa hare kṛṣṇa, kṛṣṇa kṛṣṇa hare hare',
       translation: 'O energy of the Lord, O all-attractive Lord, please engage me in your service.',
+      words: [
+        { text: 'hare', t: 0 }, { text: 'kṛṣṇa', t: 2 }, { text: 'hare', t: 4 }, { text: 'kṛṣṇa', t: 6 },
+        { text: 'kṛṣṇa', t: 8 }, { text: 'kṛṣṇa', t: 10 }, { text: 'hare', t: 12 }, { text: 'hare', t: 14 },
+      ],
     },
     {
       t: 16,
       devanagari: 'हरे राम हरे राम, राम राम हरे हरे॥',
       transliteration: 'hare rāma hare rāma, rāma rāma hare hare',
       translation: 'O energy of the Lord, O reservoir of joy, please engage me in your service.',
+      words: [
+        { text: 'hare', t: 0 }, { text: 'rāma', t: 2 }, { text: 'hare', t: 4 }, { text: 'rāma', t: 6 },
+        { text: 'rāma', t: 8 }, { text: 'rāma', t: 10 }, { text: 'hare', t: 12 }, { text: 'hare', t: 14 },
+      ],
     },
   ],
 };
@@ -537,18 +545,21 @@ const omNamahShivaya: Track = {
       devanagari: 'ॐ नमः शिवाय।',
       transliteration: 'oṁ namaḥ śivāya',
       translation: 'Om, I bow to Shiva — the auspicious inner Self.',
+      words: [{ text: 'oṁ', t: 0 }, { text: 'namaḥ', t: 3 }, { text: 'śivāya', t: 6 }],
     },
     {
       t: 10,
       devanagari: 'ॐ नमः शिवाय।',
       transliteration: 'oṁ namaḥ śivāya',
       translation: 'Om, I bow to Shiva — the auspicious inner Self.',
+      words: [{ text: 'oṁ', t: 0 }, { text: 'namaḥ', t: 3 }, { text: 'śivāya', t: 6 }],
     },
     {
       t: 20,
       devanagari: 'ॐ नमः शिवाय।',
       transliteration: 'oṁ namaḥ śivāya',
       translation: 'Om, I bow to Shiva — the auspicious inner Self.',
+      words: [{ text: 'oṁ', t: 0 }, { text: 'namaḥ', t: 3 }, { text: 'śivāya', t: 6 }],
     },
   ],
 };
