@@ -126,6 +126,7 @@ export default function MoreScreen() {
         <SettingRow icon="book" label="Stories for the family" onPress={() => router.push('/stories')} />
         <SettingRow icon="repeat" label="Japa counter" onPress={() => router.push('/japa')} />
         <SettingRow icon="flower" label="Daily darshan" onPress={() => router.push('/darshan')} />
+        <SettingRow icon="moon" label="Sleep" onPress={() => router.push('/sleep')} />
         <SettingRow icon="sparkles" label="Sankalpa journal" onPress={() => router.push('/sankalpa')} />
         <SettingRow icon="calendar" label="All festivals" onPress={() => router.push('/festivals')} />
         <SettingRow icon="cloud-upload" label="Creator Studio" onPress={() => router.push('/studio')} />

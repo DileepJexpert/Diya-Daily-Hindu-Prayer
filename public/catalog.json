@@ -1561,6 +1561,77 @@
           "translation": "Drenched in saffron colour, O beloved."
         }
       ]
+    },
+    {
+      "id": "yoga-nidra-sleep",
+      "title": "Yoga Nidra — Yogic Sleep",
+      "devanagari": "योग निद्रा",
+      "kind": "meditation",
+      "deityId": "shiva",
+      "language": "en",
+      "artist": "Diya",
+      "duration": 300,
+      "audio": null,
+      "isFree": true,
+      "attribution": "Original guided yoga nidra for sleep",
+      "tags": [
+        "sleep",
+        "calm",
+        "meditation"
+      ],
+      "lyrics": [
+        {
+          "t": 0,
+          "section": "Yoga Nidra",
+          "transliteration": "Lie down comfortably, and let your body grow still.",
+          "translation": ""
+        },
+        {
+          "t": 30,
+          "transliteration": "Take a slow breath in… and a long breath out.",
+          "translation": ""
+        },
+        {
+          "t": 60,
+          "transliteration": "Feel the weight of your body sinking into the ground.",
+          "translation": ""
+        },
+        {
+          "t": 90,
+          "transliteration": "Bring your awareness to your feet, and let them relax.",
+          "translation": ""
+        },
+        {
+          "t": 120,
+          "transliteration": "Let the relaxation rise through your legs and hips.",
+          "translation": ""
+        },
+        {
+          "t": 150,
+          "transliteration": "Soften your belly, your chest, your shoulders.",
+          "translation": ""
+        },
+        {
+          "t": 180,
+          "transliteration": "Release your arms, your hands, your fingers.",
+          "translation": ""
+        },
+        {
+          "t": 210,
+          "transliteration": "Let your face grow soft — your jaw, your eyes.",
+          "translation": ""
+        },
+        {
+          "t": 240,
+          "transliteration": "Rest in the quiet space behind your breath.",
+          "translation": ""
+        },
+        {
+          "t": 270,
+          "transliteration": "You are safe. You are held. Let yourself drift.",
+          "translation": ""
+        }
+      ]
     }
   ],
   "scriptures": [

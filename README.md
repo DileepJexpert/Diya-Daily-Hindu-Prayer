@@ -17,7 +17,8 @@ Native so one codebase ships to iOS and Android.
 | **Today** | name greeting, deity of the day, streak ring, daily practice queue, sankalpa, verse, next festival, quick tools | ✅ |
 | **Synced-lyric player** | Devanagari + transliteration + translation, **word-by-word** karaoke highlight, **script toggle** (Devanagari / Roman / both), auto-scroll, slow-down (0.5–1.25×), repeat, sleep timer, tap-to-seek, share | ✅ |
 | **Learn mode** | step a chant line-by-line, each line loops until it sticks, reveal-on-demand, word highlight | ✅ |
-| **Daily darshan** | interactive aarti — drag the diya around the deity, ring the bell, offer flowers; ambience seam | ✅ |
+| **Daily darshan** | interactive aarti — drag the diya around the deity, ring the bell, offer flowers; original ambience loops | ✅ |
+| **Sleep** | a dark, calm sleep screen — original looping soundscapes with a fade timer, a guided **Yoga Nidra**, and slow wind-down chants | ✅ |
 | **Journeys** | multi-day guided programs with per-day intention + practices + verse and progress tracking | ✅ |
 | **Live festival challenges** | dated, **countdown**-driven programs (Navratri 9 Nights, 21-Day Hanuman Chalisa, Diwali 5 Days…) that auto-surface as the festival nears — the Hallow-style retention engine, fired by the panchang | ✅ |
 | **Stories (katha)** | family-friendly sacred tales with comprehension **quizzes** and an all-ages/kids filter | ✅ |
@@ -32,7 +33,7 @@ Native so one codebase ships to iOS and Android.
 | **Retention** | streaks, practice-history heatmap, recently-played, favorites, daily reminders, light/dark | ✅ |
 | **Onboarding** | personalized — name, ishta-devata, location, reminders | ✅ |
 
-**Content footprint:** 13 deities · 19 recitations (synced lyrics) · 5 Gita
+**Content footprint:** 13 deities · 20 recitations (synced lyrics) · 5 Gita
 chapters · 7 journeys · 4 live festival challenges · 7 stories (+quizzes) · 10 festivals.
 
 ## Tech stack

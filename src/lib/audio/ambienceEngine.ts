@@ -16,6 +16,11 @@ const AMBIENCE_VOLUME = 0.35; // sits softly under the recitation
 
 let player: AudioPlayer | null = null;
 let currentId: string | null = null;
+let timer: ReturnType<typeof setTimeout> | null = null;
+
+function clearTimer() {
+  if (timer) { clearTimeout(timer); timer = null; }
+}
 
 function ensure(): AudioPlayer {
   if (!player) player = createAudioPlayer(null, { updateInterval: 1000 });
@@ -42,5 +47,17 @@ export function setAmbience(id: string): void {
 
 export function stopAmbience(): void {
   currentId = null;
+  clearTimer();
   try { player?.pause(); } catch {}
+}
+
+/** Sleep timer: auto-stop the ambience after `minutes` (0 = no timer). */
+export function setAmbienceTimer(minutes: number): void {
+  clearTimer();
+  if (minutes > 0) timer = setTimeout(() => stopAmbience(), minutes * 60000);
+}
+
+/** Currently playing ambience id, or null. */
+export function currentAmbience(): string | null {
+  return currentId && currentId !== 'none' ? currentId : null;
 }

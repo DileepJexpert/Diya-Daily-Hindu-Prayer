@@ -26,6 +26,7 @@ const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'O
 
 const QUICK: { icon: IconName; label: string; href: string }[] = [
   { icon: 'flower', label: 'Darshan', href: '/darshan' },
+  { icon: 'moon', label: 'Sleep', href: '/sleep' },
   { icon: 'repeat', label: 'Japa', href: '/japa' },
   { icon: 'map', label: 'Journeys', href: '/journeys' },
   { icon: 'book', label: 'Stories', href: '/stories' },
